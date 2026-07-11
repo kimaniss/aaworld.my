@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&A World | Premium Cookware & Periuk Eksklusif</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#4a7bd1',
+                            DEFAULT: '#355ca4', // Warna biru diraja dari logo A&A World
+                            dark: '#1e3768',
+                            accent: '#e28743',
+                            cream: '#fcf8f2',
+                            lightBg: '#f4f7fb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar to match the theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #355ca4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1e3768;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col antialiased">
+
+<!-- Top Bar Promo -->
+    <div class="bg-brand-dark text-white text-xs md:text-sm py-2 px-4 text-center font-medium tracking-wide">
+        <i class="fa-solid fa-truck-fast mr-2 text-brand-light"></i> Penghantaran Percuma Semenanjung Malaysia untuk pembelian melebihi RM150!
+    </div>
+
+<!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Brand Logo & Name -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="aaworld logo.png" class="h-12 w-auto object-contain transform group-hover:scale-105 transition-transform duration-200" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+World'">
+                <div class="hidden sm:block">
+                    <span class="block text-xl font-extrabold text-brand tracking-tight leading-none">A&A World</span>
+                    <span class="block text-[10px] text-gray-500 font-semibold tracking-wider uppercase">Premium Cookware</span>
+                </div>
+            </a>
+
+<!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-gray-600">
+                <a href="#" class="hover:text-brand transition-colors">Utama</a>
+                <a href="#produk" class="hover:text-brand transition-colors">Koleksi Periuk</a>
+                <a href="#kelebihan" class="hover:text-brand transition-colors">Kelebihan Kami</a>
+                <a href="#testimoni" class="hover:text-brand transition-colors">Testimoni</a>
+            </nav>
+
+<!-- Action Buttons -->
+            <div class="flex items-center space-x-4">
+                <!-- Contact Icon (WhatsApp Quick Link) -->
+                <a href="https://wa.me/60123456789" target="_blank" class="text-gray-600 hover:text-green-500 transition-colors p-2" title="Hubungi Kami">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </a>
+
+<!-- Cart Button with Badge -->
+                <button onclick="toggleCart()" class="relative bg-brand hover:bg-brand-dark text-white p-2.5 rounded-full shadow-md transition-all hover:scale-105 flex items-center justify-center" aria-label="Buka Troli">
+                    <i class="fa-solid fa-shopping-basket text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-brand-accent text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+                </button>
+
+<!-- Mobile Menu Button (Hamburger) -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 hover:text-brand p-2" aria-label="Buka Menu">
+                    <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+<!-- Mobile Nav Menu (Expandable) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3 transition-all">
+            <a href="#" onclick="toggleMobileMenu()" class="block font-medium py-2 text-brand border-b border-gray-50">Utama</a>
+            <a href="#produk" onclick="toggleMobileMenu()" class="block font-medium py-2 text-gray-600 hover:text-brand border-b border-gray-50">Koleksi Periuk</a>
+            <a href="#kelebihan" onclick="toggleMobileMenu()" class="block font-medium py-2 text-gray-600 hover:text-brand border-b border-gray-50">Kelebihan Kami</a>
+            <a href="#testimoni" onclick="toggleMobileMenu()" class="block font-medium py-2 text-gray-600 hover:text-brand">Testimoni</a>
+        </div>
+    </header>
+
+<!-- Hero Section -->
+    <section class="relative bg-brand-lightBg overflow-hidden py-16 md:py-24">
+        <!-- Abstract Background Shapes -->
+        <div class="absolute inset-0 z-0 opacity-10">
+            <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand rounded-full filter blur-3xl"></div>
+            <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-accent rounded-full filter blur-3xl"></div>
+        </div>
+
+<div class="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Left: Hero Text -->
+            <div class="text-center md:text-left space-y-6">
+                <span class="inline-block bg-brand/10 text-brand px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase">
+                    Koleksi Peralatan Dapur 2026
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark leading-tight">
+                    Masakan Sempurna Bermula Dari <span class="text-brand">Periuk Sempurna</span>
+                </h1>
+                <p class="text-gray-600 text-base md:text-lg max-w-lg leading-relaxed mx-auto md:mx-0">
+                    Nikmati pengalaman memasak bertaraf profesional di rumah dengan koleksi periuk premium daripada A&A World. Tahan lasak, selamat (BPA-Free), dan menghantar haba sekata.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#produk" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 group">
+                        Lihat Koleksi Periuk
+                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="#kelebihan" class="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-700 font-semibold px-8 py-3.5 rounded-xl shadow-md border border-gray-200 transition-all hover:-translate-y-0.5">
+                        Kenapa Pilih Kami?
+                    </a>
+                </div>
+                <div class="pt-4 flex items-center justify-center md:justify-start space-x-6 text-sm text-gray-500">
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-green-500 mr-2"></i> Kualiti Gred Makanan</div>
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-green-500 mr-2"></i> Penghantaran Pantas</div>
+                </div>
+            </div>
+
+<!-- Right: Hero Banner Image / Logo representation -->
+            <div class="relative flex justify-center items-center">
+                <div class="absolute w-72 sm:w-96 h-72 sm:h-96 bg-brand/10 rounded-full filter blur-xl"></div>
+                <div class="relative bg-white p-6 sm:p-8 rounded-3xl shadow-2xl border border-gray-100 max-w-sm sm:max-w-md transform hover:rotate-1 transition-transform duration-300">
+                    <!-- High quality cookware photo -->
+                    <img src="https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800" alt="Periuk Mewah A&A World" class="w-full h-56 sm:h-64 object-cover rounded-2xl mb-4 shadow-inner" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=Premium+Cookware'">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <p class="text-xs text-brand uppercase font-bold tracking-widest">Produk Terlaris</p>
+                            <h3 class="text-lg font-bold text-gray-800">Periuk Granit Non-Stick</h3>
+                        </div>
+                        <span class="bg-brand-accent text-white px-3 py-1 rounded-lg text-sm font-bold">RM 189.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Features Highlight -->
+    <section id="kelebihan" class="py-12 bg-white">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="flex items-start p-5 rounded-2xl hover:bg-gray-50 transition-all">
+                <div class="bg-brand/10 p-4 rounded-xl text-brand mr-4">
+                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-1">Bahan Selamat & Sihat</h4>
+                    <p class="text-sm text-gray-500">100% Bebas daripada PFOA, plumbum dan kadmium untuk menjamin kesihatan keluarga anda.</p>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="flex items-start p-5 rounded-2xl hover:bg-gray-50 transition-all">
+                <div class="bg-brand/10 p-4 rounded-xl text-brand mr-4">
+                    <i class="fa-solid fa-fire-burner text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-1">Teknologi Haba Sekata</h4>
+                    <p class="text-sm text-gray-500">Tapak periuk tebal pelbagai lapisan menjamin penyebaran haba yang pantas dan seimbang.</p>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="flex items-start p-5 rounded-2xl hover:bg-gray-50 transition-all">
+                <div class="bg-brand/10 p-4 rounded-xl text-brand mr-4">
+                    <i class="fa-solid fa-handshake-simple text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-1">Waranti & Khidmat Pelanggan</h4>
+                    <p class="text-sm text-gray-500">Sokongan bantuan selepas jualan yang mesra dan penggantian produk rosak sedia diuruskan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Main Store Section -->
+    <section id="produk" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">Koleksi Periuk Pilihan</h2>
+                <p class="text-gray-500">Pilih dari pelbagai kategori periuk berkualiti tinggi yang sesuai untuk semua jenis dapur gas dan induksi.</p>
+
+<!-- Category Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mt-8">
+                    <button onclick="filterCategory('all')" id="btn-all" class="category-btn active px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-brand text-white">
+                        Semua
+                    </button>
+                    <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-white text-gray-600 hover:bg-gray-100">
+                        Granit Non-Stick
+                    </button>
+                    <button onclick="filterCategory('stainless')" id="btn-stainless" class="category-btn px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-white text-gray-600 hover:bg-gray-100">
+                        Stainless Steel
+                    </button>
+                    <button onclick="filterCategory('castiron')" id="btn-castiron" class="category-btn px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-white text-gray-600 hover:bg-gray-100">
+                        Cast Iron & Tanah Liat
+                    </button>
+                </div>
+            </div>
+
+<!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products will be dynamically generated by JS -->
+            </div>
+        </div>
+    </section>
+
+<!-- Cart Sidebar Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
+        <!-- Backdrop -->
+        <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+<!-- Cart panel -->
+        <div id="cart-panel" class="absolute inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto">
+            <!-- Cart Header -->
+            <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-brand text-white">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-shopping-cart text-xl"></i>
+                    <h3 class="text-lg font-extrabold">Troli Beli-Belah</h3>
+                </div>
+                <button onclick="toggleCart()" class="text-white hover:text-gray-200 p-1.5 rounded-full hover:bg-brand-dark transition-all">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+<!-- Cart Body (Scrollable items) -->
+            <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Empty State Message -->
+                <div id="cart-empty-state" class="text-center py-12 flex flex-col items-center justify-center space-y-4">
+                    <div class="bg-gray-100 p-6 rounded-full text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-5xl"></i>
+                    </div>
+                    <p class="text-gray-500 font-medium">Troli anda masih kosong.</p>
+                    <button onclick="toggleCart()" class="text-brand hover:text-brand-dark font-semibold text-sm">Kembali Membeli Belah →</button>
+                </div>
+
+<!-- Dynamic Items Listing -->
+                <div id="cart-active-items" class="space-y-4 hidden">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+<!-- Cart Footer (Summary & Checkout button) -->
+            <div id="cart-footer" class="border-t border-gray-100 p-6 bg-gray-50 hidden">
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-gray-600 text-sm">
+                        <span>Jumlah Kecil</span>
+                        <span id="cart-subtotal">RM 0.00</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600 text-sm">
+                        <span>Penghantaran</span>
+                        <span id="cart-shipping">RM 0.00</span>
+                    </div>
+                    <hr class="border-gray-200">
+                    <div class="flex justify-between text-gray-900 font-bold text-lg">
+                        <span>Jumlah Keseluruhan</span>
+                        <span id="cart-total" class="text-brand">RM 0.00</span>
+                    </div>
+                    <p id="free-shipping-reminder" class="text-[11px] text-green-600 font-semibold bg-green-50 p-2 rounded text-center"></p>
+                </div>
+
+<button onclick="openCheckoutModal()" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 hover:-translate-y-0.5">
+                    <span>Langkah Seterusnya</span>
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
+
+<!-- Modal Content -->
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
+            <!-- Modal Header -->
+            <div class="bg-brand text-white px-6 py-4 flex items-center justify-between">
+                <h3 class="text-lg font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
+                <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+<!-- Modal Form -->
+            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nama Penuh <span class="text-red-500">*</span></label>
+                    <input type="text" id="cust-name" required class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand" placeholder="cth: Ahmad bin Ali">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nombor Telefon (WhatsApp) <span class="text-red-500">*</span></label>
+                    <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand" placeholder="cth: 0123456789">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Alamat Lengkap Penghantaran <span class="text-red-500">*</span></label>
+                    <textarea id="cust-address" required rows="3" class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand resize-none" placeholder="cth: No 12, Jalan Kemboja, Taman Kemboja, 43000 Kajang, Selangor"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Kawasan Penghantaran <span class="text-red-500">*</span></label>
+                    <select id="cust-region" onchange="recalculateShipping()" class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                        <option value="Semenanjung">Semenanjung Malaysia (Caj biasa RM10)</option>
+                        <option value="SabahSarawak">Sabah & Sarawak (Caj biasa RM20)</option>
+                    </select>
+                </div>
+
+<!-- Simple Order Summary in Form -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <h4 class="text-xs font-bold text-gray-500 uppercase mb-2">Ringkasan Tempahan</h4>
+                    <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1 max-h-24 overflow-y-auto mb-2">
+                        <!-- Filled by JS -->
+                    </div>
+                    <div class="flex justify-between font-bold text-sm text-brand pt-2 border-t border-gray-200">
+                        <span>Jumlah Bayaran:</span>
+                        <span id="checkout-summary-total">RM 0.00</span>
+                    </div>
+                </div>
+
+<div class="pt-2 flex space-x-3">
+                    <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl transition-all">
+                        Batal
+                    </button>
+                    <button type="submit" class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Pesan Melalui WA</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!-- Success Message Pop-up -->
+    <div id="success-toast" class="fixed bottom-5 left-5 right-5 md:left-auto md:right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3">
+        <i class="fa-solid fa-circle-check text-2xl"></i>
+        <div>
+            <p class="font-bold">Selesai!</p>
+            <p class="text-xs">Produk berjaya dimasukkan ke dalam troli.</p>
+        </div>
+    </div>
+
+<!-- About Section -->
+    <section class="py-16 bg-brand-lightBg">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Tentang A&A World" class="rounded-3xl shadow-lg w-full h-80 object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+World'">
+            </div>
+            <div class="space-y-6">
+                <span class="text-xs font-bold text-brand uppercase tracking-wider">Mengenai Kami</span>
+                <h3 class="text-3xl font-bold text-brand-dark">Koleksi Peralatan Dapur Terulung Anda</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Di **A&A World**, kami percaya bahawa periuk yang hebat adalah rahsia di sebalik masakan rumah yang lazat. Kami komited untuk membekalkan pelbagai jenis periuk premium dari periuk granit tahan calar, keluli tahan karat berkualiti tinggi sehinggalah periuk cast iron yang klasik.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <p class="text-2xl font-bold text-brand">5,000+</p>
+                        <p class="text-xs text-gray-500">Pelanggan Puas Hati</p>
+                    </div>
+                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+                        <p class="text-2xl font-bold text-brand">100%</p>
+                        <p class="text-xs text-gray-500">Jaminan Kualiti</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Testimonials -->
+    <section id="testimoni" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h3 class="text-3xl font-bold text-center text-brand-dark mb-12">Kata Pelanggan Kami</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                    <div class="flex text-yellow-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"Periuk granit non-stick dia sangat hebat! Guna minyak sikit sangat pun telur tak melekat langsung. Senang sangat nak cuci. Terbaiklah A&A World!"</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold">SM</div>
+                        <div>
+                            <p class="text-sm font-bold">Siti Mariah</p>
+                            <p class="text-xs text-gray-400">Suri Rumah, Selangor</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                    <div class="flex text-yellow-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"Saya beli set Stainless Steel untuk isteri sempena ulang tahun perkahwinan. Kualiti memang tebal, kukuh dan nampak mewah di dapur. Sangat puas hati dengan kualiti periuk."</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold">H</div>
+                        <div>
+                            <p class="text-sm font-bold">Hazim</p>
+                            <p class="text-xs text-gray-400">Kuala Lumpur</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+                    <div class="flex text-yellow-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-gray-600 italic">"Pernah beli periuk murah tempat lain tapi cepat rosak. Kali ni beli dengan A&A World rasa berbaloi. Memang tahan lasak dan periuk ni tebal elok. Berbaloi dengan harga!"</p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold">FN</div>
+                        <div>
+                            <p class="text-sm font-bold">Farah Nabila</p>
+                            <p class="text-xs text-gray-400">Johor Bahru</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer Section -->
+    <footer class="bg-brand-dark text-white pt-12 pb-6 mt-auto">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="space-y-4">
+                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="aaworld logo.png" class="h-16 w-auto object-contain brightness-110" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+World'">
+                <p class="text-xs text-gray-300 leading-relaxed">Membekalkan koleksi periuk premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk keselesaan dapur anda.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-brand-light">Pautan Cepat</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#" class="hover:underline">Halaman Utama</a></li>
+                    <li><a href="#produk" class="hover:underline">Koleksi Periuk</a></li>
+                    <li><a href="#kelebihan" class="hover:underline">Kelebihan Kami</a></li>
+                    <li><a href="#testimoni" class="hover:underline">Testimoni Pelanggan</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-brand-light">Perkhidmatan</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#" class="hover:underline">Cara Pembelian</a></li>
+                    <li><a href="#" class="hover:underline">Polisi Pemulangan</a></li>
+                    <li><a href="#" class="hover:underline">Waranti Produk</a></li>
+                    <li><a href="#" class="hover:underline">Hubungi Sokongan</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-brand-light">Hubungi Kami</h4>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-envelope mr-2"></i> info@aaworld.com</p>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-phone mr-2"></i> +60 12-345 6789</p>
+                <p class="text-xs text-gray-300 mb-4"><i class="fa-solid fa-map-marker-alt mr-2"></i> Kuala Lumpur, Malaysia</p>
+                <div class="flex space-x-3 text-lg">
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-gray-300 hover:text-white"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-brand-light/20 pt-6 text-center text-xs text-gray-400">
+            <p>© 2026 A&A World Cookware. Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+<!-- Script Operations -->
+    <script>
+        // Product Catalog
+        const PRODUCTS = [
+            {
+                id: 1,
+                name: 'Periuk Granit Premium Non-Stick',
+                category: 'nonstick',
+                price: 189.00,
+                desc: 'Periuk granit tahan calar bertaraf premium. Memasak sihat tanpa minyak yang berlebihan.',
+                img: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=600',
+                size: '24cm'
+            },
+            {
+                id: 2,
+                name: 'Set Periuk Stainless Steel Klasik',
+                category: 'stainless',
+                price: 299.00,
+                desc: 'Tahan lama dan berkilat. Tapak 3 lapisan untuk pengaliran haba yang paling cekap.',
+                img: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&q=80&w=600',
+                size: 'Set 3-in-1'
+            },
+            {
+                id: 3,
+                name: 'Periuk Dutch Oven Cast Iron',
+                category: 'castiron',
+                price: 245.00,
+                desc: 'Sesuai untuk masakan sup, rebusan perlahan, dan masakan dalam oven. Warna biru elegen.',
+                img: 'https://images.unsplash.com/photo-1611244419377-b0a721864635?auto=format&fit=crop&q=80&w=600',
+                size: '26cm'
+            },
+            {
+                id: 4,
+                name: 'Periuk Wok Seramik Sauté',
+                category: 'nonstick',
+                price: 159.00,
+                desc: 'Sesuai untuk menumis dan menggoreng laju. Sangat ringan dan mudah dikendalikan.',
+                img: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=600',
+                size: '30cm'
+            },
+            {
+                id: 5,
+                name: 'Periuk Tanah Liat Sup Tradisional',
+                category: 'castiron',
+                price: 89.00,
+                desc: 'Mengekalkan rasa asli masakan herba dan bubur tradisional anda dengan lebih enak.',
+                img: 'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=600',
+                size: '3 Litre'
+            },
+            {
+                id: 6,
+                name: 'Set Periuk Mini Sarapan Pagi',
+                category: 'nonstick',
+                price: 129.00,
+                desc: 'Sesuai untuk merebus telur, mi segera atau masakan ringkas harian.',
+                img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=600',
+                size: 'Set Mini'
+            }
+        ];
+
+        // Cart State
+        let cart = [];
+        const FREE_SHIPPING_THRESHOLD = 150.00;
+
+        // On Load Initializations
+        window.onload = function() {
+            loadCartFromLocalStorage();
+            renderProducts('all');
+            updateCartUI();
+        };
+
+        // Render Products in Grid
+        function renderProducts(category) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden transform hover:-translate-y-1 transition-all duration-300 flex flex-col";
+                card.innerHTML = `
+                    <div class="relative overflow-hidden group">
+                        <img src="${product.img}" alt="${product.name}" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=Periuk+Premium'">
+                        <span class="absolute top-3 left-3 bg-brand/90 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                            ${product.size}
+                        </span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 line-clamp-1 mb-2">${product.name}</h4>
+                            <p class="text-xs text-gray-500 line-clamp-2 mb-4">${product.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-xl font-black text-brand">RM ${product.price.toFixed(2)}</span>
+                            <button onclick="addToCart(${product.id})" class="bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow hover:shadow-md flex items-center gap-1.5 hover:scale-105">
+                                <i class="fa-solid fa-plus"></i> Tambah Troli
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Categories Handler
+        function filterCategory(cat) {
+            // Manage Active Class
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-brand', 'text-white', 'active');
+                btn.classList.add('bg-white', 'text-gray-600', 'hover:bg-gray-100');
+            });
+            const activeBtn = document.getElementById(`btn-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-gray-600', 'hover:bg-gray-100');
+                activeBtn.classList.add('bg-brand', 'text-white', 'active');
+            }
+            renderProducts(cat);
+        }
+
+        // Add to Cart
+        function addToCart(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCartToLocalStorage();
+            updateCartUI();
+            showSuccessToast();
+        }
+
+        // Update Cart UI details
+        function updateCartUI() {
+            const badge = document.getElementById('cart-badge');
+            const emptyState = document.getElementById('cart-empty-state');
+            const activeContainer = document.getElementById('cart-active-items');
+            const cartItemsDiv = document.getElementById('cart-active-items');
+            const footer = document.getElementById('cart-footer');
+            
+            const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+            // Badge Count Toggle
+            if (totalItems > 0) {
+                badge.innerText = totalItems;
+                badge.classList.remove('scale-0');
+                badge.classList.add('scale-100');
+                emptyState.classList.add('hidden');
+                activeContainer.classList.remove('hidden');
+                footer.classList.remove('hidden');
+            } else {
+                badge.classList.add('scale-0');
+                badge.classList.remove('scale-100');
+                emptyState.classList.remove('hidden');
+                activeContainer.classList.add('hidden');
+                footer.classList.add('hidden');
+                return;
+            }
+
+            // Render Cart Items
+            cartItemsDiv.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const itemRow = document.createElement('div');
+                itemRow.className = "flex items-center space-x-3 bg-gray-50 p-3 rounded-xl border border-gray-100";
+                itemRow.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-gray-200" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
+                    <div class="flex-1">
+                        <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${item.name}</h4>
+                        <p class="text-[10px] text-gray-500 mb-1">RM ${item.price.toFixed(2)} (${item.size})</p>
+                        <!-- Quantity Controller -->
+                        <div class="flex items-center space-x-2">
+                            <button onclick="adjustQty(${item.id}, -1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-all text-xs font-bold text-gray-600">-</button>
+                            <span class="text-xs font-bold text-gray-700">${item.quantity}</span>
+                            <button onclick="adjustQty(${item.id}, 1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-all text-xs font-bold text-gray-600">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right flex flex-col justify-between items-end h-16 py-1">
+                        <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 transition-colors" title="Padam item">
+                            <i class="fa-regular fa-trash-can text-sm"></i>
+                        </button>
+                        <span class="text-xs font-black text-brand">RM ${itemTotal.toFixed(2)}</span>
+                    </div>
+                `;
+                cartItemsDiv.appendChild(itemRow);
+            });
+
+            // Calculate Shipping
+            const regionSelect = document.getElementById('cust-region');
+            const region = regionSelect ? regionSelect.value : 'Semenanjung';
+            let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
+
+            // Free shipping logic
+            if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+                shippingFee = 0.00;
+                document.getElementById('free-shipping-reminder').innerHTML = `<i class="fa-solid fa-gift mr-1"></i> Hebat! Anda layak mendapat Penghantaran Percuma.`;
+                document.getElementById('free-shipping-reminder').classList.remove('hidden');
+            } else {
+                const bal = FREE_SHIPPING_THRESHOLD - subtotal;
+                document.getElementById('free-shipping-reminder').innerHTML = `Beli lagi <span class="font-bold">RM ${bal.toFixed(2)}</span> untuk nikmati Penghantaran Percuma!`;
+                document.getElementById('free-shipping-reminder').classList.remove('hidden');
+            }
+
+            const total = subtotal + shippingFee;
+
+            document.getElementById('cart-subtotal').innerText = `RM ${subtotal.toFixed(2)}`;
+            document.getElementById('cart-shipping').innerText = shippingFee === 0 ? 'PERCUMA' : `RM ${shippingFee.toFixed(2)}`;
+            document.getElementById('cart-total').innerText = `RM ${total.toFixed(2)}`;
+        }
+
+        // Adjust Cart Quantity
+        function adjustQty(id, value) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+
+            item.quantity += value;
+            if (item.quantity <= 0) {
+                removeFromCart(id);
+            } else {
+                saveCartToLocalStorage();
+                updateCartUI();
+            }
+        }
+
+        // Remove item from Cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCartToLocalStorage();
+            updateCartUI();
+        }
+
+        // Toggle Cart Drawer
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('cart-backdrop');
+            const panel = document.getElementById('cart-panel');
+
+            if (panel.classList.contains('translate-x-full')) {
+                // Open drawer
+                drawer.classList.remove('pointer-events-none');
+                backdrop.classList.remove('opacity-0', 'pointer-events-none');
+                backdrop.classList.add('opacity-100');
+                panel.classList.remove('translate-x-full');
+            } else {
+                // Close drawer
+                drawer.classList.add('pointer-events-none');
+                backdrop.classList.add('opacity-0', 'pointer-events-none');
+                backdrop.classList.remove('opacity-100');
+                panel.classList.add('translate-x-full');
+            }
+        }
+
+        // Toggle Mobile Navigation Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark text-2xl';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars text-2xl';
+            }
+        }
+
+        // Recalculate Shipping based on customer dropdown choice
+        function recalculateShipping() {
+            updateCartUI();
+            
+            // Recalculate Checkout summary too
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const region = document.getElementById('cust-region').value;
+            let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
+            if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+                shippingFee = 0.00;
+            }
+            const total = subtotal + shippingFee;
+            document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
+        }
+
+        // Open Checkout Modal
+        function openCheckoutModal() {
+            // Close Cart Drawer first
+            toggleCart();
+
+            // Open Modal
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            
+            // Load items into checkout summary
+            const container = document.getElementById('checkout-summary-items');
+            container.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const row = document.createElement('div');
+                row.className = "flex justify-between";
+                row.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span class="font-semibold">RM ${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                container.appendChild(row);
+                subtotal += item.price * item.quantity;
+            });
+
+            // Re-apply delivery region pricing logic
+            const region = document.getElementById('cust-region').value;
+            let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
+            if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+                shippingFee = 0.00;
+            }
+            const total = subtotal + shippingFee;
+            document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
+        }
+
+        // Close Checkout Modal
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        // Handle checkout submission (Order compilation sent to WhatsApp)
+        function handleCheckoutSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+            const address = document.getElementById('cust-address').value;
+            const region = document.getElementById('cust-region').value;
+
+            // Compile WhatsApp Message
+            let message = `*TEMPAHAN BARU A&A WORLD*\n`;
+            message += `-----------------------------\n`;
+            message += `*Butiran Pelanggan:*\n`;
+            message += `Nama: ${name}\n`;
+            message += `Telefon: ${phone}\n`;
+            message += `Kawasan: ${region}\n`;
+            message += `Alamat: ${address}\n\n`;
+            message += `*Butiran Pesanan:*\n`;
+
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                const totalItem = item.price * item.quantity;
+                subtotal += totalItem;
+                message += `${index + 1}. ${item.name} (${item.size}) - x${item.quantity} = RM ${totalItem.toFixed(2)}\n`;
+            });
+
+            let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
+            if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+                shippingFee = 0.00;
+            }
+            const finalTotal = subtotal + shippingFee;
+
+            message += `\n-----------------------------\n`;
+            message += `*Jumlah Kecil:* RM ${subtotal.toFixed(2)}\n`;
+            message += `*Caj Penghantaran:* ${shippingFee === 0 ? 'PERCUMA' : 'RM ' + shippingFee.toFixed(2)}\n`;
+            message += `*Jumlah Bayaran:* *RM ${finalTotal.toFixed(2)}*\n\n`;
+            message += `Sila sahkan tempahan ini untuk proses pembayaran dan penghantaran. Terima kasih!`;
+
+            // Encode message for URL
+            const encodedText = encodeURIComponent(message);
+            
+            // Open WhatsApp (use actual shop number, e.g., 60123456789)
+            // You can replace this phone number with the owner's active business number
+            const ownerPhoneNumber = "60123456789"; 
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${ownerPhoneNumber}&text=${encodedText}`;
+
+            // Reset cart
+            cart = [];
+            saveCartToLocalStorage();
+            updateCartUI();
+
+            // Close modal
+            closeCheckoutModal();
+
+            // Redirect to WhatsApp
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Save Cart to LocalStorage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('aa_world_cart', JSON.stringify(cart));
+        }
+
+        // Load Cart from LocalStorage
+        function loadCartFromLocalStorage() {
+            const saved = localStorage.getItem('aa_world_cart');
+            if (saved) {
+                try {
+                    cart = JSON.parse(saved);
+                } catch (e) {
+                    cart = [];
+                }
+            }
+        }
+
+        // Success Toast popup helper
+        function showSuccessToast() {
+            const toast = document.getElementById('success-toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
