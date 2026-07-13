@@ -16,14 +16,13 @@
             theme: {
                 extend: {
                     colors: {
-                        shopee: {
-                            orange: '#ee4d2d',      /* Warna oren ikonik Shopee */
-                            orangeHover: '#d73e21',
+                        brand: {
                             blue: '#355ca4',        /* Warna biru korporat A&A World */
-                            blueDark: '#1e3768',
-                            lightBg: '#f5f5f5',      /* Latar belakang cerah Shopee */
+                            blueDark: '#1e3768',    /* Warna biru gelap korporat */
+                            lightBg: '#f5f5f5',     /* Latar belakang cerah */
                             greyText: '#757575',
-                            gold: '#ffc107'
+                            gold: '#ffc107',
+                            lightBlue: '#eef4ff'    /* Latar belakang biru lembut */
                         }
                     },
                     fontFamily: {
@@ -36,7 +35,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f5f5f5; /* Shopee standard bg */
+            background-color: #f5f5f5;
         }
         /* Hide scrollbar for beauty but keep functionality */
         .no-scrollbar::-webkit-scrollbar {
@@ -50,9 +49,9 @@
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col antialiased pb-20 md:pb-0">
 
-    <!-- Top Bar Promo (Shopee Style Orange alert) -->
-    <div class="bg-shopee-orange text-white text-[11px] md:text-xs py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-2">
-        <span class="bg-white text-shopee-orange text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase">FREE SHIPPING</span>
+    <!-- Top Bar Promo (Premium Corporate Blue Alert) -->
+    <div class="bg-brand-blueDark text-white text-[11px] md:text-xs py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-2">
+        <span class="bg-white text-brand-blueDark text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase">FREE SHIPPING</span>
         <span>Penghantaran Percuma Semenanjung untuk pembelian RM150 ke atas!</span>
     </div>
 
@@ -65,15 +64,15 @@
                 <a href="#" class="flex items-center space-x-2 shrink-0">
                     <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A World Logo" class="h-10 w-auto object-contain" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
                     <div class="hidden sm:block">
-                        <span class="block text-lg font-black text-shopee-blue leading-none">A&A WORLD</span>
-                        <span class="block text-[9px] text-shopee-orange font-bold tracking-wider uppercase">Premium Kitchenware</span>
+                        <span class="block text-lg font-black text-brand-blue leading-none">A&A WORLD</span>
+                        <span class="block text-[9px] text-brand-blue font-bold tracking-wider uppercase">Premium Kitchenware</span>
                     </div>
                 </a>
 
-                <!-- Shopee-Style Search Bar (Very friendly for non-it users to search pots) -->
+                <!-- Custom Blue Search Bar -->
                 <div class="flex-1 max-w-xl relative">
                     <div class="relative">
-                        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari periuk impian anda... (cth: Granit, Sauté)" class="w-full bg-gray-100 focus:bg-white text-sm border-2 border-transparent focus:border-shopee-orange px-4 py-2.5 rounded-lg pl-10 focus:outline-none transition-all">
+                        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari periuk impian anda... (cth: Granit, Sauté)" class="w-full bg-gray-100 focus:bg-white text-sm border-2 border-transparent focus:border-brand-blue px-4 py-2.5 rounded-lg pl-10 focus:outline-none transition-all">
                         <div class="absolute left-3.5 top-3.5 text-gray-400">
                             <i class="fa-solid fa-magnifying-glass text-sm"></i>
                         </div>
@@ -84,29 +83,29 @@
                     </div>
                 </div>
 
-                <!-- Right Action Icons (Cart and WhatsApp) -->
+                <!-- Right Action Icons -->
                 <div class="flex items-center space-x-1 sm:space-x-3 shrink-0">
                     <!-- WhatsApp Chat Support -->
                     <a href="https://wa.me/60139703969" target="_blank" class="text-green-500 hover:bg-green-50 p-2.5 rounded-full transition-colors relative group" title="Bantuan WhatsApp">
                         <i class="fa-brands fa-whatsapp text-2xl"></i>
-                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] px-1 rounded-full animate-bounce">Tanya</span>
+                        <span class="absolute -top-1 -right-1 bg-brand-blue text-white text-[9px] px-1 rounded-full animate-bounce">Tanya</span>
                     </a>
 
-                    <!-- Shopee-Style Orange Cart Button with Badge -->
-                    <button onclick="toggleCart()" class="relative text-shopee-orange hover:bg-orange-50 p-2.5 rounded-full transition-all" aria-label="Buka Troli">
+                    <!-- Blue Cart Button with Badge -->
+                    <button onclick="toggleCart()" class="relative text-brand-blue hover:bg-brand-lightBlue p-2.5 rounded-full transition-all" aria-label="Buka Troli">
                         <i class="fa-solid fa-shopping-cart text-2xl"></i>
-                        <span id="cart-badge" class="absolute top-1.5 right-1.5 bg-shopee-orange text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+                        <span id="cart-badge" class="absolute top-1.5 right-1.5 bg-brand-blue text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Sub Header Categories Slider (Sangat mesra ibu jari) -->
+    <!-- Sub Header Categories Slider -->
     <div class="bg-white border-b border-gray-200 py-2 sticky top-[65px] z-30">
         <div class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
             <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
-            <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-shopee-orange text-white">
+            <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white">
                 Semua Produk
             </button>
             <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
@@ -124,21 +123,21 @@
     <!-- Main Content Area -->
     <main class="container mx-auto px-4 py-4 flex-1">
         
-        <!-- Shopee Style Promo Banner & Flash Sale Countdown -->
-        <div class="bg-gradient-to-r from-shopee-orange to-red-500 rounded-2xl p-4 sm:p-6 text-white mb-6 relative overflow-hidden shadow-lg">
+        <!-- Premium Blue Promo Banner & Flash Sale Countdown -->
+        <div class="bg-gradient-to-r from-brand-blueDark to-brand-blue rounded-2xl p-4 sm:p-6 text-white mb-6 relative overflow-hidden shadow-lg">
             <div class="absolute -right-10 -bottom-10 opacity-15 text-[120px] pointer-events-none">
                 <i class="fa-solid fa-fire-burner"></i>
             </div>
             <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div class="text-center md:text-left space-y-2">
                     <div class="flex items-center justify-center md:justify-start gap-2">
-                        <span class="bg-yellow-400 text-shopee-orange font-extrabold text-[10px] px-2 py-0.5 rounded uppercase">KEMPEN JIMAT</span>
+                        <span class="bg-yellow-400 text-brand-blueDark font-extrabold text-[10px] px-2 py-0.5 rounded uppercase">KEMPEN JIMAT</span>
                         <h2 class="text-xl sm:text-2xl font-black tracking-tight">Koleksi Periuk Gred Premium</h2>
                     </div>
-                    <p class="text-sm text-orange-50 opacity-90 max-w-md">Senang diguna, 100% bebas bahan kimia bertoksik & jaminan makanan selamat sekeluarga.</p>
+                    <p class="text-sm text-blue-100 opacity-90 max-w-md">Senang diguna, 100% bebas bahan kimia bertoksik & jaminan makanan selamat sekeluarga.</p>
                 </div>
 
-                <!-- Flash Sale Live Counter -->
+                <!-- Flash Sale Live Counter (Midnight Theme) -->
                 <div class="bg-black/20 backdrop-blur-md p-3.5 rounded-xl border border-white/20 text-center shrink-0 w-full md:w-auto">
                     <p class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-1.5"><i class="fa-solid fa-bolt mr-1"></i> Tawaran Kilat Tamat Dalam</p>
                     <div class="flex justify-center items-center space-x-2 font-mono text-base font-bold">
@@ -152,17 +151,17 @@
             </div>
         </div>
 
-        <!-- Section Title with Shopee Orange bar on left -->
+        <!-- Section Title with Corporate Blue bar on left -->
         <div class="flex items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm">
             <div class="flex items-center space-x-2">
-                <div class="w-1.5 h-6 bg-shopee-orange rounded"></div>
+                <div class="w-1.5 h-6 bg-brand-blue rounded"></div>
                 <h3 class="font-extrabold text-sm sm:text-base tracking-tight text-gray-900 uppercase">Semua Pilihan Terbaik Anda</h3>
             </div>
             <!-- Total count indicator -->
             <span id="results-count" class="text-xs text-gray-500 font-medium">Memaparkan 6 periuk</span>
         </div>
 
-        <!-- Products Grid (2 columns on mobile, 3-4 on desktop - exactly like Shopee) -->
+        <!-- Products Grid (2 columns on mobile, 3-4 on desktop) -->
         <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-2 sm:gap-4">
             <!-- Dynamically populated by JavaScript -->
         </div>
@@ -174,13 +173,13 @@
             </div>
             <h4 class="text-lg font-bold text-gray-700">Maaf, periuk tidak dijumpai</h4>
             <p class="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Cuba gunakan kata kunci yang berbeza seperti 'nonstick', 'seramik' atau 'set'.</p>
-            <button onclick="clearSearch()" class="mt-4 px-5 py-2 bg-shopee-orange hover:bg-shopee-orangeHover text-white rounded-lg text-xs font-bold shadow transition-all">Lihat Semua Produk</button>
+            <button onclick="clearSearch()" class="mt-4 px-5 py-2 bg-brand-blue hover:bg-brand-blueDark text-white rounded-lg text-xs font-bold shadow transition-all">Lihat Semua Produk</button>
         </div>
 
-        <!-- Non-IT friendly Info / Trust Badges (Shopee Mall-style guarantees) -->
+        <!-- Trust Badges (Guarantees in Blue/Teal Theme) -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mt-8">
             <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
-                <div class="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-shopee-orange mb-2">
+                <div class="w-10 h-10 bg-brand-lightBlue rounded-full flex items-center justify-center text-brand-blue mb-2">
                     <i class="fa-solid fa-shield-halved text-lg"></i>
                 </div>
                 <h5 class="text-xs font-bold text-gray-800">100% Produk Original</h5>
@@ -194,7 +193,7 @@
                 <p class="text-[10px] text-gray-500 mt-0.5">Order terus ke WhatsApp</p>
             </div>
             <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
-                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-shopee-blue mb-2">
+                <div class="w-10 h-10 bg-brand-lightBlue rounded-full flex items-center justify-center text-brand-blue mb-2">
                     <i class="fa-solid fa-truck-ramp-box text-lg"></i>
                 </div>
                 <h5 class="text-xs font-bold text-gray-800">Boleh COD Kelantan</h5>
@@ -209,22 +208,22 @@
             </div>
         </div>
 
-        <!-- Simple Location/About Section -->
+        <!-- Location/About Section (A&A World Brand Profile) -->
         <section class="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <span class="text-xs font-extrabold text-shopee-orange uppercase tracking-wider">Lokasi Kedai Kami</span>
-                    <h4 class="text-2xl font-black text-shopee-blueDark mt-1">A&A WORLD Kitchenware</h4>
+                    <span class="text-xs font-extrabold text-brand-blue uppercase tracking-wider">Lokasi Kedai Kami</span>
+                    <h4 class="text-2xl font-black text-brand-blueDark mt-1">A&A WORLD Kitchenware</h4>
                     <p class="text-gray-600 text-sm mt-3 leading-relaxed">
                         Kami bertapak di **Wakaf Che Yeh, Kota Bharu, Kelantan**. Sejak bertahun kami komited membekalkan periuk terbaik yang tahan calar, tidak melekat, serta bebas PFOA/plumbum bagi menjamin kualiti masakan anda harian.
                     </p>
                     <div class="flex space-x-6 mt-4">
                         <div>
-                            <p class="text-xl font-extrabold text-shopee-orange">5,000+</p>
+                            <p class="text-xl font-extrabold text-brand-blue">5,000+</p>
                             <p class="text-[11px] text-gray-500">Pelanggan Setia</p>
                         </div>
                         <div>
-                            <p class="text-xl font-extrabold text-shopee-blue">100%</p>
+                            <p class="text-xl font-extrabold text-brand-blue">100%</p>
                             <p class="text-[11px] text-gray-500">Makanan Selamat Gred</p>
                         </div>
                     </div>
@@ -232,14 +231,14 @@
                 <div class="relative rounded-2xl overflow-hidden h-48 md:h-64 shadow-inner">
                     <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Kedai A&A World" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
-                        <p class="text-white text-xs font-bold"><i class="fa-solid fa-map-pin text-shopee-orange mr-1"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
+                        <p class="text-white text-xs font-bold"><i class="fa-solid fa-map-pin text-brand-blue mr-1"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Detailed Product View Modal (Shopee style dialog) -->
+    <!-- Detailed Product View Modal -->
     <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
@@ -251,11 +250,11 @@
             </div>
             <div class="p-6 space-y-4">
                 <div>
-                    <span id="modal-product-tag" class="bg-orange-50 text-shopee-orange text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Granit Non-Stick</span>
+                    <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Granit Non-Stick</span>
                     <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Periuk</h3>
                     
                     <div class="flex items-center space-x-2 mt-2">
-                        <div class="flex text-shopee-gold text-xs">
+                        <div class="flex text-brand-gold text-xs">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
                         <span class="text-xs font-bold text-gray-900">5.0</span>
@@ -265,7 +264,7 @@
                 </div>
 
                 <div class="flex items-baseline space-x-2">
-                    <span id="modal-product-price" class="text-2xl font-black text-shopee-orange">RM 189.00</span>
+                    <span id="modal-product-price" class="text-2xl font-black text-brand-blue">RM 189.00</span>
                     <span class="text-xs text-gray-400 line-through">RM 250.00</span>
                 </div>
 
@@ -277,15 +276,15 @@
                 <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div>
                         <span class="text-xs text-gray-400 block font-bold uppercase">Saiz / Variasi:</span>
-                        <span id="modal-product-size" class="inline-block bg-shopee-blue/10 text-shopee-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-shopee-blue/20">24cm</span>
+                        <span id="modal-product-size" class="inline-block bg-brand-blue/10 text-brand-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-brand-blue/20">24cm</span>
                     </div>
 
                     <!-- Direct Buy or Add to Cart actions inside Modal -->
                     <div class="flex space-x-2">
-                        <button id="modal-add-cart-btn" class="bg-orange-50 hover:bg-orange-100 text-shopee-orange font-bold text-xs px-4 py-3 rounded-xl border border-shopee-orange transition-all flex items-center gap-1.5">
+                        <button id="modal-add-cart-btn" class="bg-brand-lightBlue hover:bg-blue-100 text-brand-blue font-bold text-xs px-4 py-3 rounded-xl border border-brand-blue transition-all flex items-center gap-1.5">
                             <i class="fa-solid fa-cart-plus"></i> Tambah Troli
                         </button>
-                        <button id="modal-buy-now-btn" class="bg-shopee-orange hover:bg-shopee-orangeHover text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow transition-all">
+                        <button id="modal-buy-now-btn" class="bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow transition-all">
                             Beli Sekarang
                         </button>
                     </div>
@@ -294,30 +293,30 @@
         </div>
     </div>
 
-    <!-- Cart Drawer (Shopee-Style Slide in) -->
+    <!-- Cart Drawer -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
         <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
 
         <div id="cart-panel" class="absolute inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto">
             <!-- Header Troli -->
-            <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-shopee-blue text-white">
+            <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-brand-blue text-white">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-shopping-basket text-xl"></i>
                     <h3 class="text-lg font-black tracking-tight">Troli Beli-Belah</h3>
                 </div>
-                <button onclick="toggleCart()" class="text-white hover:bg-shopee-blueDark p-1.5 rounded-full transition-all">
+                <button onclick="toggleCart()" class="text-white hover:bg-brand-blueDark p-1.5 rounded-full transition-all">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
-            <!-- Isi Troli (Mesej Kosong atau Senarai) -->
+            <!-- Isi Troli -->
             <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-3">
                 <div id="cart-empty-state" class="text-center py-20 flex flex-col items-center justify-center space-y-3">
                     <div class="bg-gray-100 p-6 rounded-full text-gray-300">
                         <i class="fa-solid fa-basket-shopping text-5xl"></i>
                     </div>
                     <p class="text-gray-500 font-bold text-sm">Troli anda masih kosong.</p>
-                    <button onclick="toggleCart()" class="text-shopee-orange hover:underline font-extrabold text-xs">Kembali Membeli Belah →</button>
+                    <button onclick="toggleCart()" class="text-brand-blue hover:underline font-extrabold text-xs">Kembali Membeli Belah →</button>
                 </div>
 
                 <div id="cart-active-items" class="space-y-3 hidden">
@@ -339,13 +338,13 @@
                     <hr class="border-gray-200">
                     <div class="flex justify-between text-gray-900 font-black text-base">
                         <span>Jumlah Keseluruhan</span>
-                        <span id="cart-total" class="text-shopee-orange">RM 0.00</span>
+                        <span id="cart-total" class="text-brand-blue">RM 0.00</span>
                     </div>
                     <!-- Free shipping reminder message -->
                     <p id="free-shipping-reminder" class="text-[10px] text-green-700 font-bold bg-green-50 p-2 rounded text-center border border-green-100"></p>
                 </div>
 
-                <button onclick="openCheckoutModal()" class="w-full bg-shopee-orange hover:bg-shopee-orangeHover text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2">
+                <button onclick="openCheckoutModal()" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2">
                     <span>Langkah Seterusnya (Isi Maklumat)</span>
                     <i class="fa-solid fa-chevron-right text-xs"></i>
                 </button>
@@ -358,7 +357,7 @@
         <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
 
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
-            <div class="bg-shopee-blue text-white px-5 py-4 flex items-center justify-between">
+            <div class="bg-brand-blue text-white px-5 py-4 flex items-center justify-between">
                 <h3 class="text-base font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
                 <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1">
                     <i class="fa-solid fa-xmark text-xl"></i>
@@ -368,31 +367,31 @@
             <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-5 space-y-4">
                 <div>
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Nama Penuh Anda <span class="text-red-500">*</span></label>
-                    <input type="text" id="cust-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange" placeholder="cth: Ahmad bin Ali">
+                    <input type="text" id="cust-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: Ahmad bin Ali">
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">No. Telefon WhatsApp (Senang dihubungi) <span class="text-red-500">*</span></label>
-                    <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange" placeholder="cth: 0123456789">
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">No. Telefon WhatsApp <span class="text-red-500">*</span></label>
+                    <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 0123456789">
                 </div>
                 <div>
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat Lengkap Rumah / Pejabat <span class="text-red-500">*</span></label>
-                    <textarea id="cust-address" required rows="3" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange resize-none" placeholder="cth: No 12, Wakaf Che Yeh, 15150 Kota Bharu, Kelantan"></textarea>
+                    <textarea id="cust-address" required rows="3" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none" placeholder="cth: No 12, Wakaf Che Yeh, 15150 Kota Bharu, Kelantan"></textarea>
                 </div>
                 <div>
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Kawasan Penghantaran <span class="text-red-500">*</span></label>
-                    <select id="cust-region" onchange="recalculateShipping()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange">
+                    <select id="cust-region" onchange="recalculateShipping()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
                         <option value="Semenanjung">Semenanjung Malaysia (Caj biasa RM10)</option>
                         <option value="SabahSarawak">Sabah & Sarawak (Caj biasa RM20)</option>
                     </select>
                 </div>
 
-                <!-- Ringkasan Ringkas di Dalam Modal -->
+                <!-- Summary Panel in Modal -->
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2">Sahkan Pesanan Anda</h4>
                     <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1">
                         <!-- Filled dynamically -->
                     </div>
-                    <div class="flex justify-between font-black text-sm text-shopee-orange pt-2 border-t border-gray-200">
+                    <div class="flex justify-between font-black text-sm text-brand-blue pt-2 border-t border-gray-200">
                         <span>Jumlah Keseluruhan Bayaran:</span>
                         <span id="checkout-summary-total">RM 0.00</span>
                     </div>
@@ -421,15 +420,15 @@
         </div>
     </div>
 
-    <!-- Desktop Footer (Only visible on medium and larger screens) -->
-    <footer class="hidden md:block bg-shopee-blueDark text-white pt-12 pb-6 mt-12 border-t-4 border-shopee-orange">
+    <!-- Desktop Footer -->
+    <footer class="hidden md:block bg-brand-blueDark text-white pt-12 pb-6 mt-12 border-t-4 border-brand-blue">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div class="space-y-4">
                 <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A Logo" class="h-12 w-auto object-contain brightness-110" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
                 <p class="text-xs text-gray-300 leading-relaxed">Membekalkan koleksi periuk premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk dapur selesa anda.</p>
             </div>
             <div>
-                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-shopee-orange">Pautan Pantas</h4>
+                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-blue-300">Pautan Pantas</h4>
                 <ul class="space-y-2 text-xs text-gray-300">
                     <li><a href="#" class="hover:underline">Halaman Utama</a></li>
                     <li><a href="#kategori" class="hover:underline">Semua Kategori</a></li>
@@ -437,7 +436,7 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-shopee-orange">Perkhidmatan</h4>
+                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-blue-300">Perkhidmatan</h4>
                 <ul class="space-y-2 text-xs text-gray-300">
                     <li><a href="#" class="hover:underline">Jaminan & Waranti</a></li>
                     <li><a href="#" class="hover:underline">Polisi Pemulangan</a></li>
@@ -445,10 +444,10 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-shopee-orange">Hubungi Kami</h4>
-                <p class="text-xs text-gray-300 mb-2 leading-relaxed"><i class="fa-solid fa-map-marker-alt text-shopee-orange mr-2"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
-                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-phone text-shopee-orange mr-2"></i> +60 13-970 3969</p>
-                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-envelope text-shopee-orange mr-2"></i> anisaworld1210@gmail.com</p>
+                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-blue-300">Hubungi Kami</h4>
+                <p class="text-xs text-gray-300 mb-2 leading-relaxed"><i class="fa-solid fa-map-marker-alt text-brand-blue mr-2"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-phone text-brand-blue mr-2"></i> +60 13-970 3969</p>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-envelope text-brand-blue mr-2"></i> anisaworld1210@gmail.com</p>
             </div>
         </div>
         <div class="border-t border-white/10 pt-6 text-center text-xs text-gray-400">
@@ -456,13 +455,13 @@
         </div>
     </footer>
 
-    <!-- Shopee-Style Mobile Bottom Navigation Bar (Extreme UX for non-IT users) -->
+    <!-- Shopee-Style Mobile Bottom Navigation Bar (No red, Beautifully Branded) -->
     <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 flex items-center justify-around py-2 shadow-lg">
-        <button onclick="scrollToTop()" class="flex flex-col items-center justify-center text-shopee-orange">
+        <button onclick="scrollToTop()" class="flex flex-col items-center justify-center text-brand-blue">
             <i class="fa-solid fa-house text-lg"></i>
             <span class="text-[9px] font-bold mt-0.5">Utama</span>
         </button>
-        <button onclick="focusSearch()" class="flex flex-col items-center justify-center text-gray-400 hover:text-shopee-orange">
+        <button onclick="focusSearch()" class="flex flex-col items-center justify-center text-gray-400 hover:text-brand-blue">
             <i class="fa-solid fa-magnifying-glass text-lg"></i>
             <span class="text-[9px] font-bold mt-0.5">Cari</span>
         </button>
@@ -470,10 +469,10 @@
             <i class="fa-brands fa-whatsapp text-xl"></i>
             <span class="text-[9px] font-bold mt-0.5">Bantuan WA</span>
         </a>
-        <button onclick="toggleCart()" class="flex flex-col items-center justify-center text-gray-400 hover:text-shopee-orange relative">
+        <button onclick="toggleCart()" class="flex flex-col items-center justify-center text-gray-400 hover:text-brand-blue relative">
             <i class="fa-solid fa-shopping-cart text-lg"></i>
             <span class="text-[9px] font-bold mt-0.5">Troli</span>
-            <span id="mobile-cart-badge" class="absolute -top-1 -right-2 bg-shopee-orange text-white font-extrabold text-[8px] w-4.5 h-4.5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+            <span id="mobile-cart-badge" class="absolute -top-1 -right-2 bg-brand-blue text-white font-extrabold text-[8px] w-4.5 h-4.5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
         </button>
     </div>
 
@@ -616,15 +615,15 @@
                     <div class="relative aspect-square bg-gray-50 overflow-hidden">
                         <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/400x400/355ca4/ffffff?text=Periuk+Premium'">
                         
-                        <!-- Free shipping badge (Shopee style) -->
+                        <!-- Free shipping badge (Premium Blue Style) -->
                         <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1">
-                            <span class="bg-shopee-orange text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm tracking-wide flex items-center">
+                            <span class="bg-brand-blue text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm tracking-wide flex items-center">
                                 <i class="fa-solid fa-truck-fast mr-0.5"></i> SEMENANJUNG FREE
                             </span>
                         </div>
 
                         <!-- Off discount sticker -->
-                        <span class="absolute top-0 right-0 bg-yellow-400 text-shopee-orange font-black text-[9px] px-2 py-1 rounded-bl-lg shadow-sm">
+                        <span class="absolute top-0 right-0 bg-yellow-400 text-brand-blue font-black text-[9px] px-2 py-1 rounded-bl-lg shadow-sm">
                             -${discountPercent}%
                         </span>
                     </div>
@@ -633,14 +632,14 @@
                         <div>
                             <p class="text-xs font-semibold text-gray-800 line-clamp-2 h-8 leading-snug">${product.name}</p>
                             
-                            <!-- Star Rating and Sold count (Shopee Style) -->
+                            <!-- Star Rating and Sold count -->
                             <div class="flex items-center space-x-1 mt-1">
-                                <div class="flex text-shopee-gold text-[9px]">
+                                <div class="flex text-brand-gold text-[9px]">
                                     <i class="fa-solid fa-star"></i>
                                 </div>
                                 <span class="text-[10px] text-gray-500 font-bold">${product.rating}</span>
                                 <span class="text-[9px] text-gray-300">|</span>
-                                <span class="text-[9px] text-shopee-greyText font-medium">${product.sold} terjual</span>
+                                <span class="text-[9px] text-brand-greyText font-medium">${product.sold} terjual</span>
                             </div>
                         </div>
 
@@ -648,9 +647,9 @@
                         <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-gray-50">
                             <div>
                                 <span class="text-xs text-gray-400 line-through block leading-none">RM ${product.originalPrice.toFixed(2)}</span>
-                                <span class="text-sm sm:text-base font-black text-shopee-orange leading-tight">RM ${product.price.toFixed(2)}</span>
+                                <span class="text-sm sm:text-base font-black text-brand-blue leading-tight">RM ${product.price.toFixed(2)}</span>
                             </div>
-                            <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-shopee-orange hover:bg-shopee-orangeHover text-white w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all shadow hover:scale-110" title="Tambah ke troli">
+                            <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-brand-blue hover:bg-brand-blueDark text-white w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all shadow hover:scale-110" title="Tambah ke troli">
                                 <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
                             </button>
                         </div>
@@ -664,13 +663,13 @@
         function filterCategory(cat) {
             currentFilter = cat;
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('bg-shopee-orange', 'text-white', 'active');
+                btn.classList.remove('bg-brand-blue', 'text-white', 'active');
                 btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
             });
             const activeBtn = document.getElementById(`btn-${cat}`);
             if (activeBtn) {
                 activeBtn.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
-                activeBtn.classList.add('bg-shopee-orange', 'text-white', 'active');
+                activeBtn.classList.add('bg-brand-blue', 'text-white', 'active');
             }
             const searchVal = document.getElementById('search-input').value;
             renderProducts(cat, searchVal);
@@ -693,11 +692,11 @@
         function clearSearch() {
             const input = document.getElementById('search-input');
             input.value = '';
-            document.getElementById('clear-search-btn').add('hidden');
+            document.getElementById('clear-search-btn').classList.add('hidden');
             renderProducts(currentFilter, '');
         }
 
-        // Scroll to search block and auto focus (Mobile bottom bar friendly)
+        // Scroll to search block and auto focus
         function focusSearch() {
             const input = document.getElementById('search-input');
             input.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -779,7 +778,7 @@
                         <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 transition-colors" title="Padam item">
                             <i class="fa-regular fa-trash-can text-xs"></i>
                         </button>
-                        <span class="text-xs font-black text-shopee-orange">RM ${itemTotal.toFixed(2)}</span>
+                        <span class="text-xs font-black text-brand-blue">RM ${itemTotal.toFixed(2)}</span>
                     </div>
                 `;
                 activeContainer.appendChild(row);
@@ -792,7 +791,7 @@
             const reminder = document.getElementById('free-shipping-reminder');
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
                 shippingFee = 0.00;
-                reminder.innerHTML = `<i class="fa-solid fa-gift text-shopee-orange mr-1"></i> Hebat! Anda layak mendapat <span class="font-bold">Penghantaran Percuma</span>!`;
+                reminder.innerHTML = `<i class="fa-solid fa-gift text-brand-blue mr-1"></i> Hebat! Anda layak mendapat <span class="font-bold">Penghantaran Percuma</span>!`;
             } else {
                 const bal = FREE_SHIPPING_THRESHOLD - subtotal;
                 reminder.innerHTML = `Beli lagi <span class="font-extrabold">RM ${bal.toFixed(2)}</span> untuk dapat <span class="font-bold">Penghantaran Percuma</span>!`;
