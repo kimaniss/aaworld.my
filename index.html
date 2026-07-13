@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A&A WORLD | Premium Kitchenware</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts (Inter) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script>
+<script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -37,7 +34,6 @@
             font-family: 'Inter', sans-serif;
             background-color: #f5f5f5;
         }
-        /* Hide scrollbar for beauty but keep functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -49,19 +45,16 @@
 </head>
 <body class="text-gray-800 min-h-screen flex flex-col antialiased pb-20 md:pb-0">
 
-    <!-- Top Bar Promo (Premium Corporate Blue Alert) -->
-    <div class="bg-brand-blueDark text-white text-[11px] md:text-xs py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-2">
-        <span class="bg-white text-brand-blueDark text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase">FREE SHIPPING</span>
-        <span>Penghantaran Percuma Semenanjung untuk pembelian RM150 ke atas!</span>
+<div id="top-notice-bar" class="bg-brand-blueDark text-white text-[11px] md:text-xs py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-2 transition-all">
+        <span id="top-notice-badge" class="bg-white text-brand-blueDark text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase">FREE SHIPPING</span>
+        <span id="top-notice-text">Memuatkan pengumuman kedai...</span>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
+<header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between gap-4">
-                
-                <!-- Brand Logo & Name -->
-                <a href="#" class="flex items-center space-x-2 shrink-0">
+
+<a href="#" onclick="showStoreView(event)" class="flex items-center space-x-2 shrink-0">
                     <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A World Logo" class="h-10 w-auto object-contain" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
                     <div class="hidden sm:block">
                         <span class="block text-lg font-black text-brand-blue leading-none">A&A WORLD</span>
@@ -69,301 +62,408 @@
                     </div>
                 </a>
 
-                <!-- Custom Blue Search Bar -->
-                <div class="flex-1 max-w-xl relative">
+<div id="search-container" class="flex-1 max-w-xl relative">
                     <div class="relative">
                         <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari periuk impian anda... (cth: Granit, Sauté)" class="w-full bg-gray-100 focus:bg-white text-sm border-2 border-transparent focus:border-brand-blue px-4 py-2.5 rounded-lg pl-10 focus:outline-none transition-all">
                         <div class="absolute left-3.5 top-3.5 text-gray-400">
                             <i class="fa-solid fa-magnifying-glass text-sm"></i>
                         </div>
-                        <!-- Clear Search button inside -->
                         <button id="clear-search-btn" onclick="clearSearch()" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
                             <i class="fa-solid fa-circle-xmark"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Right Action Icons -->
-                <div class="flex items-center space-x-1 sm:space-x-3 shrink-0">
-                    <!-- WhatsApp Chat Support -->
-                    <a href="https://wa.me/60139703969" target="_blank" class="text-green-500 hover:bg-green-50 p-2.5 rounded-full transition-colors relative group" title="Bantuan WhatsApp">
+<div class="flex items-center space-x-1 sm:space-x-3 shrink-0">
+                    <button id="admin-gate-btn" onclick="openAdminModalOrDashboard()" class="text-xs font-bold text-gray-600 border border-gray-300 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all">
+                        <i class="fa-solid fa-user-gear mr-1"></i> Admin
+                    </button>
+
+<a id="whatsapp-support-btn" href="https://wa.me/60139703969" target="_blank" class="text-green-500 hover:bg-green-50 p-2.5 rounded-full transition-colors relative group" title="Bantuan WhatsApp">
                         <i class="fa-brands fa-whatsapp text-2xl"></i>
                         <span class="absolute -top-1 -right-1 bg-brand-blue text-white text-[9px] px-1 rounded-full animate-bounce">Tanya</span>
                     </a>
 
-                    <!-- Blue Cart Button with Badge -->
-                    <button onclick="toggleCart()" class="relative text-brand-blue hover:bg-brand-lightBlue p-2.5 rounded-full transition-all" aria-label="Buka Troli">
+<button id="cart-trigger-btn" onclick="toggleCart()" class="relative text-brand-blue hover:bg-brand-lightBlue p-2.5 rounded-full transition-all" aria-label="Buka Troli">
                         <i class="fa-solid fa-shopping-cart text-2xl"></i>
-                        <span id="cart-badge" class="absolute top-1.5 right-1.5 bg-brand-blue text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-white text-brand-blue border border-brand-blue font-black text-xs w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-all shadow-sm">0</span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Sub Header Categories Slider -->
-    <div class="bg-white border-b border-gray-200 py-2 sticky top-[65px] z-30">
-        <div class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
-            <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
-            <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white">
-                Semua Produk
+<div id="store-view" class="block">
+        <div class="bg-white border-b border-gray-200 py-2 sticky top-[65px] z-30">
+            <div class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
+                <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
+                <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white">Semua Produk</button>
+                <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">Granit Non-Stick 🔥</button>
+                <button onclick="filterCategory('stainless')" id="btn-stainless" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">Stainless Steel ⭐</button>
+                <button onclick="filterCategory('castiron')" id="btn-castiron" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">Cast Iron & Tanah Liat</button>
+            </div>
+        </div>
+
+<main class="container mx-auto px-4 py-4 flex-1">
+            <div id="loading-catalog" class="text-center py-12 bg-white rounded-2xl shadow-sm mb-6">
+                <div class="animate-spin text-brand-blue text-3xl inline-block mb-2"><i class="fa-solid fa-circle-notch"></i></div>
+                <p class="text-xs text-gray-500 font-semibold tracking-wide">Memuatkan produk premium dari A&A WORLD...</p>
+            </div>
+
+<div id="promo-banner" class="bg-gradient-to-r from-brand-blueDark to-brand-blue rounded-2xl p-4 sm:p-6 text-white mb-6 relative overflow-hidden shadow-lg">
+                <div class="absolute -right-10 -bottom-10 opacity-15 text-[120px] pointer-events-none">
+                    <i class="fa-solid fa-fire-burner"></i>
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="text-center md:text-left space-y-2">
+                        <div class="flex items-center justify-center md:justify-start gap-2">
+                            <span class="bg-yellow-400 text-brand-blueDark font-extrabold text-[10px] px-2 py-0.5 rounded uppercase">KEMPEN JIMAT</span>
+                            <h2 class="text-xl sm:text-2xl font-black tracking-tight">Koleksi Periuk Gred Premium</h2>
+                        </div>
+                        <p class="text-sm text-blue-100 opacity-90 max-w-md">Senang diguna, 100% bebas bahan kimia bertoksik & jaminan makanan selamat sekeluarga.</p>
+                    </div>
+
+<div class="bg-black/20 backdrop-blur-md p-3.5 rounded-xl border border-white/20 text-center shrink-0 w-full md:w-auto">
+                        <p class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-1.5"><i class="fa-solid fa-bolt mr-1"></i> Tawaran Kilat Tamat Dalam</p>
+                        <div class="flex justify-center items-center space-x-2 font-mono text-base font-bold">
+                            <span id="hours" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">02</span>
+                            <span>:</span>
+                            <span id="minutes" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">45</span>
+                            <span>:</span>
+                            <span id="seconds" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">18</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div id="section-bar" class="flex items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm">
+                <div class="flex items-center space-x-2">
+                    <div class="w-1.5 h-6 bg-brand-blue rounded"></div>
+                    <h3 class="font-extrabold text-sm sm:text-base tracking-tight text-gray-900 uppercase">Semua Pilihan Terbaik Anda</h3>
+                </div>
+                <span id="results-count" class="text-xs text-gray-500 font-medium">Memaparkan 0 periuk</span>
+            </div>
+
+<div id="products-grid" class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-2 sm:gap-4 hidden"></div>
+
+<div id="empty-search-state" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm mt-4 p-6">
+                <div class="text-gray-300 text-6xl mb-4"><i class="fa-solid fa-magnifying-glass-minus"></i></div>
+                <h4 class="text-lg font-bold text-gray-700">Maaf, periuk tidak dijumpai</h4>
+                <p class="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Cuba gunakan kata kunci yang berbeza seperti 'nonstick', 'seramik' or 'set'.</p>
+                <button onclick="clearSearch()" class="mt-4 px-5 py-2 bg-brand-blue hover:bg-brand-blueDark text-white rounded-lg text-xs font-bold shadow transition-all">Lihat Semua Produk</button>
+            </div>
+
+<div id="trust-badges" class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mt-8">
+                <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                    <div class="w-10 h-10 bg-brand-lightBlue rounded-full flex items-center justify-center text-brand-blue mb-2"><i class="fa-solid fa-shield-halved text-lg"></i></div>
+                    <h5 class="text-xs font-bold text-gray-800">100% Produk Original</h5>
+                    <p class="text-[10px] text-gray-500 mt-0.5">Terus dari kilang premium</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                    <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-600 mb-2"><i class="fa-brands fa-whatsapp text-xl"></i></div>
+                    <h5 class="text-xs font-bold text-gray-800">Beli Sangat Senang</h5>
+                    <p class="text-[10px] text-gray-500 mt-0.5">Order terus ke WhatsApp</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                    <div class="w-10 h-10 bg-brand-lightBlue rounded-full flex items-center justify-center text-brand-blue mb-2"><i class="fa-solid fa-truck-ramp-box text-lg"></i></div>
+                    <h5 class="text-xs font-bold text-gray-800">Boleh COD Kelantan</h5>
+                    <p class="text-[10px] text-gray-500 mt-0.5">Penghantaran pantas & selamat</p>
+                </div>
+                <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                    <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 mb-2"><i class="fa-solid fa-rotate-left text-lg"></i></div>
+                    <h5 class="text-xs font-bold text-gray-800">Jaminan Wang Dikembalikan</h5>
+                    <p class="text-[10px] text-gray-500 mt-0.5">Jika barang pecah/rosak</p>
+                </div>
+            </div>
+
+<div id="profile-section" class="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <span class="text-xs font-extrabold text-brand-blue uppercase tracking-wider">Lokasi Kedai Kami</span>
+                        <h4 class="text-2xl font-black text-brand-blueDark mt-1">A&A WORLD Kitchenware</h4>
+                        <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                            Kami bertapak di <strong>Wakaf Che Yeh, Kota Bharu, Kelantan</strong>. Sejak bertahun kami komited membekalkan periuk terbaik yang tahan calar, tidak melekat, serta bebas PFOA/plumbum bagi menjamin kualiti masakan anda harian.
+                        </p>
+                        <div class="flex space-x-6 mt-4">
+                            <div>
+                                <p class="text-xl font-extrabold text-brand-blue">5,000+</p>
+                                <p class="text-[11px] text-gray-500">Pelanggan Setia</p>
+                            </div>
+                            <div>
+                                <p class="text-xl font-extrabold text-brand-blue">100%</p>
+                                <p class="text-[11px] text-gray-500">Makanan Selamat Gred</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative rounded-2xl overflow-hidden h-48 md:h-64 shadow-inner">
+                        <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Kedai A&A World" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                            <p class="text-white text-xs font-bold"><i class="fa-solid fa-map-pin text-brand-blue mr-1"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+<div id="admin-view" class="hidden container mx-auto px-4 py-6 max-w-6xl flex-1">
+        <div class="bg-white p-5 rounded-2xl shadow-sm mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-gray-100">
+            <div>
+                <h2 class="text-lg font-black text-brand-blueDark flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-brand-blue"></i> Panel Pengurusan A&A WORLD
+                </h2>
+                <p class="text-xs text-gray-500 font-medium mt-0.5">Selamat bekerja, <span id="active-admin-name" class="font-bold text-brand-blue">Admin</span></p>
+            </div>
+            <div class="flex space-x-2 w-full sm:w-auto">
+                <button onclick="openProductCrudModal()" class="flex-1 sm:flex-initial bg-brand-blue hover:bg-brand-blueDark text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all"><i class="fa-solid fa-plus mr-1"></i> Produk Baru</button>
+                <button onclick="logoutAdmin()" class="bg-red-50 text-red-600 border border-red-100 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-red-100 transition-all">Log Keluar</button>
+            </div>
+        </div>
+
+<div class="bg-white border border-gray-100 p-4 rounded-2xl shadow-sm mb-6">
+            <h3 class="text-xs font-black text-brand-blueDark uppercase tracking-wider mb-3"><i class="fa-solid fa-bullhorn text-brand-blue mr-1"></i> Kemas Kini Notis Banner Utama Kedai</h3>
+            <form id="admin-notice-form" onsubmit="handleNoticeCrudSubmit(event)" class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Badge Teks Singkat</label>
+                    <input type="text" id="notice-input-badge" required class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-extrabold text-brand-blue" placeholder="cth: FREE SHIPPING">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Isi Kandungan Mesej Pengumuman</label>
+                    <input type="text" id="notice-input-text" required class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue" placeholder="cth: Penghantaran percuma Semenanjung untuk RM150 ke atas!">
+                </div>
+                <div class="flex items-end">
+                    <button type="submit" id="notice-submit-btn" class="w-full bg-brand-blueDark hover:bg-brand-blue text-white font-extrabold py-2 rounded-xl transition-all shadow-sm">
+                        <span id="notice-submit-text">Kemas Kini Notis</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+<div class="flex border-b border-gray-200 mb-6 bg-white rounded-2xl p-1 shadow-sm border border-gray-100">
+            <button onclick="switchAdminTab('products')" id="tab-btn-products" class="flex-1 py-2.5 text-center text-xs font-extrabold rounded-xl transition-all bg-brand-blue text-white">
+                <i class="fa-solid fa-box mr-1"></i> Katalog Produk (<span id="admin-product-count">0</span>)
             </button>
-            <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
-                Granit Non-Stick 🔥
+            <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="flex-1 py-2.5 text-center text-xs font-extrabold rounded-xl transition-all text-gray-600 hover:bg-gray-50">
+                <i class="fa-solid fa-receipt mr-1"></i> Rekod Tempahan (<span id="admin-order-count">0</span>)
             </button>
-            <button onclick="filterCategory('stainless')" id="btn-stainless" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
-                Stainless Steel ⭐
-            </button>
-            <button onclick="filterCategory('castiron')" id="btn-castiron" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
-                Cast Iron & Tanah Liat
-            </button>
+        </div>
+
+<div id="admin-products-sec" class="block">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs whitespace-nowrap">
+                        <thead class="bg-gray-50 text-gray-500 uppercase font-bold border-b border-gray-100">
+                            <tr>
+                                <th class="p-4 w-16 text-center">ID</th>
+                                <th class="p-4">Imej & Nama Produk</th>
+                                <th class="p-4">Kategori</th>
+                                <th class="p-4">Harga Jual</th>
+                                <th class="p-4">Harga Asal</th>
+                                <th class="p-4">Saiz / Pakej</th>
+                                <th class="p-4 text-center">Tindakan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-table-body" class="divide-y divide-gray-100 text-gray-700 font-medium"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+<div id="admin-orders-sec" class="hidden">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs whitespace-nowrap">
+                        <thead class="bg-gray-50 text-gray-500 uppercase font-bold border-b border-gray-100">
+                            <tr>
+                                <th class="p-4">ID Tempahan</th>
+                                <th class="p-4">Nama Pelanggan</th>
+                                <th class="p-4">No. Telefon (WA)</th>
+                                <th class="p-4">Kawasan</th>
+                                <th class="p-4">Senarai Item Dipesan</th>
+                                <th class="p-4 text-right">Total (RM)</th>
+                                <th class="p-4 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-table-body" class="divide-y divide-gray-100 text-gray-700 font-medium"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Main Content Area -->
-    <main class="container mx-auto px-4 py-4 flex-1">
-        
-        <!-- Premium Blue Promo Banner & Flash Sale Countdown -->
-        <div class="bg-gradient-to-r from-brand-blueDark to-brand-blue rounded-2xl p-4 sm:p-6 text-white mb-6 relative overflow-hidden shadow-lg">
-            <div class="absolute -right-10 -bottom-10 opacity-15 text-[120px] pointer-events-none">
-                <i class="fa-solid fa-fire-burner"></i>
+<div id="admin-login-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div onclick="closeAdminModal()" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full z-10 p-6 relative transform transition-all border border-gray-100">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-black text-brand-blueDark"><i class="fa-solid fa-lock text-brand-blue mr-1"></i> Log Masuk Khas Admin</h3>
+                <button onclick="closeAdminModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="text-center md:text-left space-y-2">
-                    <div class="flex items-center justify-center md:justify-start gap-2">
-                        <span class="bg-yellow-400 text-brand-blueDark font-extrabold text-[10px] px-2 py-0.5 rounded uppercase">KEMPEN JIMAT</span>
-                        <h2 class="text-xl sm:text-2xl font-black tracking-tight">Koleksi Periuk Gred Premium</h2>
-                    </div>
-                    <p class="text-sm text-blue-100 opacity-90 max-w-md">Senang diguna, 100% bebas bahan kimia bertoksik & jaminan makanan selamat sekeluarga.</p>
-                </div>
-
-                <!-- Flash Sale Live Counter (Midnight Theme) -->
-                <div class="bg-black/20 backdrop-blur-md p-3.5 rounded-xl border border-white/20 text-center shrink-0 w-full md:w-auto">
-                    <p class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-1.5"><i class="fa-solid fa-bolt mr-1"></i> Tawaran Kilat Tamat Dalam</p>
-                    <div class="flex justify-center items-center space-x-2 font-mono text-base font-bold">
-                        <span id="hours" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">02</span>
-                        <span>:</span>
-                        <span id="minutes" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">45</span>
-                        <span>:</span>
-                        <span id="seconds" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">18</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section Title with Corporate Blue bar on left -->
-        <div class="flex items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm">
-            <div class="flex items-center space-x-2">
-                <div class="w-1.5 h-6 bg-brand-blue rounded"></div>
-                <h3 class="font-extrabold text-sm sm:text-base tracking-tight text-gray-900 uppercase">Semua Pilihan Terbaik Anda</h3>
-            </div>
-            <!-- Total count indicator -->
-            <span id="results-count" class="text-xs text-gray-500 font-medium">Memaparkan 6 periuk</span>
-        </div>
-
-        <!-- Products Grid (2 columns on mobile, 3-4 on desktop) -->
-        <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-2 sm:gap-4">
-            <!-- Dynamically populated by JavaScript -->
-        </div>
-
-        <!-- Empty Search Result State -->
-        <div id="empty-search-state" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm mt-4 p-6">
-            <div class="text-gray-300 text-6xl mb-4">
-                <i class="fa-solid fa-magnifying-glass-minus"></i>
-            </div>
-            <h4 class="text-lg font-bold text-gray-700">Maaf, periuk tidak dijumpai</h4>
-            <p class="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Cuba gunakan kata kunci yang berbeza seperti 'nonstick', 'seramik' atau 'set'.</p>
-            <button onclick="clearSearch()" class="mt-4 px-5 py-2 bg-brand-blue hover:bg-brand-blueDark text-white rounded-lg text-xs font-bold shadow transition-all">Lihat Semua Produk</button>
-        </div>
-
-        <!-- Trust Badges (Guarantees in Blue/Teal Theme) -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mt-8">
-            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
-                <div class="w-10 h-10 bg-brand-lightBlue rounded-full flex items-center justify-center text-brand-blue mb-2">
-                    <i class="fa-solid fa-shield-halved text-lg"></i>
-                </div>
-                <h5 class="text-xs font-bold text-gray-800">100% Produk Original</h5>
-                <p class="text-[10px] text-gray-500 mt-0.5">Terus dari kilang premium</p>
-            </div>
-            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
-                <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-600 mb-2">
-                    <i class="fa-brands fa-whatsapp text-xl"></i>
-                </div>
-                <h5 class="text-xs font-bold text-gray-800">Beli Sangat Senang</h5>
-                <p class="text-[10px] text-gray-500 mt-0.5">Order terus ke WhatsApp</p>
-            </div>
-            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
-                <div class="w-10 h-10 bg-brand-lightBlue rounded-full flex items-center justify-center text-brand-blue mb-2">
-                    <i class="fa-solid fa-truck-ramp-box text-lg"></i>
-                </div>
-                <h5 class="text-xs font-bold text-gray-800">Boleh COD Kelantan</h5>
-                <p class="text-[10px] text-gray-500 mt-0.5">Penghantaran pantas & selamat</p>
-            </div>
-            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
-                <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 mb-2">
-                    <i class="fa-solid fa-rotate-left text-lg"></i>
-                </div>
-                <h5 class="text-xs font-bold text-gray-800">Jaminan Wang Dikembalikan</h5>
-                <p class="text-[10px] text-gray-500 mt-0.5">Jika barang pecah/rosak</p>
-            </div>
-        </div>
-
-        <!-- Location/About Section (A&A World Brand Profile) -->
-        <section class="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <form id="admin-login-form" onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <span class="text-xs font-extrabold text-brand-blue uppercase tracking-wider">Lokasi Kedai Kami</span>
-                    <h4 class="text-2xl font-black text-brand-blueDark mt-1">A&A WORLD Kitchenware</h4>
-                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                        Kami bertapak di **Wakaf Che Yeh, Kota Bharu, Kelantan**. Sejak bertahun kami komited membekalkan periuk terbaik yang tahan calar, tidak melekat, serta bebas PFOA/plumbum bagi menjamin kualiti masakan anda harian.
-                    </p>
-                    <div class="flex space-x-6 mt-4">
-                        <div>
-                            <p class="text-xl font-extrabold text-brand-blue">5,000+</p>
-                            <p class="text-[11px] text-gray-500">Pelanggan Setia</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-extrabold text-brand-blue">100%</p>
-                            <p class="text-[11px] text-gray-500">Makanan Selamat Gred</p>
-                        </div>
-                    </div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1 tracking-wide">Username Admin</label>
+                    <input type="text" id="admin-user" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="Masukkan username">
                 </div>
-                <div class="relative rounded-2xl overflow-hidden h-48 md:h-64 shadow-inner">
-                    <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Kedai A&A World" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
-                        <p class="text-white text-xs font-bold"><i class="fa-solid fa-map-pin text-brand-blue mr-1"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
-                    </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1 tracking-wide">Password</label>
+                    <input type="password" id="admin-pass" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="Masukkan password">
                 </div>
-            </div>
-        </section>
-    </main>
+                <button type="submit" id="admin-login-btn" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white text-xs font-extrabold py-3 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                    <span id="admin-login-btn-text">Log Masuk Pengurusan</span>
+                </button>
+            </form>
+        </div>
+    </div>
 
-    <!-- Detailed Product View Modal -->
-    <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+<div id="crud-product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div onclick="closeProductCrudModal()" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full z-10 overflow-hidden my-8 transform transition-all flex flex-col max-h-[90vh]">
+            <div class="bg-brand-blue text-white p-4 font-black text-sm flex justify-between items-center shrink-0 shadow-sm">
+                <span id="crud-modal-title">Borang Tambah Produk Baru</span>
+                <button onclick="closeProductCrudModal()" class="text-white opacity-80 hover:opacity-100"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form id="crud-product-form" onsubmit="handleProductCrudSubmit(event)" class="p-5 space-y-4 overflow-y-auto flex-1 text-xs">
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">ID Unik (No)</label>
+                        <input type="number" id="crud-id" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white">
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Kategori Sistem</label>
+                        <select id="crud-category" class="w-full border border-gray-200 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-semibold text-gray-700">
+                            <option value="nonstick">Granit Non-Stick 🔥 (nonstick)</option>
+                            <option value="stainless">Stainless Steel ⭐ (stainless)</option>
+                            <option value="castiron">Cast Iron & Tanah Liat (castiron)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Nama Periuk / Set</label>
+                    <input type="text" id="crud-name" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-medium" placeholder="cth: Set Periuk Granit Premium">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Jualan (RM)</label>
+                        <input type="number" step="0.01" id="crud-price" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-bold text-brand-blue" placeholder="189.00">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Asal (RM)</label>
+                        <input type="number" step="0.01" id="crud-original" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white text-gray-400" placeholder="250.00">
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Saiz / Variasi</label>
+                        <input type="text" id="crud-size" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white" placeholder="24cm">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Bil Terjual</label>
+                        <input type="text" id="crud-sold" value="0" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Rating Paparan</label>
+                        <input type="text" id="crud-rating" value="5.0" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">URL Gambar Produk</label>
+                    <input type="url" id="crud-img" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white text-gray-500 text-[11px]" placeholder="https://images.unsplash.com/...">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Deskripsi & Kelebihan Produk</label>
+                    <textarea id="crud-desc" required rows="3" class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white resize-none leading-relaxed text-gray-600" placeholder="Keterangan periuk..."></textarea>
+                </div>
+                <div class="pt-2 flex space-x-2 shrink-0">
+                    <button type="button" onclick="closeProductCrudModal()" class="w-1/3 border border-gray-200 text-gray-500 font-bold py-2.5 rounded-xl hover:bg-gray-50">Batal</button>
+                    <button type="submit" id="crud-submit-btn" class="w-2/3 bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-2.5 rounded-xl shadow-sm transition-all flex items-center justify-center">
+                        <span id="crud-submit-btn-text">Simpan Ke Google Sheet</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
             <div class="relative">
-                <img id="modal-product-img" src="" alt="Periuk" class="w-full h-64 sm:h-72 object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=Periuk+A%26A'">
+                <img id="modal-product-img" src="" alt="Periuk" class="w-full h-64 sm:h-72 object-cover">
                 <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
             <div class="p-6 space-y-4">
                 <div>
-                    <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Granit Non-Stick</span>
+                    <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
                     <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Periuk</h3>
-                    
                     <div class="flex items-center space-x-2 mt-2">
-                        <div class="flex text-brand-gold text-xs">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <span class="text-xs font-bold text-gray-900">5.0</span>
+                        <div class="flex text-brand-gold text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <span id="modal-product-rating" class="text-xs font-bold text-gray-900">5.0</span>
                         <span class="text-xs text-gray-400">|</span>
-                        <span id="modal-product-sold" class="text-xs text-gray-500 font-semibold">124 terjual</span>
+                        <span id="modal-product-sold" class="text-xs text-gray-500 font-semibold">0 terjual</span>
                     </div>
                 </div>
-
                 <div class="flex items-baseline space-x-2">
-                    <span id="modal-product-price" class="text-2xl font-black text-brand-blue">RM 189.00</span>
-                    <span class="text-xs text-gray-400 line-through">RM 250.00</span>
+                    <span id="modal-product-price" class="text-2xl font-black text-brand-blue">RM 0.00</span>
+                    <span id="modal-product-original" class="text-xs text-gray-400 line-through">RM 0.00</span>
                 </div>
-
                 <div>
                     <h4 class="text-xs font-extrabold text-gray-500 uppercase tracking-wider mb-1">Butiran Produk:</h4>
-                    <p id="modal-product-desc" class="text-sm text-gray-600 leading-relaxed">Penerangan periuk.</p>
+                    <p id="modal-product-desc" class="text-sm text-gray-600 leading-relaxed"></p>
                 </div>
-
                 <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div>
                         <span class="text-xs text-gray-400 block font-bold uppercase">Saiz / Variasi:</span>
-                        <span id="modal-product-size" class="inline-block bg-brand-blue/10 text-brand-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-brand-blue/20">24cm</span>
+                        <span id="modal-product-size" class="inline-block bg-brand-blue/10 text-brand-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-brand-blue/20"></span>
                     </div>
-
-                    <!-- Direct Buy or Add to Cart actions inside Modal -->
                     <div class="flex space-x-2">
-                        <button id="modal-add-cart-btn" class="bg-brand-lightBlue hover:bg-blue-100 text-brand-blue font-bold text-xs px-4 py-3 rounded-xl border border-brand-blue transition-all flex items-center gap-1.5">
-                            <i class="fa-solid fa-cart-plus"></i> Tambah Troli
-                        </button>
-                        <button id="modal-buy-now-btn" class="bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow transition-all">
-                            Beli Sekarang
-                        </button>
+                        <button id="modal-add-cart-btn" class="bg-brand-lightBlue hover:bg-blue-100 text-brand-blue font-bold text-xs px-4 py-3 rounded-xl border border-brand-blue transition-all flex items-center gap-1.5"><i class="fa-solid fa-cart-plus"></i> Tambah Troli</button>
+                        <button id="modal-buy-now-btn" class="bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow transition-all">Beli Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Cart Drawer -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
+<div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
         <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-
         <div id="cart-panel" class="absolute inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto">
-            <!-- Header Troli -->
             <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-brand-blue text-white">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-shopping-basket text-xl"></i>
                     <h3 class="text-lg font-black tracking-tight">Troli Beli-Belah</h3>
                 </div>
-                <button onclick="toggleCart()" class="text-white hover:bg-brand-blueDark p-1.5 rounded-full transition-all">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
+                <button onclick="toggleCart()" class="text-white hover:bg-brand-blueDark p-1.5 rounded-full transition-all"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-
-            <!-- Isi Troli -->
             <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-3">
                 <div id="cart-empty-state" class="text-center py-20 flex flex-col items-center justify-center space-y-3">
-                    <div class="bg-gray-100 p-6 rounded-full text-gray-300">
-                        <i class="fa-solid fa-basket-shopping text-5xl"></i>
-                    </div>
+                    <div class="bg-gray-100 p-6 rounded-full text-gray-300"><i class="fa-solid fa-basket-shopping text-5xl"></i></div>
                     <p class="text-gray-500 font-bold text-sm">Troli anda masih kosong.</p>
                     <button onclick="toggleCart()" class="text-brand-blue hover:underline font-extrabold text-xs">Kembali Membeli Belah →</button>
                 </div>
-
-                <div id="cart-active-items" class="space-y-3 hidden">
-                    <!-- Dinamik dengan JS -->
-                </div>
+                <div id="cart-active-items" class="space-y-3 hidden"></div>
             </div>
-
-            <!-- Ringkasan & Butang Ke Checkout -->
             <div id="cart-footer" class="border-t border-gray-100 p-5 bg-gray-50 hidden">
                 <div class="space-y-2 mb-4">
-                    <div class="flex justify-between text-gray-600 text-xs">
-                        <span>Jumlah Kecil</span>
-                        <span id="cart-subtotal" class="font-semibold">RM 0.00</span>
-                    </div>
-                    <div class="flex justify-between text-gray-600 text-xs">
-                        <span>Penghantaran</span>
-                        <span id="cart-shipping" class="font-semibold">RM 0.00</span>
-                    </div>
+                    <div class="flex justify-between text-gray-600 text-xs"><span>Jumlah Kecil</span><span id="cart-subtotal">RM 0.00</span></div>
+                    <div class="flex justify-between text-gray-600 text-xs"><span>Penghantaran</span><span id="cart-shipping">RM 0.00</span></div>
                     <hr class="border-gray-200">
-                    <div class="flex justify-between text-gray-900 font-black text-base">
-                        <span>Jumlah Keseluruhan</span>
-                        <span id="cart-total" class="text-brand-blue">RM 0.00</span>
-                    </div>
-                    <!-- Free shipping reminder message -->
+                    <div class="flex justify-between text-gray-900 font-black text-base"><span>Jumlah Keseluruhan</span><span id="cart-total" class="text-brand-blue">RM 0.00</span></div>
                     <p id="free-shipping-reminder" class="text-[10px] text-green-700 font-bold bg-green-50 p-2 rounded text-center border border-green-100"></p>
                 </div>
-
                 <button onclick="openCheckoutModal()" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2">
-                    <span>Langkah Seterusnya (Isi Maklumat)</span>
-                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                    <span>Langkah Seterusnya (Isi Maklumat)</span><i class="fa-solid fa-chevron-right text-xs"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Checkout Modal -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+<div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
-
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
             <div class="bg-brand-blue text-white px-5 py-4 flex items-center justify-between">
                 <h3 class="text-base font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
-                <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
+                <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
             </div>
-
             <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-5 space-y-4">
                 <div>
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Nama Penuh Anda <span class="text-red-500">*</span></label>
@@ -384,47 +484,38 @@
                         <option value="SabahSarawak">Sabah & Sarawak (Caj biasa RM20)</option>
                     </select>
                 </div>
-
-                <!-- Summary Panel in Modal -->
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2">Sahkan Pesanan Anda</h4>
-                    <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1">
-                        <!-- Filled dynamically -->
-                    </div>
+                    <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1"></div>
                     <div class="flex justify-between font-black text-sm text-brand-blue pt-2 border-t border-gray-200">
                         <span>Jumlah Keseluruhan Bayaran:</span>
                         <span id="checkout-summary-total">RM 0.00</span>
                     </div>
                 </div>
-
                 <div class="pt-2 flex space-x-3">
-                    <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl text-xs transition-all">
-                        Kembali Ke Troli
-                    </button>
-                    <button type="submit" class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-extrabold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs">
+                    <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl text-xs transition-all">Kembali Ke Troli</button>
+                    <button type="submit" id="submit-btn" class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-extrabold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
-                        <span>Pesan Melalui WA</span>
+                        <span id="submit-btn-text">Pesan Melalui WA</span>
                     </button>
                 </div>
-                <p class="text-[9px] text-center text-gray-400 italic">Pesanan anda akan dihantar ke WhatsApp penjual untuk semakan pembayaran manual.</p>
+                <p class="text-[9px] text-center text-gray-400 italic">Pesanan anda akan disimpan di Google Sheet sebelum dialihkan ke WhatsApp.</p>
             </form>
         </div>
     </div>
 
-    <!-- Toast Notification for success -->
-    <div id="success-toast" class="fixed bottom-20 md:bottom-5 left-5 right-5 md:left-auto md:right-5 bg-gray-900/95 backdrop-blur-sm text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3 max-w-sm">
+<div id="success-toast" class="fixed bottom-20 md:bottom-5 left-5 right-5 md:left-auto md:right-5 bg-gray-900/95 backdrop-blur-sm text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3 max-w-sm">
         <i class="fa-solid fa-circle-check text-green-400 text-xl"></i>
         <div class="flex-1">
             <p class="font-extrabold text-xs">Berjaya dimasukkan!</p>
-            <p id="toast-text" class="text-[10px] text-gray-300">Troli anda telah dikemas kini.</p>
+            <p id="toast-text" class="text-[10px] text-gray-300"></p>
         </div>
     </div>
 
-    <!-- Desktop Footer -->
-    <footer class="hidden md:block bg-brand-blueDark text-white pt-12 pb-6 mt-12 border-t-4 border-brand-blue">
+<footer id="main-footer" class="hidden md:block bg-brand-blueDark text-white pt-12 pb-6 mt-12 border-t-4 border-brand-blue">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div class="space-y-4">
-                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A Logo" class="h-12 w-auto object-contain brightness-110" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
+                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A Logo" class="h-12 w-auto object-contain brightness-110">
                 <p class="text-xs text-gray-300 leading-relaxed">Membekalkan koleksi periuk premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk dapur selesa anda.</p>
             </div>
             <div>
@@ -436,18 +527,9 @@
                 </ul>
             </div>
             <div>
-                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-blue-300">Perkhidmatan</h4>
-                <ul class="space-y-2 text-xs text-gray-300">
-                    <li><a href="#" class="hover:underline">Jaminan & Waranti</a></li>
-                    <li><a href="#" class="hover:underline">Polisi Pemulangan</a></li>
-                    <li><a href="https://wa.me/60139703969" target="_blank" class="hover:underline">Bantuan Pelanggan</a></li>
-                </ul>
-            </div>
-            <div>
                 <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-blue-300">Hubungi Kami</h4>
-                <p class="text-xs text-gray-300 mb-2 leading-relaxed"><i class="fa-solid fa-map-marker-alt text-brand-blue mr-2"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-map-marker-alt text-brand-blue mr-2"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
                 <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-phone text-brand-blue mr-2"></i> +60 13-970 3969</p>
-                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-envelope text-brand-blue mr-2"></i> anisaworld1210@gmail.com</p>
             </div>
         </div>
         <div class="border-t border-white/10 pt-6 text-center text-xs text-gray-400">
@@ -455,129 +537,166 @@
         </div>
     </footer>
 
-    <!-- Shopee-Style Mobile Bottom Navigation Bar (No red, Beautifully Branded) -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 flex items-center justify-around py-2 shadow-lg">
+<div id="mobile-nav" class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 flex items-center justify-around py-2 shadow-lg">
         <button onclick="scrollToTop()" class="flex flex-col items-center justify-center text-brand-blue">
-            <i class="fa-solid fa-house text-lg"></i>
-            <span class="text-[9px] font-bold mt-0.5">Utama</span>
+            <i class="fa-solid fa-house text-lg"></i><span class="text-[9px] font-bold mt-0.5">Utama</span>
         </button>
         <button onclick="focusSearch()" class="flex flex-col items-center justify-center text-gray-400 hover:text-brand-blue">
-            <i class="fa-solid fa-magnifying-glass text-lg"></i>
-            <span class="text-[9px] font-bold mt-0.5">Cari</span>
+            <i class="fa-solid fa-magnifying-glass text-lg"></i><span class="text-[9px] font-bold mt-0.5">Cari</span>
         </button>
         <a href="https://wa.me/60139703969" target="_blank" class="flex flex-col items-center justify-center text-green-500">
-            <i class="fa-brands fa-whatsapp text-xl"></i>
-            <span class="text-[9px] font-bold mt-0.5">Bantuan WA</span>
+            <i class="fa-brands fa-whatsapp text-xl"></i><span class="text-[9px] font-bold mt-0.5">Bantuan WA</span>
         </a>
         <button onclick="toggleCart()" class="flex flex-col items-center justify-center text-gray-400 hover:text-brand-blue relative">
-            <i class="fa-solid fa-shopping-cart text-lg"></i>
-            <span class="text-[9px] font-bold mt-0.5">Troli</span>
-            <span id="mobile-cart-badge" class="absolute -top-1 -right-2 bg-brand-blue text-white font-extrabold text-[8px] w-4.5 h-4.5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+            <i class="fa-solid fa-shopping-cart text-lg"></i><span class="text-[9px] font-bold mt-0.5">Troli</span>
+            <span id="mobile-cart-badge" class="absolute -top-1.5 -right-2 bg-white text-brand-blue border border-brand-blue font-black text-[11px] w-5.5 h-5.5 rounded-full flex items-center justify-center scale-0 transition-all shadow-sm">0</span>
         </button>
     </div>
 
-    <!-- Script Operations -->
-    <script>
-        // Product Catalog
-        const PRODUCTS = [
-            {
-                id: 1,
-                name: 'Periuk Granit Premium Non-Stick',
-                category: 'nonstick',
-                price: 189.00,
-                originalPrice: 250.00,
-                desc: 'Periuk granit tahan calar bertaraf premium. Memasak sihat tanpa minyak yang berlebihan. Sangat senang dicuci tanpa perlu menyental.',
-                img: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=600',
-                size: '24cm',
-                sold: '248',
-                rating: '4.9'
-            },
-            {
-                id: 2,
-                name: 'Set Periuk Stainless Steel Klasik (3-in-1)',
-                category: 'stainless',
-                price: 299.00,
-                originalPrice: 380.00,
-                desc: 'Tahan lama, anti karat dan sentiasa berkilat. Mempunyai tapak 3 lapisan khas untuk pengaliran haba sekata dan menjimatkan gas/elektrik.',
-                img: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&q=80&w=600',
-                size: 'Set 3-in-1',
-                sold: '190',
-                rating: '5.0'
-            },
-            {
-                id: 3,
-                name: 'Periuk Dutch Oven Cast Iron Royal Blue',
-                category: 'castiron',
-                price: 245.00,
-                originalPrice: 320.00,
-                desc: 'Sesuai untuk masakan sup, rebusan perlahan, serta masakan dalam ketuhar/oven. Kemasan warna biru elegen, tebal dan tahan bertahun-tahun.',
-                img: 'https://images.unsplash.com/photo-1611244419377-b0a721864635?auto=format&fit=crop&q=80&w=600',
-                size: '26cm',
-                sold: '74',
-                rating: '4.8'
-            },
-            {
-                id: 4,
-                name: 'Periuk Wok Seramik Sauté Premium',
-                category: 'nonstick',
-                price: 159.00,
-                originalPrice: 210.00,
-                desc: 'Sangat sesuai untuk menggoreng kilas dan menumis masakan laju. Sangat ringan, pemegang ergonomik kayu yang tidak panas.',
-                img: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=600',
-                size: '30cm',
-                sold: '315',
-                rating: '4.9'
-            },
-            {
-                id: 5,
-                name: 'Periuk Tanah Liat Sup Tradisional',
-                category: 'castiron',
-                price: 89.00,
-                originalPrice: 120.00,
-                desc: 'Mengekalkan rasa asli masakan herba, sup herba, asid pedas atau bubur tradisional dengan keaslian optimum tanah liat berkualiti.',
-                img: 'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=600',
-                size: '3 Litre',
-                sold: '88',
-                rating: '4.7'
-            },
-            {
-                id: 6,
-                name: 'Set Periuk Mini Sarapan Pagi Anti-Lekat',
-                category: 'nonstick',
-                price: 129.00,
-                originalPrice: 169.00,
-                desc: 'Set lengkap saiz mini. Sangat sesuai untuk merebus telur, mi segera, atau menggoreng sarapan kecil tanpa membazir minyak.',
-                img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=600',
-                size: 'Set Mini',
-                sold: '412',
-                rating: '4.9'
-            }
-        ];
+<script>
+        // API URL deployment Google Apps Script
+        const API_URL = "https://script.google.com/macros/s/AKfycbwwV2JLvl4GNPSyiCQ8Jl27AcVsW9aGjSYYGdJBN5kW1o43xXBri9UpiQzk2O8ryNA/exec";
 
-        // State Store
+        let PRODUCTS = [];
+        let ORDERS = [];
         let cart = [];
         let currentFilter = 'all';
         const FREE_SHIPPING_THRESHOLD = 150.00;
 
-        // Init on window load
         window.onload = function() {
             loadCartFromLocalStorage();
-            renderProducts(currentFilter);
-            updateCartUI();
+            fetchProductsFromSheet();
             startFlashSaleTimer();
+            checkAdminSession(); 
         };
 
-        // Render dynamic grid list
+        function checkAdminSession() {
+            const savedAdminName = localStorage.getItem('aa_admin_session_name');
+            if (savedAdminName) {
+                document.getElementById('active-admin-name').innerText = savedAdminName;
+                showAdminDashboard();
+                fetchOrdersFromSheet();
+            }
+        }
+
+        // Mengambil data produk & notis banner dari Google Apps Script (GET)
+        function fetchProductsFromSheet() {
+            fetch(API_URL)
+                .then(res => res.text()) // LALUAN KRITIKAL: respond fetch in plain text
+                .then(text => {
+                    const resData = JSON.parse(text);
+                    if(resData.status === 'success') {
+                        PRODUCTS = resData.data.map(p => ({
+                            id: Number(p.id),
+                            name: String(p.name),
+                            category: String(p.category),
+                            price: Number(p.price),
+                            originalPrice: Number(p['original Price'] || p.originalPrice || p.original),
+                            desc: String(p.desc),
+                            img: String(p.img),
+                            size: String(p.size),
+                            sold: String(p.sold),
+                            rating: String(p.rating)
+                        }));
+
+                        // ISI NOTIS DINAMIK: Paparkan ke bahagian atas web secara serta-merta
+                        if (resData.notice) {
+                            document.getElementById('top-notice-badge').innerText = resData.notice.badge;
+                            document.getElementById('top-notice-text').innerText = resData.notice.text;
+                            
+                            // Masukkan ke input form admin sebagai placeholder/value sedia ada
+                            document.getElementById('notice-input-badge').value = resData.notice.badge;
+                            document.getElementById('notice-input-text').value = resData.notice.text;
+                        }
+                        
+                        document.getElementById('loading-catalog').classList.add('hidden');
+                        renderProducts(currentFilter);
+                        updateAdminProductsTable();
+                        updateCartUI();
+                    } else {
+                        alert("Gagal memuat katalog: " + resData.message);
+                    }
+                })
+                .catch(err => {
+                    console.error("Ralat katalog:", err);
+                    alert("Ralat sambungan pelayan semasa memuat katalog.");
+                });
+        }
+
+        // Simpan atau Kemaskini Notis Banner Utama dari Dashboard Admin (POST Action)
+        function handleNoticeCrudSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('notice-submit-btn');
+            const btnText = document.getElementById('notice-submit-text');
+
+            // LALUAN KRITIKAL: Nyahaktifkan butang submit (Disable)
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            btnText.innerText = "Mengemaskini...";
+
+            const payload = {
+                action: "saveNotice",
+                badge: document.getElementById('notice-input-badge').value,
+                text: document.getElementById('notice-input-text').value
+            };
+
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.text()) // LALUAN KRITIKAL: respond fetch in plain text
+            .then(text => {
+                // LALUAN KRITIKAL: Aktifkan semula pada fetch then result event
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Kemas Kini Notis";
+
+                const resData = JSON.parse(text);
+                if (resData.status === 'success') {
+                    // Tukar paparan visual serta merta tanpa perlu reload
+                    document.getElementById('top-notice-badge').innerText = payload.badge;
+                    document.getElementById('top-notice-text').innerText = payload.text;
+                    showSuccessToast("Mesej banner berjaya ditukar!");
+                } else {
+                    alert(resData.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Kemas Kini Notis";
+                alert("Gagal menghubungi pelayan Google Sheet.");
+            });
+        }
+
+        // Mengambil data tempahan untuk Admin (POST)
+        function fetchOrdersFromSheet() {
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify({ action: "getOrders" })
+            })
+            .then(res => res.text())
+            .then(text => {
+                const resData = JSON.parse(text);
+                if (resData.status === 'success') {
+                    ORDERS = resData.data;
+                    updateAdminOrdersTable();
+                }
+            })
+            .catch(err => console.error("Ralat memuatkan orders:", err));
+        }
+
         function renderProducts(category, searchTerm = '') {
             const grid = document.getElementById('products-grid');
             const emptyState = document.getElementById('empty-search-state');
             const resultsCountSpan = document.getElementById('results-count');
             grid.innerHTML = '';
 
-            // Filter by category
             let filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
 
-            // Filter by search term
             if (searchTerm.trim() !== '') {
                 const term = searchTerm.toLowerCase().trim();
                 filtered = filtered.filter(p => 
@@ -587,7 +706,6 @@
                 );
             }
 
-            // Set results count helper text
             resultsCountSpan.innerText = `Menjumpai ${filtered.length} periuk`;
 
             if (filtered.length === 0) {
@@ -600,13 +718,11 @@
             grid.classList.remove('hidden');
 
             filtered.forEach(product => {
-                const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+                const discountPercent = product.originalPrice > 0 ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
                 const card = document.createElement('div');
                 card.className = "bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-150 transition-all flex flex-col cursor-pointer group";
                 
-                // Clicking on card opens details modal
                 card.onclick = (e) => {
-                    // Prevent trigger if they click the plus button directly
                     if (e.target.closest('.add-btn-bubble')) return;
                     openProductModal(product);
                 };
@@ -614,43 +730,30 @@
                 card.innerHTML = `
                     <div class="relative aspect-square bg-gray-50 overflow-hidden">
                         <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/400x400/355ca4/ffffff?text=Periuk+Premium'">
-                        
-                        <!-- Free shipping badge (Premium Blue Style) -->
                         <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1">
                             <span class="bg-brand-blue text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm tracking-wide flex items-center">
                                 <i class="fa-solid fa-truck-fast mr-0.5"></i> SEMENANJUNG FREE
                             </span>
                         </div>
-
-                        <!-- Off discount sticker -->
-                        <span class="absolute top-0 right-0 bg-yellow-400 text-brand-blue font-black text-[9px] px-2 py-1 rounded-bl-lg shadow-sm">
-                            -${discountPercent}%
-                        </span>
+                        ${discountPercent > 0 ? `<span class="absolute top-0 right-0 bg-yellow-400 text-brand-blue font-black text-[9px] px-2 py-1 rounded-bl-lg shadow-sm">-${discountPercent}%</span>` : ''}
                     </div>
-                    
                     <div class="p-2 sm:p-3 flex-1 flex flex-col justify-between">
                         <div>
                             <p class="text-xs font-semibold text-gray-800 line-clamp-2 h-8 leading-snug">${product.name}</p>
-                            
-                            <!-- Star Rating and Sold count -->
                             <div class="flex items-center space-x-1 mt-1">
-                                <div class="flex text-brand-gold text-[9px]">
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
+                                <div class="flex text-brand-gold text-[9px]"><i class="fa-solid fa-star"></i></div>
                                 <span class="text-[10px] text-gray-500 font-bold">${product.rating}</span>
                                 <span class="text-[9px] text-gray-300">|</span>
                                 <span class="text-[9px] text-brand-greyText font-medium">${product.sold} terjual</span>
                             </div>
                         </div>
-
-                        <!-- Price and Quick Add To Cart Button -->
                         <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-gray-50">
                             <div>
                                 <span class="text-xs text-gray-400 line-through block leading-none">RM ${product.originalPrice.toFixed(2)}</span>
-                                <span class="text-sm sm:text-base font-black text-brand-blue leading-tight">RM ${product.price.toFixed(2)}</span>
+                                <span class="text-sm sm:text-base font-black text-brand-blueDark leading-tight">RM ${product.price.toFixed(2)}</span>
                             </div>
-                            <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-brand-blue hover:bg-brand-blueDark text-white w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all shadow hover:scale-110" title="Tambah ke troli">
-                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+                            <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-brand-blue hover:bg-brand-blueDark text-white w-8 h-8 rounded-full flex items-center justify-center transition-all shadow shrink-0 hover:scale-110" title="Tambah ke troli">
+                                <i class="fa-solid fa-plus text-xs"></i>
                             </button>
                         </div>
                     </div>
@@ -659,7 +762,6 @@
             });
         }
 
-        // Filter selection
         function filterCategory(cat) {
             currentFilter = cat;
             document.querySelectorAll('.category-btn').forEach(btn => {
@@ -675,11 +777,9 @@
             renderProducts(cat, searchVal);
         }
 
-        // Search bar typing handler
         function handleSearch() {
             const val = document.getElementById('search-input').value;
             const clearBtn = document.getElementById('clear-search-btn');
-
             if (val.trim() !== '') {
                 clearBtn.classList.remove('hidden');
             } else {
@@ -688,7 +788,6 @@
             renderProducts(currentFilter, val);
         }
 
-        // Clear search text field
         function clearSearch() {
             const input = document.getElementById('search-input');
             input.value = '';
@@ -696,14 +795,13 @@
             renderProducts(currentFilter, '');
         }
 
-        // Scroll to search block and auto focus
+        // Auto focus carian
         function focusSearch() {
             const input = document.getElementById('search-input');
             input.scrollIntoView({ behavior: 'smooth', block: 'center' });
             setTimeout(() => input.focus(), 500);
         }
 
-        // Add to Cart
         function addToCart(id) {
             const product = PRODUCTS.find(p => p.id === id);
             if (!product) return;
@@ -717,10 +815,9 @@
 
             saveCartToLocalStorage();
             updateCartUI();
-            showSuccessToast(product.name);
+            showSuccessToast(product.name + " berjaya ditambah ke troli!");
         }
 
-        // Update Troli Badge Count and items
         function updateCartUI() {
             const badge = document.getElementById('cart-badge');
             const mobileBadge = document.getElementById('mobile-cart-badge');
@@ -730,28 +827,36 @@
             
             const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-            // Update Badge Scale & text
             if (totalItems > 0) {
-                [badge, mobileBadge].forEach(b => {
-                    b.innerText = totalItems;
-                    b.classList.remove('scale-0');
-                    b.classList.add('scale-100');
-                });
-                emptyState.classList.add('hidden');
-                activeContainer.classList.remove('hidden');
-                footer.classList.remove('hidden');
+                if(badge) {
+                    badge.innerText = totalItems;
+                    badge.classList.remove('scale-0');
+                    badge.classList.add('scale-100');
+                }
+                if(mobileBadge) {
+                    mobileBadge.innerText = totalItems;
+                    mobileBadge.classList.remove('scale-0');
+                    mobileBadge.classList.add('scale-100');
+                }
+                if(emptyState) emptyState.classList.add('hidden');
+                if(activeContainer) activeContainer.classList.remove('hidden');
+                if(footer) footer.classList.remove('hidden');
             } else {
-                [badge, mobileBadge].forEach(b => {
-                    b.classList.add('scale-0');
-                    b.classList.remove('scale-100');
-                });
-                emptyState.classList.remove('hidden');
-                activeContainer.classList.add('hidden');
-                footer.classList.add('hidden');
+                if(badge) {
+                    badge.classList.add('scale-0');
+                    badge.classList.remove('scale-100');
+                }
+                if(mobileBadge) {
+                    mobileBadge.classList.add('scale-0');
+                    mobileBadge.classList.remove('scale-100');
+                }
+                if(emptyState) emptyState.classList.remove('hidden');
+                if(activeContainer) activeContainer.classList.add('hidden');
+                if(footer) footer.classList.add('hidden');
                 return;
             }
 
-            // Render Rows inside Drawer
+            if(!activeContainer) return;
             activeContainer.innerHTML = '';
             let subtotal = 0;
 
@@ -760,41 +865,36 @@
                 subtotal += itemTotal;
 
                 const row = document.createElement('div');
-                row.className = "flex items-center space-x-2.5 bg-gray-50 p-2.5 rounded-xl border border-gray-150";
+                row.className = "flex items-center space-x-3 bg-gray-50 p-3 rounded-xl border border-gray-150";
                 row.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg border border-gray-200" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
+                    <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-gray-200 shrink-0" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
                     <div class="flex-1 min-w-0">
-                        <h4 class="text-xs font-bold text-gray-800 truncate">${item.name}</h4>
-                        <p class="text-[10px] text-gray-400">RM ${item.price.toFixed(2)} (${item.size})</p>
-                        
-                        <!-- Plus Minus Controls -->
-                        <div class="flex items-center space-x-2 mt-1.5">
-                            <button onclick="adjustQty(${item.id}, -1)" class="w-5 h-5 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-[10px] font-bold text-gray-600">-</button>
-                            <span class="text-[11px] font-black text-gray-700">${item.quantity}</span>
-                            <button onclick="adjustQty(${item.id}, 1)" class="w-5 h-5 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-[10px] font-bold text-gray-600">+</button>
+                        <h4 class="text-sm font-bold text-gray-800 truncate">${item.name}</h4>
+                        <p class="text-xs text-gray-500 font-medium">RM ${item.price.toFixed(2)} (${item.size})</p>
+                        <div class="flex items-center space-x-2.5 mt-2">
+                            <button onclick="adjustQty(${item.id}, -1)" class="w-6 h-6 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-xs font-bold text-gray-600">-</button>
+                            <span class="text-sm font-extrabold text-gray-700 min-w-[16px] text-center">${item.quantity}</span>
+                            <button onclick="adjustQty(${item.id}, 1)" class="w-6 h-6 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-xs font-bold text-gray-600">+</button>
                         </div>
                     </div>
-                    <div class="text-right flex flex-col justify-between items-end h-14 py-0.5 shrink-0">
-                        <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 transition-colors" title="Padam item">
-                            <i class="fa-regular fa-trash-can text-xs"></i>
-                        </button>
-                        <span class="text-xs font-black text-brand-blue">RM ${itemTotal.toFixed(2)}</span>
+                    <div class="text-right flex flex-col justify-between items-end h-16 py-0.5 shrink-0">
+                        <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fa-regular fa-trash-can text-sm"></i></button>
+                        <span class="text-sm font-black text-brand-blue">RM ${itemTotal.toFixed(2)}</span>
                     </div>
                 `;
                 activeContainer.appendChild(row);
             });
 
-            // Recalculate Shipping Free limit (RM 150)
             const region = document.getElementById('cust-region').value;
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
 
             const reminder = document.getElementById('free-shipping-reminder');
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
                 shippingFee = 0.00;
-                reminder.innerHTML = `<i class="fa-solid fa-gift text-brand-blue mr-1"></i> Hebat! Anda layak mendapat <span class="font-bold">Penghantaran Percuma</span>!`;
+                if(reminder) reminder.innerHTML = `<i class="fa-solid fa-gift text-brand-blue mr-1"></i> Hebat! Anda layak mendapat <span class="font-bold">Penghantaran Percuma</span>!`;
             } else {
                 const bal = FREE_SHIPPING_THRESHOLD - subtotal;
-                reminder.innerHTML = `Beli lagi <span class="font-extrabold">RM ${bal.toFixed(2)}</span> untuk dapat <span class="font-bold">Penghantaran Percuma</span>!`;
+                if(reminder) reminder.innerHTML = `Beli lagi <span class="font-extrabold">RM ${bal.toFixed(2)}</span> untuk dapat <span class="font-bold">Penghantaran Percuma</span>!`;
             }
 
             const total = subtotal + shippingFee;
@@ -804,11 +904,9 @@
             document.getElementById('cart-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
-        // Adjust items quantity
         function adjustQty(id, value) {
             const item = cart.find(i => i.id === id);
             if (!item) return;
-
             item.quantity += value;
             if (item.quantity <= 0) {
                 removeFromCart(id);
@@ -818,14 +916,12 @@
             }
         }
 
-        // Trash item
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             saveCartToLocalStorage();
             updateCartUI();
         }
 
-        // Open detailed product pop-up
         function openProductModal(product) {
             document.getElementById('modal-product-img').src = product.img;
             document.getElementById('modal-product-tag').innerText = product.category === 'nonstick' ? 'Granit Non-Stick' : (product.category === 'stainless' ? 'Stainless Steel' : 'Cast Iron & Tanah Liat');
@@ -833,9 +929,10 @@
             document.getElementById('modal-product-desc').innerText = product.desc;
             document.getElementById('modal-product-size').innerText = product.size;
             document.getElementById('modal-product-price').innerText = `RM ${product.price.toFixed(2)}`;
+            document.getElementById('modal-product-original').innerText = `RM ${product.originalPrice.toFixed(2)}`;
             document.getElementById('modal-product-sold').innerText = `${product.sold} terjual`;
+            document.getElementById('modal-product-rating').innerText = product.rating;
 
-            // Map action buttons in modal dynamically
             document.getElementById('modal-add-cart-btn').onclick = () => {
                 addToCart(product.id);
                 closeProductModal();
@@ -843,18 +940,16 @@
             document.getElementById('modal-buy-now-btn').onclick = () => {
                 addToCart(product.id);
                 closeProductModal();
-                toggleCart(); // Auto open cart directly
+                toggleCart();
             };
 
             document.getElementById('product-detail-modal').classList.remove('hidden');
         }
 
-        // Close Product Detail
         function closeProductModal() {
             document.getElementById('product-detail-modal').classList.add('hidden');
         }
 
-        // Toggle Troli Panel
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-backdrop');
@@ -873,12 +968,10 @@
             }
         }
 
-        // Open Checkout details modal
         function openCheckoutModal() {
-            toggleCart(); // Close Cart drawer
+            toggleCart();
             document.getElementById('checkout-modal').classList.remove('hidden');
 
-            // Set items list
             const container = document.getElementById('checkout-summary-items');
             container.innerHTML = '';
             let subtotal = 0;
@@ -894,7 +987,6 @@
                 subtotal += item.price * item.quantity;
             });
 
-            // Apply shipping
             const region = document.getElementById('cust-region').value;
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
@@ -904,16 +996,12 @@
             document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
-        // Close checkout
         function closeCheckoutModal() {
             document.getElementById('checkout-modal').classList.add('hidden');
         }
 
-        // Dropdown location selector updates total pricing
         function recalculateShipping() {
             updateCartUI();
-            
-            // Re-apply for checkout summary instantly
             const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
             const region = document.getElementById('cust-region').value;
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
@@ -924,30 +1012,28 @@
             document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
-        // Submit order & compile formatted message directly to WhatsApp
         function handleCheckoutSubmit(event) {
             event.preventDefault();
+
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-btn-text');
+            
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            submitText.innerText = "Memproses...";
 
             const name = document.getElementById('cust-name').value;
             const phone = document.getElementById('cust-phone').value;
             const address = document.getElementById('cust-address').value;
             const region = document.getElementById('cust-region').value;
 
-            // Form compile
-            let message = `*🔥 TEMPAHAN BARU A&A WORLD 🔥*\n`;
-            message += `===============================\n\n`;
-            message += `*👤 BUTIRAN PELANGGAN:*\n`;
-            message += `• *Nama:* ${name}\n`;
-            message += `• *Telefon:* ${phone}\n`;
-            message += `• *Kawasan:* ${region}\n`;
-            message += `• *Alamat:* ${address}\n\n`;
-            message += `*📦 BUTIRAN PESANAN PERIUK:*\n`;
-
             let subtotal = 0;
-            cart.forEach((item, index) => {
+            let itemsStringList = [];
+            
+            cart.forEach(item => {
                 const totalItem = item.price * item.quantity;
                 subtotal += totalItem;
-                message += `${index + 1}. *${item.name}* (${item.size})\n   └─ Jml: ${item.quantity} x RM ${item.price.toFixed(2)} = *RM ${totalItem.toFixed(2)}*\n`;
+                itemsStringList.push(`${item.name} (${item.size}) [x${item.quantity}]`);
             });
 
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
@@ -955,81 +1041,399 @@
                 shippingFee = 0.00;
             }
             const finalTotal = subtotal + shippingFee;
+            const generatedOrderId = "AA-" + Math.floor(100000 + Math.random() * 900000);
 
-            message += `\n===============================\n`;
-            message += `• *Jumlah Kecil:* RM ${subtotal.toFixed(2)}\n`;
-            message += `• *Caj Pos:* ${shippingFee === 0 ? 'PERCUMA' : 'RM ' + shippingFee.toFixed(2)}\n`;
-            message += `• *JUMLAH BAYARAN:* *RM ${finalTotal.toFixed(2)}*\n\n`;
-            message += `Sila hantar mesej ini. Penjual akan memberikan butiran bank / pembayaran sebentar lagi. Terima kasih!`;
+            const payload = {
+                orderId: generatedOrderId,
+                customerName: name,
+                whatsappPhone: phone,
+                region: region,
+                fullAddress: address,
+                itemsOrdered: itemsStringList.join(', '),
+                subtotal: subtotal.toFixed(2),
+                shippingFee: shippingFee.toFixed(2),
+                totalPayment: finalTotal.toFixed(2),
+                status: 'Pending'
+            };
 
-            const encodedText = encodeURIComponent(message);
-            const ownerPhoneNumber = "60139703969"; 
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=${ownerPhoneNumber}&text=${encodedText}`;
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.text())
+            .then(text => {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitText.innerText = "Pesan Melalui WA";
 
-            // Reset cart on successful checkout
-            cart = [];
-            saveCartToLocalStorage();
-            updateCartUI();
+                const sheetResponse = JSON.parse(text);
 
-            closeCheckoutModal();
-            window.open(whatsappUrl, '_blank');
+                if (sheetResponse.status === "success") {
+                    let message = `*🔥 TEMPAHAN BARU A&A WORLD 🔥*\n`;
+                    message += `===============================\n\n`;
+                    message += `*👤 BUTIRAN PELANGGAN:*\n`;
+                    message += `• *No Tempahan:* ${generatedOrderId}\n`;
+                    message += `• *Nama:* ${name}\n`;
+                    message += `• *Telefon:* ${phone}\n`;
+                    message += `• *Kawasan:* ${region}\n`;
+                    message += `• *Alamat:* ${address}\n\n`;
+                    message += `*📦 BUTIRAN PESANAN PERIUK:*\n`;
+
+                    cart.forEach((item, index) => {
+                        message += `${index + 1}. *${item.name}* (${item.size})\n    └─ Jml: ${item.quantity} x RM ${item.price.toFixed(2)} = *RM ${(item.price * item.quantity).toFixed(2)}*\n`;
+                    });
+
+                    message += `\n===============================\n`;
+                    message += `• *Jumlah Kecil:* RM ${subtotal.toFixed(2)}\n`;
+                    message += `• *Caj Pos:* ${shippingFee === 0 ? 'PERCUMA' : 'RM ' + shippingFee.toFixed(2)}\n`;
+                    message += `• *JUMLAH BAYARAN:* *RM ${finalTotal.toFixed(2)}*\n\n`;
+                    message += `Sila hantar mesej ini. Saya baru sahaja merekodkan pesanan ini ke dalam sistem. Terima kasih!`;
+
+                    const encodedText = encodeURIComponent(message);
+                    const ownerPhoneNumber = "60139703969"; 
+                    const whatsappUrl = `https://api.whatsapp.com/send?phone=${ownerPhoneNumber}&text=${encodedText}`;
+
+                    cart = [];
+                    saveCartToLocalStorage();
+                    updateCartUI();
+                    closeCheckoutModal();
+                    window.open(whatsappUrl, '_blank');
+                } else {
+                    alert("Ralat simpanan sistem Google Sheet: " + sheetResponse.message);
+                }
+            })
+            .catch(err => {
+                console.error("Ralat Checkout:", err);
+                alert("Sambungan gagal. Pesanan gagal disimpan ke Google Sheet.");
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                submitText.innerText = "Pesan Melalui WA";
+            });
         }
 
-        // Save progress to LocalStorage
+        // handleAdminLogin
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const btn = document.getElementById('admin-login-btn');
+            const btnText = document.getElementById('admin-login-btn-text');
+            
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            btnText.innerText = "Mengesahkan...";
+
+            const payload = {
+                action: 'adminLogin',
+                username: document.getElementById('admin-user').value,
+                password: document.getElementById('admin-pass').value
+            };
+
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.text())
+            .then(text => {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Log Masuk Pengurusan";
+                
+                const data = JSON.parse(text);
+                if (data.status === 'success') {
+                    localStorage.setItem('aa_admin_session_name', data.adminName);
+                    document.getElementById('active-admin-name').innerText = data.adminName;
+                    closeAdminModal();
+                    showAdminDashboard();
+                    fetchOrdersFromSheet();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Log Masuk Pengurusan";
+                alert("Ralat sistem semasa log masuk.");
+            });
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('store-view').classList.add('hidden');
+            document.getElementById('search-container').classList.add('hidden');
+            document.getElementById('cart-trigger-btn').classList.add('hidden');
+            
+            if(document.getElementById('whatsapp-support-btn')) {
+                document.getElementById('whatsapp-support-btn').classList.add('hidden');
+            }
+            if(document.getElementById('mobile-nav')) {
+                document.getElementById('mobile-nav').classList.add('hidden');
+            }
+            document.getElementById('main-footer').classList.add('hidden');
+            
+            document.getElementById('admin-view').classList.remove('hidden');
+            document.getElementById('admin-gate-btn').outerHTML = `
+                <button id="admin-gate-btn" onclick="showStoreView(event)" class="text-xs font-bold text-brand-blue border border-brand-blue px-3 py-2 rounded-lg hover:bg-blue-50 transition-all">
+                    <i class="fa-solid fa-store mr-1"></i> Lihat Kedai
+                </button>
+            `;
+        }
+
+        function showStoreView(e) {
+            if(e) e.preventDefault();
+            document.getElementById('admin-view').classList.add('hidden');
+            document.getElementById('store-view').classList.remove('hidden');
+            document.getElementById('search-container').classList.remove('hidden');
+            document.getElementById('cart-trigger-btn').classList.remove('hidden');
+            if(document.getElementById('whatsapp-support-btn')) {
+                document.getElementById('whatsapp-support-btn').classList.remove('hidden');
+            }
+            if(document.getElementById('mobile-nav')) {
+                document.getElementById('mobile-nav').classList.remove('hidden');
+            }
+            document.getElementById('main-footer').classList.remove('hidden');
+
+            const gateBtn = document.getElementById('admin-gate-btn');
+            if(gateBtn) {
+                gateBtn.outerHTML = `
+                    <button id="admin-gate-btn" onclick="openAdminModalOrDashboard()" class="text-xs font-bold text-brand-blue border border-brand-blue px-3 py-2 rounded-lg hover:bg-blue-50 transition-all">
+                        <i class="fa-solid fa-user-gear mr-1"></i> Panel Admin
+                    </button>
+                `;
+            }
+        }
+
+        function openAdminModalOrDashboard() {
+            if (localStorage.getItem('aa_admin_session_name')) {
+                showAdminDashboard();
+                fetchOrdersFromSheet();
+            } else {
+                openAdminModal();
+            }
+        }
+
+        function logoutAdmin() {
+            if (confirm("Adakah anda pasti mahu log keluar daripada sistem pengurusan?")) {
+                localStorage.removeItem('aa_admin_session_name');
+                location.reload();
+            }
+        }
+
+        function switchAdminTab(tab) {
+            const tabProducts = document.getElementById('tab-btn-products');
+            const tabOrders = document.getElementById('tab-btn-orders');
+            
+            if (tab === 'products') {
+                document.getElementById('admin-products-sec').classList.remove('hidden');
+                document.getElementById('admin-orders-sec').classList.add('hidden');
+                tabProducts.className = "flex-1 py-2.5 text-center text-xs font-extrabold rounded-xl transition-all bg-brand-blue text-white";
+                tabOrders.className = "flex-1 py-2.5 text-center text-xs font-extrabold rounded-xl transition-all text-gray-600 hover:bg-gray-50";
+            } else {
+                document.getElementById('admin-products-sec').classList.add('hidden');
+                document.getElementById('admin-orders-sec').classList.remove('hidden');
+                tabProducts.className = "flex-1 py-2.5 text-center text-xs font-extrabold rounded-xl transition-all text-gray-600 hover:bg-gray-50";
+                tabOrders.className = "flex-1 py-2.5 text-center text-xs font-extrabold rounded-xl transition-all bg-brand-blue text-white";
+                fetchOrdersFromSheet();
+            }
+        }
+
+        function updateAdminProductsTable() {
+            document.getElementById('admin-product-count').innerText = PRODUCTS.length;
+            const tbody = document.getElementById('admin-products-table-body');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            
+            PRODUCTS.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-gray-50/50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 text-center font-mono font-bold text-gray-400">${p.id}</td>
+                    <td class="p-4 flex items-center space-x-3 border-r border-gray-50">
+                        <img src="${p.img}" class="w-10 h-10 object-cover rounded-xl border border-gray-100 shrink-0">
+                        <span class="truncate max-w-xs font-semibold text-gray-900">${p.name}</span>
+                    </td>
+                    <td class="p-4"><span class="bg-brand-lightBlue text-brand-blue px-2 py-1 rounded-md text-[10px] uppercase font-black">${p.category}</span></td>
+                    <td class="p-4 font-black text-brand-blue">RM ${p.price.toFixed(2)}</td>
+                    <td class="p-4 text-gray-400 line-through">RM ${p.originalPrice.toFixed(2)}</td>
+                    <td class="p-4 text-gray-500 font-semibold">${p.size}</td>
+                    <td class="p-4 text-center space-x-2">
+                        <button onclick="editProductInline(${p.id})" class="text-brand-blue hover:text-brand-blueDark font-bold bg-brand-lightBlue px-2.5 py-1 rounded-lg transition-all"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                        <button onclick="deleteProductInline(${p.id})" class="text-red-600 hover:text-red-800 font-bold bg-red-50 px-2.5 py-1 rounded-lg transition-all"><i class="fa-solid fa-trash"></i> Padam</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateAdminOrdersTable() {
+            document.getElementById('admin-order-count').innerText = ORDERS.length;
+            const tbody = document.getElementById('admin-orders-table-body');
+            if(!tbody) return;
+            tbody.innerHTML = '';
+            
+            ORDERS.forEach(o => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-gray-50/50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 font-bold text-brand-blueDark">${o['Order ID'] || '-'}</td>
+                    <td class="p-4 font-bold text-gray-900">${o['Customer Name'] || '-'}</td>
+                    <td class="p-4 font-mono text-gray-600">${o['WhatsApp Phone'] || o['Whatsapp Phone'] || '-'}</td>
+                    <td class="p-4"><span class="bg-gray-100 px-2 py-1 rounded font-bold">${o.Region || '-'}</span></td>
+                    <td class="p-4 text-gray-500 max-w-xs truncate" title="${o['Items Ordered']}">${o['Items Ordered'] || '-'}</td>
+                    <td class="p-4 text-right font-black text-gray-900">RM ${Number(o['Total Payment'] || 0).toFixed(2)}</td>
+                    <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 font-black px-2 py-1 rounded-lg text-[10px]">${o.Status || 'Pending'}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openProductCrudModal() {
+            document.getElementById('crud-product-form').reset();
+            document.getElementById('crud-id').disabled = false;
+            document.getElementById('crud-modal-title').innerText = "Borang Tambah Produk Baru";
+            document.getElementById('crud-product-modal').classList.remove('hidden');
+        }
+
+        function closeProductCrudModal() { 
+            document.getElementById('crud-product-modal').classList.add('hidden'); 
+        }
+
+        function editProductInline(id) {
+            const p = PRODUCTS.find(prod => prod.id === id);
+            if(!p) return;
+            
+            document.getElementById('crud-id').value = p.id;
+            document.getElementById('crud-id').disabled = true;
+            document.getElementById('crud-name').value = p.name;
+            document.getElementById('crud-category').value = p.category;
+            document.getElementById('crud-price').value = p.price;
+            document.getElementById('crud-original').value = p.originalPrice;
+            document.getElementById('crud-size').value = p.size;
+            document.getElementById('crud-img').value = p.img;
+            document.getElementById('crud-desc').value = p.desc;
+            document.getElementById('crud-sold').value = p.sold;
+            document.getElementById('crud-rating').value = p.rating;
+            
+            document.getElementById('crud-modal-title').innerText = "Kemaskini Data Periuk #" + p.id;
+            document.getElementById('crud-product-modal').classList.remove('hidden');
+        }
+
+        function handleProductCrudSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('crud-submit-btn');
+            const btnText = document.getElementById('crud-submit-btn-text');
+            
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            btnText.innerText = "Menyimpan Ke Sheet...";
+
+            const payload = {
+                action: "saveProduct",
+                id: document.getElementById('crud-id').value,
+                name: document.getElementById('crud-name').value,
+                category: document.getElementById('crud-category').value,
+                price: Number(document.getElementById('crud-price').value),
+                originalPrice: Number(document.getElementById('crud-original').value),
+                size: document.getElementById('crud-size').value,
+                img: document.getElementById('crud-img').value,
+                desc: document.getElementById('crud-desc').value,
+                sold: document.getElementById('crud-sold').value,
+                rating: document.getElementById('crud-rating').value
+            };
+
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.text())
+            .then(text => {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Simpan Ke Google Sheet";
+                
+                const resData = JSON.parse(text);
+                if(resData.status === 'success') {
+                    closeProductCrudModal();
+                    fetchProductsFromSheet();
+                    showSuccessToast("Data produk berjaya dikemaskini!");
+                } else {
+                    alert(resData.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Simpan Ke Google Sheet";
+                alert("Ralat komunikasi pelayan semasa menyimpan produk.");
+            });
+        }
+
+        function deleteProductInline(id) {
+            if(!confirm(`Adakah anda pasti mahu memadam periuk dengan ID: ${id} secara kekal dari Google Sheet?`)) return;
+            
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify({ action: "deleteProduct", id: id })
+            })
+            .then(res => res.text())
+            .then(text => {
+                const resData = JSON.parse(text);
+                if(resData.status === 'success') {
+                    fetchProductsFromSheet();
+                    showSuccessToast("Produk berjaya dipadam!");
+                } else {
+                    alert(resData.message);
+                }
+            })
+            .catch(err => console.error("Ralat padam:", err));
+        }
+
         function saveCartToLocalStorage() {
             localStorage.setItem('aa_world_cart_shopee', JSON.stringify(cart));
         }
 
-        // Read LocalStorage
         function loadCartFromLocalStorage() {
             const saved = localStorage.getItem('aa_world_cart_shopee');
             if (saved) {
-                try {
-                    cart = JSON.parse(saved);
-                } catch (e) {
-                    cart = [];
-                }
+                try { cart = JSON.parse(saved); } catch (e) { cart = []; }
             }
         }
 
-        // Toast success popup helper
-        function showSuccessToast(productName) {
+        function showSuccessToast(message) {
             const toast = document.getElementById('success-toast');
-            document.getElementById('toast-text').innerText = `"${productName}" masuk troli.`;
-            
+            document.getElementById('toast-text').innerText = message;
             toast.classList.remove('translate-y-20', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
-
             setTimeout(() => {
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
         }
 
-        // Simple smooth scroll helper to top
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Countdown Timer for Flash Sale campaign
         function startFlashSaleTimer() {
-            let totalSeconds = (2 * 3600) + (45 * 60) + 18; // 2h 45m 18s
-            
-            const timerInterval = setInterval(() => {
-                if (totalSeconds <= 0) {
-                    // Reset timer to simulate endless loop for urgency
-                    totalSeconds = (3 * 3600) + (15 * 60) + 40;
-                }
-                
+            let totalSeconds = (2 * 3600) + (45 * 60) + 18;
+            setInterval(() => {
+                if (totalSeconds <= 0) totalSeconds = (3 * 3600) + (15 * 60) + 40;
                 totalSeconds--;
-                
                 const hrs = Math.floor(totalSeconds / 3600);
                 const mins = Math.floor((totalSeconds % 3600) / 60);
                 const secs = totalSeconds % 60;
                 
-                document.getElementById('hours').innerText = String(hrs).padStart(2, '0');
-                document.getElementById('minutes').innerText = String(mins).padStart(2, '0');
-                document.getElementById('seconds').innerText = String(secs).padStart(2, '0');
+                const hEl = document.getElementById('hours');
+                const mEl = document.getElementById('minutes');
+                const sEl = document.getElementById('seconds');
+                
+                if(hEl) hEl.innerText = String(hrs).padStart(2, '0');
+                if(mEl) mEl.innerText = String(mins).padStart(2, '0');
+                if(sEl) sEl.innerText = String(secs).padStart(2, '0');
             }, 1000);
         }
     </script>
