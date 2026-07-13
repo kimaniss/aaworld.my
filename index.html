@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A&A WORLD | Premium Kitchenware & Periuk Eksklusif</title>
+    <title>A&A WORLD | Kedai Periuk Premium ala Shopee</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts (Inter) -->
@@ -11,18 +11,19 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<script>
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            light: '#4a7bd1',
-                            DEFAULT: '#355ca4', // Warna biru diraja dari logo A&A World
-                            dark: '#1e3768',
-                            accent: '#e28743',
-                            cream: '#fcf8f2',
-                            lightBg: '#f4f7fb'
+                        shopee: {
+                            orange: '#ee4d2d',      /* Warna oren ikonik Shopee */
+                            orangeHover: '#d73e21',
+                            blue: '#355ca4',        /* Warna biru korporat A&A World */
+                            blueDark: '#1e3768',
+                            lightBg: '#f5f5f5',      /* Latar belakang cerah Shopee */
+                            greyText: '#757575',
+                            gold: '#ffc107'
                         }
                     },
                     fontFamily: {
@@ -35,441 +36,448 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5; /* Shopee standard bg */
         }
-        /* Custom scrollbar to match the theme */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Hide scrollbar for beauty but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #355ca4;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #1e3768;
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col antialiased">
+<body class="text-gray-800 min-h-screen flex flex-col antialiased pb-20 md:pb-0">
 
-<!-- Top Bar Promo -->
-    <div class="bg-brand-dark text-white text-xs md:text-sm py-2 px-4 text-center font-medium tracking-wide">
-        <i class="fa-solid fa-truck-fast mr-2 text-brand-light"></i> Penghantaran Percuma Semenanjung Malaysia untuk pembelian melebihi RM150!
+    <!-- Top Bar Promo (Shopee Style Orange alert) -->
+    <div class="bg-shopee-orange text-white text-[11px] md:text-xs py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-2">
+        <span class="bg-white text-shopee-orange text-[9px] px-1.5 py-0.5 rounded font-extrabold uppercase">FREE SHIPPING</span>
+        <span>Penghantaran Percuma Semenanjung untuk pembelian RM150 ke atas!</span>
     </div>
 
-<!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-white shadow-md transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <!-- Brand Logo & Name -->
-            <a href="#" class="flex items-center space-x-3 group">
-                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="aaworld logo.png" class="h-12 w-auto object-contain transform group-hover:scale-105 transition-transform duration-200" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
-                <div class="hidden sm:block">
-                    <span class="block text-xl font-extrabold text-brand tracking-tight leading-none">A&A WORLD</span>
-                    <span class="block text-[10px] text-gray-500 font-semibold tracking-wider uppercase">Premium Kitchenware</span>
-                </div>
-            </a>
-
-<!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-medium text-gray-600">
-                <a href="#" class="hover:text-brand transition-colors">Utama</a>
-                <a href="#produk" class="hover:text-brand transition-colors">Koleksi Periuk</a>
-                <a href="#kelebihan" class="hover:text-brand transition-colors">Kelebihan Kami</a>
-                <a href="#testimoni" class="hover:text-brand transition-colors">Testimoni</a>
-            </nav>
-
-<!-- Action Buttons -->
-            <div class="flex items-center space-x-4">
-                <!-- Contact Icon (WhatsApp Quick Link) -->
-                <a href="https://wa.me/60139703969" target="_blank" class="text-gray-600 hover:text-green-500 transition-colors p-2" title="Hubungi Kami">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white shadow-sm border-b border-gray-100">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between gap-4">
+                
+                <!-- Brand Logo & Name -->
+                <a href="#" class="flex items-center space-x-2 shrink-0">
+                    <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A World Logo" class="h-10 w-auto object-contain" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
+                    <div class="hidden sm:block">
+                        <span class="block text-lg font-black text-shopee-blue leading-none">A&A WORLD</span>
+                        <span class="block text-[9px] text-shopee-orange font-bold tracking-wider uppercase">Premium Kitchenware</span>
+                    </div>
                 </a>
 
-<!-- Cart Button with Badge -->
-                <button onclick="toggleCart()" class="relative bg-brand hover:bg-brand-dark text-white p-2.5 rounded-full shadow-md transition-all hover:scale-105 flex items-center justify-center" aria-label="Buka Troli">
-                    <i class="fa-solid fa-shopping-basket text-lg"></i>
-                    <span id="cart-badge" class="absolute -top-1.5 -right-1.5 bg-brand-accent text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
-                </button>
+                <!-- Shopee-Style Search Bar (Very friendly for non-it users to search pots) -->
+                <div class="flex-1 max-w-xl relative">
+                    <div class="relative">
+                        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari periuk impian anda... (cth: Granit, Sauté)" class="w-full bg-gray-100 focus:bg-white text-sm border-2 border-transparent focus:border-shopee-orange px-4 py-2.5 rounded-lg pl-10 focus:outline-none transition-all">
+                        <div class="absolute left-3.5 top-3.5 text-gray-400">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        </div>
+                        <!-- Clear Search button inside -->
+                        <button id="clear-search-btn" onclick="clearSearch()" class="absolute right-3 top-3 text-gray-400 hover:text-gray-600 hidden">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </div>
 
-<!-- Mobile Menu Button (Hamburger) -->
-                <button onclick="toggleMobileMenu()" class="md:hidden text-gray-700 hover:text-brand p-2" aria-label="Buka Menu">
-                    <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
-                </button>
+                <!-- Right Action Icons (Cart and WhatsApp) -->
+                <div class="flex items-center space-x-1 sm:space-x-3 shrink-0">
+                    <!-- WhatsApp Chat Support -->
+                    <a href="https://wa.me/60139703969" target="_blank" class="text-green-500 hover:bg-green-50 p-2.5 rounded-full transition-colors relative group" title="Bantuan WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] px-1 rounded-full animate-bounce">Tanya</span>
+                    </a>
+
+                    <!-- Shopee-Style Orange Cart Button with Badge -->
+                    <button onclick="toggleCart()" class="relative text-shopee-orange hover:bg-orange-50 p-2.5 rounded-full transition-all" aria-label="Buka Troli">
+                        <i class="fa-solid fa-shopping-cart text-2xl"></i>
+                        <span id="cart-badge" class="absolute top-1.5 right-1.5 bg-shopee-orange text-white font-extrabold text-[10px] w-5 h-5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+                    </button>
+                </div>
             </div>
-        </div>
-
-<!-- Mobile Nav Menu (Expandable) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3 transition-all">
-            <a href="#" onclick="toggleMobileMenu()" class="block font-medium py-2 text-brand border-b border-gray-50">Utama</a>
-            <a href="#produk" onclick="toggleMobileMenu()" class="block font-medium py-2 text-gray-600 hover:text-brand border-b border-gray-50">Koleksi Periuk</a>
-            <a href="#kelebihan" onclick="toggleMobileMenu()" class="block font-medium py-2 text-gray-600 hover:text-brand border-b border-gray-50">Kelebihan Kami</a>
-            <a href="#testimoni" onclick="toggleMobileMenu()" class="block font-medium py-2 text-gray-600 hover:text-brand">Testimoni</a>
         </div>
     </header>
 
-<!-- Hero Section -->
-    <section class="relative bg-brand-lightBg overflow-hidden py-16 md:py-24">
-        <!-- Abstract Background Shapes -->
-        <div class="absolute inset-0 z-0 opacity-10">
-            <div class="absolute -top-40 -left-40 w-96 h-96 bg-brand rounded-full filter blur-3xl"></div>
-            <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-brand-accent rounded-full filter blur-3xl"></div>
+    <!-- Sub Header Categories Slider (Sangat mesra ibu jari) -->
+    <div class="bg-white border-b border-gray-200 py-2 sticky top-[65px] z-30">
+        <div class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
+            <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
+            <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-shopee-orange text-white">
+                Semua Produk
+            </button>
+            <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
+                Granit Non-Stick 🔥
+            </button>
+            <button onclick="filterCategory('stainless')" id="btn-stainless" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
+                Stainless Steel ⭐
+            </button>
+            <button onclick="filterCategory('castiron')" id="btn-castiron" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">
+                Cast Iron & Tanah Liat
+            </button>
         </div>
+    </div>
 
-<div class="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <!-- Left: Hero Text -->
-            <div class="text-center md:text-left space-y-6">
-                <span class="inline-block bg-brand/10 text-brand px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase">
-                    Peralatan Dapur Premium & Berkualiti Tinggi
-                </span>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-dark leading-tight">
-                    Masakan Sempurna Bermula Dari <span class="text-brand">Periuk Sempurna</span>
-                </h1>
-                <p class="text-gray-600 text-base md:text-lg max-w-lg leading-relaxed mx-auto md:mx-0">
-                    Nikmati pengalaman memasak bertaraf profesional di rumah dengan koleksi periuk premium daripada A&A WORLD. Kami menawarkan pelbagai pilihan periuk tahan lasak dan selamat gred makanan terus ke pintu rumah anda.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#produk" class="inline-flex items-center justify-center bg-brand hover:bg-brand-dark text-white font-semibold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 group">
-                        Lihat Koleksi Periuk
-                        <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                    <a href="https://wa.me/60139703969" target="_blank" class="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-700 font-semibold px-8 py-3.5 rounded-xl shadow-md border border-gray-200 transition-all hover:-translate-y-0.5">
-                        Tanya Kami Di WhatsApp
-                    </a>
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-4 flex-1">
+        
+        <!-- Shopee Style Promo Banner & Flash Sale Countdown -->
+        <div class="bg-gradient-to-r from-shopee-orange to-red-500 rounded-2xl p-4 sm:p-6 text-white mb-6 relative overflow-hidden shadow-lg">
+            <div class="absolute -right-10 -bottom-10 opacity-15 text-[120px] pointer-events-none">
+                <i class="fa-solid fa-fire-burner"></i>
+            </div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-center md:text-left space-y-2">
+                    <div class="flex items-center justify-center md:justify-start gap-2">
+                        <span class="bg-yellow-400 text-shopee-orange font-extrabold text-[10px] px-2 py-0.5 rounded uppercase">KEMPEN JIMAT</span>
+                        <h2 class="text-xl sm:text-2xl font-black tracking-tight">Koleksi Periuk Gred Premium</h2>
+                    </div>
+                    <p class="text-sm text-orange-50 opacity-90 max-w-md">Senang diguna, 100% bebas bahan kimia bertoksik & jaminan makanan selamat sekeluarga.</p>
                 </div>
-                <div class="pt-4 flex items-center justify-center md:justify-start space-x-6 text-sm text-gray-500">
-                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-green-500 mr-2"></i> Gred Makanan Premium</div>
-                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-green-500 mr-2"></i> Pilihan Pantai Timur</div>
+
+                <!-- Flash Sale Live Counter -->
+                <div class="bg-black/20 backdrop-blur-md p-3.5 rounded-xl border border-white/20 text-center shrink-0 w-full md:w-auto">
+                    <p class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-1.5"><i class="fa-solid fa-bolt mr-1"></i> Tawaran Kilat Tamat Dalam</p>
+                    <div class="flex justify-center items-center space-x-2 font-mono text-base font-bold">
+                        <span id="hours" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">02</span>
+                        <span>:</span>
+                        <span id="minutes" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">45</span>
+                        <span>:</span>
+                        <span id="seconds" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">18</span>
+                    </div>
                 </div>
             </div>
+        </div>
 
-<!-- Right: Hero Banner Image -->
-            <div class="relative flex justify-center items-center">
-                <div class="absolute w-72 sm:w-96 h-72 sm:h-96 bg-brand/10 rounded-full filter blur-3xl"></div>
-                <img src="https://arleta.site/interactivelink/118/hero-image_compressed.webp" alt="Koleksi Periuk Eksklusif A&A WORLD" class="relative z-10 w-full max-w-md h-auto object-cover rounded-3xl shadow-2xl border border-white/40 transform hover:scale-[1.02] transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=Premium+Cookware'">
+        <!-- Section Title with Shopee Orange bar on left -->
+        <div class="flex items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm">
+            <div class="flex items-center space-x-2">
+                <div class="w-1.5 h-6 bg-shopee-orange rounded"></div>
+                <h3 class="font-extrabold text-sm sm:text-base tracking-tight text-gray-900 uppercase">Semua Pilihan Terbaik Anda</h3>
+            </div>
+            <!-- Total count indicator -->
+            <span id="results-count" class="text-xs text-gray-500 font-medium">Memaparkan 6 periuk</span>
+        </div>
+
+        <!-- Products Grid (2 columns on mobile, 3-4 on desktop - exactly like Shopee) -->
+        <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-2 sm:gap-4">
+            <!-- Dynamically populated by JavaScript -->
+        </div>
+
+        <!-- Empty Search Result State -->
+        <div id="empty-search-state" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm mt-4 p-6">
+            <div class="text-gray-300 text-6xl mb-4">
+                <i class="fa-solid fa-magnifying-glass-minus"></i>
+            </div>
+            <h4 class="text-lg font-bold text-gray-700">Maaf, periuk tidak dijumpai</h4>
+            <p class="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Cuba gunakan kata kunci yang berbeza seperti 'nonstick', 'seramik' atau 'set'.</p>
+            <button onclick="clearSearch()" class="mt-4 px-5 py-2 bg-shopee-orange hover:bg-shopee-orangeHover text-white rounded-lg text-xs font-bold shadow transition-all">Lihat Semua Produk</button>
+        </div>
+
+        <!-- Non-IT friendly Info / Trust Badges (Shopee Mall-style guarantees) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mt-8">
+            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                <div class="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-shopee-orange mb-2">
+                    <i class="fa-solid fa-shield-halved text-lg"></i>
+                </div>
+                <h5 class="text-xs font-bold text-gray-800">100% Produk Original</h5>
+                <p class="text-[10px] text-gray-500 mt-0.5">Terus dari kilang premium</p>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-600 mb-2">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </div>
+                <h5 class="text-xs font-bold text-gray-800">Beli Sangat Senang</h5>
+                <p class="text-[10px] text-gray-500 mt-0.5">Order terus ke WhatsApp</p>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-shopee-blue mb-2">
+                    <i class="fa-solid fa-truck-ramp-box text-lg"></i>
+                </div>
+                <h5 class="text-xs font-bold text-gray-800">Boleh COD Kelantan</h5>
+                <p class="text-[10px] text-gray-500 mt-0.5">Penghantaran pantas & selamat</p>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl text-center border border-gray-100 shadow-sm flex flex-col items-center">
+                <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-purple-600 mb-2">
+                    <i class="fa-solid fa-rotate-left text-lg"></i>
+                </div>
+                <h5 class="text-xs font-bold text-gray-800">Jaminan Wang Dikembalikan</h5>
+                <p class="text-[10px] text-gray-500 mt-0.5">Jika barang pecah/rosak</p>
             </div>
         </div>
-    </section>
 
-<!-- Features Highlight -->
-    <section id="kelebihan" class="py-12 bg-white">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Feature 1 -->
-            <div class="flex items-start p-5 rounded-2xl hover:bg-gray-50 transition-all">
-                <div class="bg-brand/10 p-4 rounded-xl text-brand mr-4">
-                    <i class="fa-solid fa-shield-halved text-2xl"></i>
-                </div>
+        <!-- Simple Location/About Section -->
+        <section class="mt-8 bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <div>
-                    <h4 class="text-lg font-bold mb-1">Bahan Selamat & Sihat</h4>
-                    <p class="text-sm text-gray-500">100% Bebas daripada PFOA, plumbum dan kadmium untuk menjamin kesihatan keluarga anda.</p>
+                    <span class="text-xs font-extrabold text-shopee-orange uppercase tracking-wider">Lokasi Kedai Kami</span>
+                    <h4 class="text-2xl font-black text-shopee-blueDark mt-1">A&A WORLD Kitchenware</h4>
+                    <p class="text-gray-600 text-sm mt-3 leading-relaxed">
+                        Kami bertapak di **Wakaf Che Yeh, Kota Bharu, Kelantan**. Sejak bertahun kami komited membekalkan periuk terbaik yang tahan calar, tidak melekat, serta bebas PFOA/plumbum bagi menjamin kualiti masakan anda harian.
+                    </p>
+                    <div class="flex space-x-6 mt-4">
+                        <div>
+                            <p class="text-xl font-extrabold text-shopee-orange">5,000+</p>
+                            <p class="text-[11px] text-gray-500">Pelanggan Setia</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-extrabold text-shopee-blue">100%</p>
+                            <p class="text-[11px] text-gray-500">Makanan Selamat Gred</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden h-48 md:h-64 shadow-inner">
+                    <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Kedai A&A World" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                        <p class="text-white text-xs font-bold"><i class="fa-solid fa-map-pin text-shopee-orange mr-1"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
+                    </div>
                 </div>
             </div>
-            <!-- Feature 2 -->
-            <div class="flex items-start p-5 rounded-2xl hover:bg-gray-50 transition-all">
-                <div class="bg-brand/10 p-4 rounded-xl text-brand mr-4">
-                    <i class="fa-solid fa-fire-burner text-2xl"></i>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-1">Teknologi Haba Sekata</h4>
-                    <p class="text-sm text-gray-500">Tapak periuk tebal pelbagai lapisan menjamin penyebaran haba yang pantas dan seimbang.</p>
-                </div>
+        </section>
+    </main>
+
+    <!-- Detailed Product View Modal (Shopee style dialog) -->
+    <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
+        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
+            <div class="relative">
+                <img id="modal-product-img" src="" alt="Periuk" class="w-full h-64 sm:h-72 object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=Periuk+A%26A'">
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <!-- Feature 3 -->
-            <div class="flex items-start p-5 rounded-2xl hover:bg-gray-50 transition-all">
-                <div class="bg-brand/10 p-4 rounded-xl text-brand mr-4">
-                    <i class="fa-solid fa-handshake-simple text-2xl"></i>
-                </div>
+            <div class="p-6 space-y-4">
                 <div>
-                    <h4 class="text-lg font-bold mb-1">Layanan Pelanggan Mesra</h4>
-                    <p class="text-sm text-gray-500">Sokongan bantuan lepas jualan yang mesra serta penghantaran yang dijamin selamat dan pantas.</p>
+                    <span id="modal-product-tag" class="bg-orange-50 text-shopee-orange text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Granit Non-Stick</span>
+                    <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Periuk</h3>
+                    
+                    <div class="flex items-center space-x-2 mt-2">
+                        <div class="flex text-shopee-gold text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <span class="text-xs font-bold text-gray-900">5.0</span>
+                        <span class="text-xs text-gray-400">|</span>
+                        <span id="modal-product-sold" class="text-xs text-gray-500 font-semibold">124 terjual</span>
+                    </div>
+                </div>
+
+                <div class="flex items-baseline space-x-2">
+                    <span id="modal-product-price" class="text-2xl font-black text-shopee-orange">RM 189.00</span>
+                    <span class="text-xs text-gray-400 line-through">RM 250.00</span>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-extrabold text-gray-500 uppercase tracking-wider mb-1">Butiran Produk:</h4>
+                    <p id="modal-product-desc" class="text-sm text-gray-600 leading-relaxed">Penerangan periuk.</p>
+                </div>
+
+                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                        <span class="text-xs text-gray-400 block font-bold uppercase">Saiz / Variasi:</span>
+                        <span id="modal-product-size" class="inline-block bg-shopee-blue/10 text-shopee-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-shopee-blue/20">24cm</span>
+                    </div>
+
+                    <!-- Direct Buy or Add to Cart actions inside Modal -->
+                    <div class="flex space-x-2">
+                        <button id="modal-add-cart-btn" class="bg-orange-50 hover:bg-orange-100 text-shopee-orange font-bold text-xs px-4 py-3 rounded-xl border border-shopee-orange transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-cart-plus"></i> Tambah Troli
+                        </button>
+                        <button id="modal-buy-now-btn" class="bg-shopee-orange hover:bg-shopee-orangeHover text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow transition-all">
+                            Beli Sekarang
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-<!-- Main Store Section -->
-    <section id="produk" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center max-w-xl mx-auto mb-12">
-                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">Koleksi Periuk Pilihan</h2>
-                <p class="text-gray-500">Pilih dari pelbagai kategori periuk berkualiti tinggi yang sesuai untuk semua jenis dapur gas dan induksi.</p>
-
-<!-- Category Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-2 mt-8">
-                    <button onclick="filterCategory('all')" id="btn-all" class="category-btn active px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-brand text-white">
-                        Semua
-                    </button>
-                    <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-white text-gray-600 hover:bg-gray-100">
-                        Granit Non-Stick
-                    </button>
-                    <button onclick="filterCategory('stainless')" id="btn-stainless" class="category-btn px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-white text-gray-600 hover:bg-gray-100">
-                        Stainless Steel
-                    </button>
-                    <button onclick="filterCategory('castiron')" id="btn-castiron" class="category-btn px-5 py-2 rounded-full text-sm font-semibold shadow-sm transition-all bg-white text-gray-600 hover:bg-gray-100">
-                        Cast Iron & Tanah Liat
-                    </button>
-                </div>
-            </div>
-
-<!-- Products Grid -->
-            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Products will be dynamically generated by JS -->
-            </div>
-        </div>
-    </section>
-
-<!-- Cart Sidebar Drawer -->
+    <!-- Cart Drawer (Shopee-Style Slide in) -->
     <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
-        <!-- Backdrop -->
-        <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/50 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="cart-backdrop" onclick="toggleCart()" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
 
-<!-- Cart panel -->
         <div id="cart-panel" class="absolute inset-y-0 right-0 max-w-md w-full bg-white shadow-2xl flex flex-col translate-x-full transition-transform duration-300 pointer-events-auto">
-            <!-- Cart Header -->
-            <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-brand text-white">
+            <!-- Header Troli -->
+            <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between bg-shopee-blue text-white">
                 <div class="flex items-center space-x-2">
-                    <i class="fa-solid fa-shopping-cart text-xl"></i>
-                    <h3 class="text-lg font-extrabold">Troli Beli-Belah</h3>
+                    <i class="fa-solid fa-shopping-basket text-xl"></i>
+                    <h3 class="text-lg font-black tracking-tight">Troli Beli-Belah</h3>
                 </div>
-                <button onclick="toggleCart()" class="text-white hover:text-gray-200 p-1.5 rounded-full hover:bg-brand-dark transition-all">
+                <button onclick="toggleCart()" class="text-white hover:bg-shopee-blueDark p-1.5 rounded-full transition-all">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
-<!-- Cart Body (Scrollable items) -->
-            <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
-                <!-- Empty State Message -->
-                <div id="cart-empty-state" class="text-center py-12 flex flex-col items-center justify-center space-y-4">
-                    <div class="bg-gray-100 p-6 rounded-full text-gray-400">
+            <!-- Isi Troli (Mesej Kosong atau Senarai) -->
+            <div id="cart-items-container" class="flex-1 overflow-y-auto p-4 space-y-3">
+                <div id="cart-empty-state" class="text-center py-20 flex flex-col items-center justify-center space-y-3">
+                    <div class="bg-gray-100 p-6 rounded-full text-gray-300">
                         <i class="fa-solid fa-basket-shopping text-5xl"></i>
                     </div>
-                    <p class="text-gray-500 font-medium">Troli anda masih kosong.</p>
-                    <button onclick="toggleCart()" class="text-brand hover:text-brand-dark font-semibold text-sm">Kembali Membeli Belah →</button>
+                    <p class="text-gray-500 font-bold text-sm">Troli anda masih kosong.</p>
+                    <button onclick="toggleCart()" class="text-shopee-orange hover:underline font-extrabold text-xs">Kembali Membeli Belah →</button>
                 </div>
 
-<!-- Dynamic Items Listing -->
-                <div id="cart-active-items" class="space-y-4 hidden">
-                    <!-- Rendered by JS -->
+                <div id="cart-active-items" class="space-y-3 hidden">
+                    <!-- Dinamik dengan JS -->
                 </div>
             </div>
 
-<!-- Cart Footer (Summary & Checkout button) -->
-            <div id="cart-footer" class="border-t border-gray-100 p-6 bg-gray-50 hidden">
-                <div class="space-y-3 mb-6">
-                    <div class="flex justify-between text-gray-600 text-sm">
+            <!-- Ringkasan & Butang Ke Checkout -->
+            <div id="cart-footer" class="border-t border-gray-100 p-5 bg-gray-50 hidden">
+                <div class="space-y-2 mb-4">
+                    <div class="flex justify-between text-gray-600 text-xs">
                         <span>Jumlah Kecil</span>
-                        <span id="cart-subtotal">RM 0.00</span>
+                        <span id="cart-subtotal" class="font-semibold">RM 0.00</span>
                     </div>
-                    <div class="flex justify-between text-gray-600 text-sm">
+                    <div class="flex justify-between text-gray-600 text-xs">
                         <span>Penghantaran</span>
-                        <span id="cart-shipping">RM 0.00</span>
+                        <span id="cart-shipping" class="font-semibold">RM 0.00</span>
                     </div>
                     <hr class="border-gray-200">
-                    <div class="flex justify-between text-gray-900 font-bold text-lg">
+                    <div class="flex justify-between text-gray-900 font-black text-base">
                         <span>Jumlah Keseluruhan</span>
-                        <span id="cart-total" class="text-brand">RM 0.00</span>
+                        <span id="cart-total" class="text-shopee-orange">RM 0.00</span>
                     </div>
-                    <p id="free-shipping-reminder" class="text-[11px] text-green-600 font-semibold bg-green-50 p-2 rounded text-center"></p>
+                    <!-- Free shipping reminder message -->
+                    <p id="free-shipping-reminder" class="text-[10px] text-green-700 font-bold bg-green-50 p-2 rounded text-center border border-green-100"></p>
                 </div>
 
-<button onclick="openCheckoutModal()" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 hover:-translate-y-0.5">
-                    <span>Langkah Seterusnya</span>
-                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                <button onclick="openCheckoutModal()" class="w-full bg-shopee-orange hover:bg-shopee-orangeHover text-white font-extrabold py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2">
+                    <span>Langkah Seterusnya (Isi Maklumat)</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
                 </button>
             </div>
         </div>
     </div>
 
-<!-- Checkout Modal -->
+    <!-- Checkout Modal -->
     <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
-        <!-- Backdrop -->
         <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
 
-<!-- Modal Content -->
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
-            <!-- Modal Header -->
-            <div class="bg-brand text-white px-6 py-4 flex items-center justify-between">
-                <h3 class="text-lg font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
+            <div class="bg-shopee-blue text-white px-5 py-4 flex items-center justify-between">
+                <h3 class="text-base font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
                 <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1">
                     <i class="fa-solid fa-xmark text-xl"></i>
                 </button>
             </div>
 
-<!-- Modal Form -->
-            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-6 space-y-4">
+            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-5 space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nama Penuh <span class="text-red-500">*</span></label>
-                    <input type="text" id="cust-name" required class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand" placeholder="cth: Ahmad bin Ali">
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Nama Penuh Anda <span class="text-red-500">*</span></label>
+                    <input type="text" id="cust-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange" placeholder="cth: Ahmad bin Ali">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Nombor Telefon (WhatsApp) <span class="text-red-500">*</span></label>
-                    <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand" placeholder="cth: 0123456789">
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">No. Telefon WhatsApp (Senang dihubungi) <span class="text-red-500">*</span></label>
+                    <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange" placeholder="cth: 0123456789">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Alamat Lengkap Penghantaran <span class="text-red-500">*</span></label>
-                    <textarea id="cust-address" required rows="3" class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand resize-none" placeholder="cth: No 12, Wakaf Che Yeh, 15150 Kota Bharu, Kelantan"></textarea>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat Lengkap Rumah / Pejabat <span class="text-red-500">*</span></label>
+                    <textarea id="cust-address" required rows="3" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange resize-none" placeholder="cth: No 12, Wakaf Che Yeh, 15150 Kota Bharu, Kelantan"></textarea>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Kawasan Penghantaran <span class="text-red-500">*</span></label>
-                    <select id="cust-region" onchange="recalculateShipping()" class="w-full border border-gray-200 px-4 py-2.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand">
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Kawasan Penghantaran <span class="text-red-500">*</span></label>
+                    <select id="cust-region" onchange="recalculateShipping()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-shopee-orange">
                         <option value="Semenanjung">Semenanjung Malaysia (Caj biasa RM10)</option>
                         <option value="SabahSarawak">Sabah & Sarawak (Caj biasa RM20)</option>
                     </select>
                 </div>
 
-<!-- Simple Order Summary in Form -->
+                <!-- Ringkasan Ringkas di Dalam Modal -->
                 <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                    <h4 class="text-xs font-bold text-gray-500 uppercase mb-2">Ringkasan Tempahan</h4>
-                    <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1 max-h-24 overflow-y-auto mb-2">
-                        <!-- Filled by JS -->
+                    <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2">Sahkan Pesanan Anda</h4>
+                    <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1">
+                        <!-- Filled dynamically -->
                     </div>
-                    <div class="flex justify-between font-bold text-sm text-brand pt-2 border-t border-gray-200">
-                        <span>Jumlah Bayaran:</span>
+                    <div class="flex justify-between font-black text-sm text-shopee-orange pt-2 border-t border-gray-200">
+                        <span>Jumlah Keseluruhan Bayaran:</span>
                         <span id="checkout-summary-total">RM 0.00</span>
                     </div>
                 </div>
 
-<div class="pt-2 flex space-x-3">
-                    <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl transition-all">
-                        Batal
+                <div class="pt-2 flex space-x-3">
+                    <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl text-xs transition-all">
+                        Kembali Ke Troli
                     </button>
-                    <button type="submit" class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2">
+                    <button type="submit" class="w-1/2 bg-green-600 hover:bg-green-700 text-white font-extrabold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs">
                         <i class="fa-brands fa-whatsapp text-lg"></i>
                         <span>Pesan Melalui WA</span>
                     </button>
                 </div>
+                <p class="text-[9px] text-center text-gray-400 italic">Pesanan anda akan dihantar ke WhatsApp penjual untuk semakan pembayaran manual.</p>
             </form>
         </div>
     </div>
 
-<!-- Success Message Pop-up -->
-    <div id="success-toast" class="fixed bottom-5 left-5 right-5 md:left-auto md:right-5 bg-green-600 text-white px-6 py-4 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3">
-        <i class="fa-solid fa-circle-check text-2xl"></i>
-        <div>
-            <p class="font-bold">Selesai!</p>
-            <p class="text-xs">Produk berjaya dimasukkan ke dalam troli.</p>
+    <!-- Toast Notification for success -->
+    <div id="success-toast" class="fixed bottom-20 md:bottom-5 left-5 right-5 md:left-auto md:right-5 bg-gray-900/95 backdrop-blur-sm text-white px-5 py-3.5 rounded-xl shadow-2xl z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-3 max-w-sm">
+        <i class="fa-solid fa-circle-check text-green-400 text-xl"></i>
+        <div class="flex-1">
+            <p class="font-extrabold text-xs">Berjaya dimasukkan!</p>
+            <p id="toast-text" class="text-[10px] text-gray-300">Troli anda telah dikemas kini.</p>
         </div>
     </div>
 
-<!-- About Section -->
-    <section class="py-16 bg-brand-lightBg">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div>
-                <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Tentang A&A WORLD" class="rounded-3xl shadow-lg w-full h-80 object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
-            </div>
-            <div class="space-y-6">
-                <span class="text-xs font-bold text-brand uppercase tracking-wider">Mengenai Kami</span>
-                <h3 class="text-3xl font-bold text-brand-dark">Syarikat A&A WORLD Kitchenware</h3>
-                <p class="text-gray-600 leading-relaxed">
-                    Berpusat di Wakaf Che Yeh, Kota Bharu, Kelantan, syarikat A&A WORLD merupakan pembekal utama bagi rangkaian peralatan dapur serta produk masakan gred profesional. Kami komited untuk membekalkan periuk terbaik yang tahan lama, selamat digunakan, dan memudahkan aktiviti memasak harian anda sekeluarga.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                        <p class="text-2xl font-bold text-brand">5,000+</p>
-                        <p class="text-xs text-gray-500">Pelanggan Puas Hati</p>
-                    </div>
-                    <div class="p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                        <p class="text-2xl font-bold text-brand">100%</p>
-                        <p class="text-xs text-gray-500">Kualiti Terjamin</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<!-- Testimonials -->
-    <section id="testimoni" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center text-brand-dark mb-12">Kata Pelanggan Kami</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-sm text-gray-600 italic">"Periuk granit non-stick dia sangat hebat! Guna minyak sikit sangat pun telur tak melekat langsung. Senang sangat nak cuci. Terima kasih A&A WORLD!"</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold">SM</div>
-                        <div>
-                            <p class="text-sm font-bold">Siti Mariah</p>
-                            <p class="text-xs text-gray-400">Suri Rumah, Selangor</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-sm text-gray-600 italic">"Saya beli set Stainless Steel untuk isteri sempena ulang tahun perkahwinan kami. Penghantaran ke Kelantan sangat cepat dan kualiti periuknya betul-betul kukuh & tebal."</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold">H</div>
-                        <div>
-                            <p class="text-sm font-bold">Hazim</p>
-                            <p class="text-xs text-gray-400">Peniaga Kedai Makan, Kelantan</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
-                    <div class="flex text-yellow-400">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-sm text-gray-600 italic">"Sangat berbaloi beli di sini. Layanan jurujual sangat ramah dan sabar menjawab semua soalan saya tentang periuk yang sesuai untuk dapur induksi. Terbaik!"</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold">FN</div>
-                        <div>
-                            <p class="text-sm font-bold">Farah Nabila</p>
-                            <p class="text-xs text-gray-400">Penggemar Memasak, Kuala Lumpur</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-<!-- Footer Section -->
-    <footer class="bg-brand-dark text-white pt-12 pb-6 mt-auto">
+    <!-- Desktop Footer (Only visible on medium and larger screens) -->
+    <footer class="hidden md:block bg-shopee-blueDark text-white pt-12 pb-6 mt-12 border-t-4 border-shopee-orange">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div class="space-y-4">
-                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="aaworld logo.png" class="h-16 w-auto object-contain brightness-110" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
-                <p class="text-xs text-gray-300 leading-relaxed">Membekalkan koleksi periuk premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk keselesaan dapur anda.</p>
+                <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A Logo" class="h-12 w-auto object-contain brightness-110" onerror="this.src='https://placehold.co/150x60/355ca4/ffffff?text=A%26A+WORLD'">
+                <p class="text-xs text-gray-300 leading-relaxed">Membekalkan koleksi periuk premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk dapur selesa anda.</p>
             </div>
             <div>
-                <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-brand-light">Pautan Cepat</h4>
+                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-shopee-orange">Pautan Pantas</h4>
                 <ul class="space-y-2 text-xs text-gray-300">
                     <li><a href="#" class="hover:underline">Halaman Utama</a></li>
-                    <li><a href="#produk" class="hover:underline">Koleksi Periuk</a></li>
-                    <li><a href="#kelebihan" class="hover:underline">Kelebihan Kami</a></li>
-                    <li><a href="#testimoni" class="hover:underline">Testimoni</a></li>
+                    <li><a href="#kategori" class="hover:underline">Semua Kategori</a></li>
+                    <li><a href="https://wa.me/60139703969" target="_blank" class="hover:underline">WhatsApp Kami</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-brand-light">Perkhidmatan & Servis</h4>
+                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-shopee-orange">Perkhidmatan</h4>
                 <ul class="space-y-2 text-xs text-gray-300">
-                    <li><a href="#produk" class="hover:underline">Jualan Periuk Premium</a></li>
-                    <li><a href="https://wa.me/60139703969" target="_blank" class="hover:underline">Konsultasi Produk</a></li>
-                    <li><a href="#" class="hover:underline">Waranti & Pemulangan</a></li>
+                    <li><a href="#" class="hover:underline">Jaminan & Waranti</a></li>
+                    <li><a href="#" class="hover:underline">Polisi Pemulangan</a></li>
+                    <li><a href="https://wa.me/60139703969" target="_blank" class="hover:underline">Bantuan Pelanggan</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold text-sm uppercase tracking-wider mb-4 text-brand-light">Hubungi Kami</h4>
-                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-envelope mr-2"></i> anisaworld1210@gmail.com</p>
-                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-phone mr-2"></i> +60 13-970 3969</p>
-                <p class="text-xs text-gray-300 mb-4 leading-relaxed"><i class="fa-solid fa-map-marker-alt mr-2"></i> WAKAF CHE YEH, KOTA BHARU, KELANTAN</p>
-                <div class="flex space-x-3 text-lg">
-                    <a href="https://wa.me/60139703969" target="_blank" class="text-gray-300 hover:text-white"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fa-brands fa-instagram"></i></a>
-                </div>
+                <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-shopee-orange">Hubungi Kami</h4>
+                <p class="text-xs text-gray-300 mb-2 leading-relaxed"><i class="fa-solid fa-map-marker-alt text-shopee-orange mr-2"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-phone text-shopee-orange mr-2"></i> +60 13-970 3969</p>
+                <p class="text-xs text-gray-300 mb-2"><i class="fa-solid fa-envelope text-shopee-orange mr-2"></i> anisaworld1210@gmail.com</p>
             </div>
         </div>
-        <div class="border-t border-brand-light/20 pt-6 text-center text-xs text-gray-400">
+        <div class="border-t border-white/10 pt-6 text-center text-xs text-gray-400">
             <p>© 2026 A&A WORLD Kitchenware. Hak Cipta Terpelihara.</p>
         </div>
     </footer>
 
-<!-- Script Operations -->
+    <!-- Shopee-Style Mobile Bottom Navigation Bar (Extreme UX for non-IT users) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 flex items-center justify-around py-2 shadow-lg">
+        <button onclick="scrollToTop()" class="flex flex-col items-center justify-center text-shopee-orange">
+            <i class="fa-solid fa-house text-lg"></i>
+            <span class="text-[9px] font-bold mt-0.5">Utama</span>
+        </button>
+        <button onclick="focusSearch()" class="flex flex-col items-center justify-center text-gray-400 hover:text-shopee-orange">
+            <i class="fa-solid fa-magnifying-glass text-lg"></i>
+            <span class="text-[9px] font-bold mt-0.5">Cari</span>
+        </button>
+        <a href="https://wa.me/60139703969" target="_blank" class="flex flex-col items-center justify-center text-green-500">
+            <i class="fa-brands fa-whatsapp text-xl"></i>
+            <span class="text-[9px] font-bold mt-0.5">Bantuan WA</span>
+        </a>
+        <button onclick="toggleCart()" class="flex flex-col items-center justify-center text-gray-400 hover:text-shopee-orange relative">
+            <i class="fa-solid fa-shopping-cart text-lg"></i>
+            <span class="text-[9px] font-bold mt-0.5">Troli</span>
+            <span id="mobile-cart-badge" class="absolute -top-1 -right-2 bg-shopee-orange text-white font-extrabold text-[8px] w-4.5 h-4.5 rounded-full flex items-center justify-center border-2 border-white scale-0 transition-all">0</span>
+        </button>
+    </div>
+
+    <!-- Script Operations -->
     <script>
         // Product Catalog
         const PRODUCTS = [
@@ -478,94 +486,172 @@
                 name: 'Periuk Granit Premium Non-Stick',
                 category: 'nonstick',
                 price: 189.00,
-                desc: 'Periuk granit tahan calar bertaraf premium. Memasak sihat tanpa minyak yang berlebihan.',
+                originalPrice: 250.00,
+                desc: 'Periuk granit tahan calar bertaraf premium. Memasak sihat tanpa minyak yang berlebihan. Sangat senang dicuci tanpa perlu menyental.',
                 img: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=600',
-                size: '24cm'
+                size: '24cm',
+                sold: '248',
+                rating: '4.9'
             },
             {
                 id: 2,
-                name: 'Set Periuk Stainless Steel Klasik',
+                name: 'Set Periuk Stainless Steel Klasik (3-in-1)',
                 category: 'stainless',
                 price: 299.00,
-                desc: 'Tahan lama dan berkilat. Tapak 3 lapisan untuk pengaliran haba yang paling cekap.',
+                originalPrice: 380.00,
+                desc: 'Tahan lama, anti karat dan sentiasa berkilat. Mempunyai tapak 3 lapisan khas untuk pengaliran haba sekata dan menjimatkan gas/elektrik.',
                 img: 'https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&q=80&w=600',
-                size: 'Set 3-in-1'
+                size: 'Set 3-in-1',
+                sold: '190',
+                rating: '5.0'
             },
             {
                 id: 3,
-                name: 'Periuk Dutch Oven Cast Iron',
+                name: 'Periuk Dutch Oven Cast Iron Royal Blue',
                 category: 'castiron',
                 price: 245.00,
-                desc: 'Sesuai untuk masakan sup, rebusan perlahan, dan masakan dalam oven. Warna biru elegen.',
+                originalPrice: 320.00,
+                desc: 'Sesuai untuk masakan sup, rebusan perlahan, serta masakan dalam ketuhar/oven. Kemasan warna biru elegen, tebal dan tahan bertahun-tahun.',
                 img: 'https://images.unsplash.com/photo-1611244419377-b0a721864635?auto=format&fit=crop&q=80&w=600',
-                size: '26cm'
+                size: '26cm',
+                sold: '74',
+                rating: '4.8'
             },
             {
                 id: 4,
-                name: 'Periuk Wok Seramik Sauté',
+                name: 'Periuk Wok Seramik Sauté Premium',
                 category: 'nonstick',
                 price: 159.00,
-                desc: 'Sesuai untuk menumis dan menggoreng laju. Sangat ringan dan mudah dikendalikan.',
+                originalPrice: 210.00,
+                desc: 'Sangat sesuai untuk menggoreng kilas dan menumis masakan laju. Sangat ringan, pemegang ergonomik kayu yang tidak panas.',
                 img: 'https://images.unsplash.com/photo-1604152135912-04a022e23696?auto=format&fit=crop&q=80&w=600',
-                size: '30cm'
+                size: '30cm',
+                sold: '315',
+                rating: '4.9'
             },
             {
                 id: 5,
                 name: 'Periuk Tanah Liat Sup Tradisional',
                 category: 'castiron',
                 price: 89.00,
-                desc: 'Mengekalkan rasa asli masakan herba dan bubur tradisional anda dengan lebih enak.',
+                originalPrice: 120.00,
+                desc: 'Mengekalkan rasa asli masakan herba, sup herba, asid pedas atau bubur tradisional dengan keaslian optimum tanah liat berkualiti.',
                 img: 'https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=600',
-                size: '3 Litre'
+                size: '3 Litre',
+                sold: '88',
+                rating: '4.7'
             },
             {
                 id: 6,
-                name: 'Set Periuk Mini Sarapan Pagi',
+                name: 'Set Periuk Mini Sarapan Pagi Anti-Lekat',
                 category: 'nonstick',
                 price: 129.00,
-                desc: 'Sesuai untuk merebus telur, mi segera atau masakan ringkas harian.',
+                originalPrice: 169.00,
+                desc: 'Set lengkap saiz mini. Sangat sesuai untuk merebus telur, mi segera, atau menggoreng sarapan kecil tanpa membazir minyak.',
                 img: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=600',
-                size: 'Set Mini'
+                size: 'Set Mini',
+                sold: '412',
+                rating: '4.9'
             }
         ];
 
-        // Cart State
+        // State Store
         let cart = [];
+        let currentFilter = 'all';
         const FREE_SHIPPING_THRESHOLD = 150.00;
 
-        // On Load Initializations
+        // Init on window load
         window.onload = function() {
             loadCartFromLocalStorage();
-            renderProducts('all');
+            renderProducts(currentFilter);
             updateCartUI();
+            startFlashSaleTimer();
         };
 
-        // Render Products in Grid
-        function renderProducts(category) {
+        // Render dynamic grid list
+        function renderProducts(category, searchTerm = '') {
             const grid = document.getElementById('products-grid');
+            const emptyState = document.getElementById('empty-search-state');
+            const resultsCountSpan = document.getElementById('results-count');
             grid.innerHTML = '';
 
-            const filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
+            // Filter by category
+            let filtered = category === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === category);
+
+            // Filter by search term
+            if (searchTerm.trim() !== '') {
+                const term = searchTerm.toLowerCase().trim();
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(term) || 
+                    p.desc.toLowerCase().includes(term) || 
+                    p.size.toLowerCase().includes(term)
+                );
+            }
+
+            // Set results count helper text
+            resultsCountSpan.innerText = `Menjumpai ${filtered.length} periuk`;
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                grid.classList.add('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.classList.remove('hidden');
 
             filtered.forEach(product => {
+                const discountPercent = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden transform hover:-translate-y-1 transition-all duration-300 flex flex-col";
+                card.className = "bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-150 transition-all flex flex-col cursor-pointer group";
+                
+                // Clicking on card opens details modal
+                card.onclick = (e) => {
+                    // Prevent trigger if they click the plus button directly
+                    if (e.target.closest('.add-btn-bubble')) return;
+                    openProductModal(product);
+                };
+
                 card.innerHTML = `
-                    <div class="relative overflow-hidden group">
-                        <img src="${product.img}" alt="${product.name}" class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=Periuk+Premium'">
-                        <span class="absolute top-3 left-3 bg-brand/90 text-white text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                            ${product.size}
+                    <div class="relative aspect-square bg-gray-50 overflow-hidden">
+                        <img src="${product.img}" alt="${product.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.src='https://placehold.co/400x400/355ca4/ffffff?text=Periuk+Premium'">
+                        
+                        <!-- Free shipping badge (Shopee style) -->
+                        <div class="absolute bottom-1.5 left-1.5 flex flex-col gap-1">
+                            <span class="bg-shopee-orange text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm tracking-wide flex items-center">
+                                <i class="fa-solid fa-truck-fast mr-0.5"></i> SEMENANJUNG FREE
+                            </span>
+                        </div>
+
+                        <!-- Off discount sticker -->
+                        <span class="absolute top-0 right-0 bg-yellow-400 text-shopee-orange font-black text-[9px] px-2 py-1 rounded-bl-lg shadow-sm">
+                            -${discountPercent}%
                         </span>
                     </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between">
+                    
+                    <div class="p-2 sm:p-3 flex-1 flex flex-col justify-between">
                         <div>
-                            <h4 class="text-lg font-bold text-gray-800 line-clamp-1 mb-2">${product.name}</h4>
-                            <p class="text-xs text-gray-500 line-clamp-2 mb-4">${product.desc}</p>
+                            <p class="text-xs font-semibold text-gray-800 line-clamp-2 h-8 leading-snug">${product.name}</p>
+                            
+                            <!-- Star Rating and Sold count (Shopee Style) -->
+                            <div class="flex items-center space-x-1 mt-1">
+                                <div class="flex text-shopee-gold text-[9px]">
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="text-[10px] text-gray-500 font-bold">${product.rating}</span>
+                                <span class="text-[9px] text-gray-300">|</span>
+                                <span class="text-[9px] text-shopee-greyText font-medium">${product.sold} terjual</span>
+                            </div>
                         </div>
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="text-xl font-black text-brand">RM ${product.price.toFixed(2)}</span>
-                            <button onclick="addToCart(${product.id})" class="bg-brand hover:bg-brand-dark text-white px-4 py-2 rounded-xl text-xs font-bold transition-all shadow hover:shadow-md flex items-center gap-1.5 hover:scale-105">
-                                <i class="fa-solid fa-plus"></i> Tambah Troli
+
+                        <!-- Price and Quick Add To Cart Button -->
+                        <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-gray-50">
+                            <div>
+                                <span class="text-xs text-gray-400 line-through block leading-none">RM ${product.originalPrice.toFixed(2)}</span>
+                                <span class="text-sm sm:text-base font-black text-shopee-orange leading-tight">RM ${product.price.toFixed(2)}</span>
+                            </div>
+                            <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-shopee-orange hover:bg-shopee-orangeHover text-white w-7.5 h-7.5 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition-all shadow hover:scale-110" title="Tambah ke troli">
+                                <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
                             </button>
                         </div>
                     </div>
@@ -574,19 +660,48 @@
             });
         }
 
-        // Filter Categories Handler
+        // Filter selection
         function filterCategory(cat) {
-            // Manage Active Class
+            currentFilter = cat;
             document.querySelectorAll('.category-btn').forEach(btn => {
-                btn.classList.remove('bg-brand', 'text-white', 'active');
-                btn.classList.add('bg-white', 'text-gray-600', 'hover:bg-gray-100');
+                btn.classList.remove('bg-shopee-orange', 'text-white', 'active');
+                btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
             });
             const activeBtn = document.getElementById(`btn-${cat}`);
             if (activeBtn) {
-                activeBtn.classList.remove('bg-white', 'text-gray-600', 'hover:bg-gray-100');
-                activeBtn.classList.add('bg-brand', 'text-white', 'active');
+                activeBtn.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                activeBtn.classList.add('bg-shopee-orange', 'text-white', 'active');
             }
-            renderProducts(cat);
+            const searchVal = document.getElementById('search-input').value;
+            renderProducts(cat, searchVal);
+        }
+
+        // Search bar typing handler
+        function handleSearch() {
+            const val = document.getElementById('search-input').value;
+            const clearBtn = document.getElementById('clear-search-btn');
+
+            if (val.trim() !== '') {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+            renderProducts(currentFilter, val);
+        }
+
+        // Clear search text field
+        function clearSearch() {
+            const input = document.getElementById('search-input');
+            input.value = '';
+            document.getElementById('clear-search-btn').add('hidden');
+            renderProducts(currentFilter, '');
+        }
+
+        // Scroll to search block and auto focus (Mobile bottom bar friendly)
+        function focusSearch() {
+            const input = document.getElementById('search-input');
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => input.focus(), 500);
         }
 
         // Add to Cart
@@ -603,82 +718,84 @@
 
             saveCartToLocalStorage();
             updateCartUI();
-            showSuccessToast();
+            showSuccessToast(product.name);
         }
 
-        // Update Cart UI details
+        // Update Troli Badge Count and items
         function updateCartUI() {
             const badge = document.getElementById('cart-badge');
+            const mobileBadge = document.getElementById('mobile-cart-badge');
             const emptyState = document.getElementById('cart-empty-state');
             const activeContainer = document.getElementById('cart-active-items');
-            const cartItemsDiv = document.getElementById('cart-active-items');
             const footer = document.getElementById('cart-footer');
             
             const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-            // Badge Count Toggle
+            // Update Badge Scale & text
             if (totalItems > 0) {
-                badge.innerText = totalItems;
-                badge.classList.remove('scale-0');
-                badge.classList.add('scale-100');
+                [badge, mobileBadge].forEach(b => {
+                    b.innerText = totalItems;
+                    b.classList.remove('scale-0');
+                    b.classList.add('scale-100');
+                });
                 emptyState.classList.add('hidden');
                 activeContainer.classList.remove('hidden');
                 footer.classList.remove('hidden');
             } else {
-                badge.classList.add('scale-0');
-                badge.classList.remove('scale-100');
+                [badge, mobileBadge].forEach(b => {
+                    b.classList.add('scale-0');
+                    b.classList.remove('scale-100');
+                });
                 emptyState.classList.remove('hidden');
                 activeContainer.classList.add('hidden');
                 footer.classList.add('hidden');
                 return;
             }
 
-            // Render Cart Items
-            cartItemsDiv.innerHTML = '';
+            // Render Rows inside Drawer
+            activeContainer.innerHTML = '';
             let subtotal = 0;
 
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
 
-                const itemRow = document.createElement('div');
-                itemRow.className = "flex items-center space-x-3 bg-gray-50 p-3 rounded-xl border border-gray-100";
-                itemRow.innerHTML = `
-                    <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-gray-200" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
-                    <div class="flex-1">
-                        <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${item.name}</h4>
-                        <p class="text-[10px] text-gray-500 mb-1">RM ${item.price.toFixed(2)} (${item.size})</p>
-                        <!-- Quantity Controller -->
-                        <div class="flex items-center space-x-2">
-                            <button onclick="adjustQty(${item.id}, -1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-all text-xs font-bold text-gray-600">-</button>
-                            <span class="text-xs font-bold text-gray-700">${item.quantity}</span>
-                            <button onclick="adjustQty(${item.id}, 1)" class="w-6 h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 transition-all text-xs font-bold text-gray-600">+</button>
+                const row = document.createElement('div');
+                row.className = "flex items-center space-x-2.5 bg-gray-50 p-2.5 rounded-xl border border-gray-150";
+                row.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg border border-gray-200" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-xs font-bold text-gray-800 truncate">${item.name}</h4>
+                        <p class="text-[10px] text-gray-400">RM ${item.price.toFixed(2)} (${item.size})</p>
+                        
+                        <!-- Plus Minus Controls -->
+                        <div class="flex items-center space-x-2 mt-1.5">
+                            <button onclick="adjustQty(${item.id}, -1)" class="w-5 h-5 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-[10px] font-bold text-gray-600">-</button>
+                            <span class="text-[11px] font-black text-gray-700">${item.quantity}</span>
+                            <button onclick="adjustQty(${item.id}, 1)" class="w-5 h-5 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-[10px] font-bold text-gray-600">+</button>
                         </div>
                     </div>
-                    <div class="text-right flex flex-col justify-between items-end h-16 py-1">
+                    <div class="text-right flex flex-col justify-between items-end h-14 py-0.5 shrink-0">
                         <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 transition-colors" title="Padam item">
-                            <i class="fa-regular fa-trash-can text-sm"></i>
+                            <i class="fa-regular fa-trash-can text-xs"></i>
                         </button>
-                        <span class="text-xs font-black text-brand">RM ${itemTotal.toFixed(2)}</span>
+                        <span class="text-xs font-black text-shopee-orange">RM ${itemTotal.toFixed(2)}</span>
                     </div>
                 `;
-                cartItemsDiv.appendChild(itemRow);
+                activeContainer.appendChild(row);
             });
 
-            // Calculate Shipping
-            const regionSelect = document.getElementById('cust-region');
-            const region = regionSelect ? regionSelect.value : 'Semenanjung';
+            // Recalculate Shipping Free limit (RM 150)
+            const region = document.getElementById('cust-region').value;
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
 
-            // Free shipping logic
+            const reminder = document.getElementById('free-shipping-reminder');
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
                 shippingFee = 0.00;
-                document.getElementById('free-shipping-reminder').innerHTML = `<i class="fa-solid fa-gift mr-1"></i> Hebat! Anda layak mendapat Penghantaran Percuma.`;
-                document.getElementById('free-shipping-reminder').classList.remove('hidden');
+                reminder.innerHTML = `<i class="fa-solid fa-gift text-shopee-orange mr-1"></i> Hebat! Anda layak mendapat <span class="font-bold">Penghantaran Percuma</span>!`;
             } else {
                 const bal = FREE_SHIPPING_THRESHOLD - subtotal;
-                document.getElementById('free-shipping-reminder').innerHTML = `Beli lagi <span class="font-bold">RM ${bal.toFixed(2)}</span> untuk nikmati Penghantaran Percuma!`;
-                document.getElementById('free-shipping-reminder').classList.remove('hidden');
+                reminder.innerHTML = `Beli lagi <span class="font-extrabold">RM ${bal.toFixed(2)}</span> untuk dapat <span class="font-bold">Penghantaran Percuma</span>!`;
             }
 
             const total = subtotal + shippingFee;
@@ -688,7 +805,7 @@
             document.getElementById('cart-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
-        // Adjust Cart Quantity
+        // Adjust items quantity
         function adjustQty(id, value) {
             const item = cart.find(i => i.id === id);
             if (!item) return;
@@ -702,27 +819,54 @@
             }
         }
 
-        // Remove item from Cart
+        // Trash item
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
             saveCartToLocalStorage();
             updateCartUI();
         }
 
-        // Toggle Cart Drawer
+        // Open detailed product pop-up
+        function openProductModal(product) {
+            document.getElementById('modal-product-img').src = product.img;
+            document.getElementById('modal-product-tag').innerText = product.category === 'nonstick' ? 'Granit Non-Stick' : (product.category === 'stainless' ? 'Stainless Steel' : 'Cast Iron & Tanah Liat');
+            document.getElementById('modal-product-title').innerText = product.name;
+            document.getElementById('modal-product-desc').innerText = product.desc;
+            document.getElementById('modal-product-size').innerText = product.size;
+            document.getElementById('modal-product-price').innerText = `RM ${product.price.toFixed(2)}`;
+            document.getElementById('modal-product-sold').innerText = `${product.sold} terjual`;
+
+            // Map action buttons in modal dynamically
+            document.getElementById('modal-add-cart-btn').onclick = () => {
+                addToCart(product.id);
+                closeProductModal();
+            };
+            document.getElementById('modal-buy-now-btn').onclick = () => {
+                addToCart(product.id);
+                closeProductModal();
+                toggleCart(); // Auto open cart directly
+            };
+
+            document.getElementById('product-detail-modal').classList.remove('hidden');
+        }
+
+        // Close Product Detail
+        function closeProductModal() {
+            document.getElementById('product-detail-modal').classList.add('hidden');
+        }
+
+        // Toggle Troli Panel
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-backdrop');
             const panel = document.getElementById('cart-panel');
 
             if (panel.classList.contains('translate-x-full')) {
-                // Open drawer
                 drawer.classList.remove('pointer-events-none');
                 backdrop.classList.remove('opacity-0', 'pointer-events-none');
                 backdrop.classList.add('opacity-100');
                 panel.classList.remove('translate-x-full');
             } else {
-                // Close drawer
                 drawer.classList.add('pointer-events-none');
                 backdrop.classList.add('opacity-0', 'pointer-events-none');
                 backdrop.classList.remove('opacity-100');
@@ -730,24 +874,47 @@
             }
         }
 
-        // Toggle Mobile Navigation Menu
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                icon.className = 'fa-solid fa-xmark text-2xl';
-            } else {
-                menu.classList.add('hidden');
-                icon.className = 'fa-solid fa-bars text-2xl';
+        // Open Checkout details modal
+        function openCheckoutModal() {
+            toggleCart(); // Close Cart drawer
+            document.getElementById('checkout-modal').classList.remove('hidden');
+
+            // Set items list
+            const container = document.getElementById('checkout-summary-items');
+            container.innerHTML = '';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                const row = document.createElement('div');
+                row.className = "flex justify-between text-xs";
+                row.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span class="font-extrabold text-gray-800">RM ${(item.price * item.quantity).toFixed(2)}</span>
+                `;
+                container.appendChild(row);
+                subtotal += item.price * item.quantity;
+            });
+
+            // Apply shipping
+            const region = document.getElementById('cust-region').value;
+            let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
+            if (subtotal >= FREE_SHIPPING_THRESHOLD) {
+                shippingFee = 0.00;
             }
+            const total = subtotal + shippingFee;
+            document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
-        // Recalculate Shipping based on customer dropdown choice
+        // Close checkout
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        // Dropdown location selector updates total pricing
         function recalculateShipping() {
             updateCartUI();
             
-            // Recalculate Checkout summary too
+            // Re-apply for checkout summary instantly
             const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
             const region = document.getElementById('cust-region').value;
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
@@ -758,46 +925,7 @@
             document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
-        // Open Checkout Modal
-        function openCheckoutModal() {
-            // Close Cart Drawer first
-            toggleCart();
-
-            // Open Modal
-            document.getElementById('checkout-modal').classList.remove('hidden');
-            
-            // Load items into checkout summary
-            const container = document.getElementById('checkout-summary-items');
-            container.innerHTML = '';
-            let subtotal = 0;
-
-            cart.forEach(item => {
-                const row = document.createElement('div');
-                row.className = "flex justify-between";
-                row.innerHTML = `
-                    <span>${item.name} (x${item.quantity})</span>
-                    <span class="font-semibold">RM ${(item.price * item.quantity).toFixed(2)}</span>
-                `;
-                container.appendChild(row);
-                subtotal += item.price * item.quantity;
-            });
-
-            // Re-apply delivery region pricing logic
-            const region = document.getElementById('cust-region').value;
-            let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
-            if (subtotal >= FREE_SHIPPING_THRESHOLD) {
-                shippingFee = 0.00;
-            }
-            const total = subtotal + shippingFee;
-            document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
-        }
-
-        // Close Checkout Modal
-        function closeCheckoutModal() {
-            document.getElementById('checkout-modal').classList.add('hidden');
-        }
-
-        // Handle checkout submission (Order compilation sent to WhatsApp)
+        // Submit order & compile formatted message directly to WhatsApp
         function handleCheckoutSubmit(event) {
             event.preventDefault();
 
@@ -806,21 +934,21 @@
             const address = document.getElementById('cust-address').value;
             const region = document.getElementById('cust-region').value;
 
-            // Compile WhatsApp Message
-            let message = `*TEMPAHAN BARU A&A WORLD*\n`;
-            message += `-----------------------------\n`;
-            message += `*Butiran Pelanggan:*\n`;
-            message += `Nama: ${name}\n`;
-            message += `Telefon: ${phone}\n`;
-            message += `Kawasan: ${region}\n`;
-            message += `Alamat: ${address}\n\n`;
-            message += `*Butiran Pesanan:*\n`;
+            // Form compile
+            let message = `*🔥 TEMPAHAN BARU A&A WORLD 🔥*\n`;
+            message += `===============================\n\n`;
+            message += `*👤 BUTIRAN PELANGGAN:*\n`;
+            message += `• *Nama:* ${name}\n`;
+            message += `• *Telefon:* ${phone}\n`;
+            message += `• *Kawasan:* ${region}\n`;
+            message += `• *Alamat:* ${address}\n\n`;
+            message += `*📦 BUTIRAN PESANAN PERIUK:*\n`;
 
             let subtotal = 0;
             cart.forEach((item, index) => {
                 const totalItem = item.price * item.quantity;
                 subtotal += totalItem;
-                message += `${index + 1}. ${item.name} (${item.size}) - x${item.quantity} = RM ${totalItem.toFixed(2)}\n`;
+                message += `${index + 1}. *${item.name}* (${item.size})\n   └─ Jml: ${item.quantity} x RM ${item.price.toFixed(2)} = *RM ${totalItem.toFixed(2)}*\n`;
             });
 
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
@@ -829,39 +957,33 @@
             }
             const finalTotal = subtotal + shippingFee;
 
-            message += `\n-----------------------------\n`;
-            message += `*Jumlah Kecil:* RM ${subtotal.toFixed(2)}\n`;
-            message += `*Caj Penghantaran:* ${shippingFee === 0 ? 'PERCUMA' : 'RM ' + shippingFee.toFixed(2)}\n`;
-            message += `*Jumlah Bayaran:* *RM ${finalTotal.toFixed(2)}*\n\n`;
-            message += `Sila sahkan tempahan ini untuk proses pembayaran dan penghantaran. Terima kasih!`;
+            message += `\n===============================\n`;
+            message += `• *Jumlah Kecil:* RM ${subtotal.toFixed(2)}\n`;
+            message += `• *Caj Pos:* ${shippingFee === 0 ? 'PERCUMA' : 'RM ' + shippingFee.toFixed(2)}\n`;
+            message += `• *JUMLAH BAYARAN:* *RM ${finalTotal.toFixed(2)}*\n\n`;
+            message += `Sila hantar mesej ini. Penjual akan memberikan butiran bank / pembayaran sebentar lagi. Terima kasih!`;
 
-            // Encode message for URL
             const encodedText = encodeURIComponent(message);
-            
-            // Open WhatsApp (using the requested active number 013-9703969)
             const ownerPhoneNumber = "60139703969"; 
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${ownerPhoneNumber}&text=${encodedText}`;
 
-            // Reset cart
+            // Reset cart on successful checkout
             cart = [];
             saveCartToLocalStorage();
             updateCartUI();
 
-            // Close modal
             closeCheckoutModal();
-
-            // Redirect to WhatsApp
             window.open(whatsappUrl, '_blank');
         }
 
-        // Save Cart to LocalStorage
+        // Save progress to LocalStorage
         function saveCartToLocalStorage() {
-            localStorage.setItem('aa_world_cart', JSON.stringify(cart));
+            localStorage.setItem('aa_world_cart_shopee', JSON.stringify(cart));
         }
 
-        // Load Cart from LocalStorage
+        // Read LocalStorage
         function loadCartFromLocalStorage() {
-            const saved = localStorage.getItem('aa_world_cart');
+            const saved = localStorage.getItem('aa_world_cart_shopee');
             if (saved) {
                 try {
                     cart = JSON.parse(saved);
@@ -871,9 +993,11 @@
             }
         }
 
-        // Success Toast popup helper
-        function showSuccessToast() {
+        // Toast success popup helper
+        function showSuccessToast(productName) {
             const toast = document.getElementById('success-toast');
+            document.getElementById('toast-text').innerText = `"${productName}" masuk troli.`;
+            
             toast.classList.remove('translate-y-20', 'opacity-0');
             toast.classList.add('translate-y-0', 'opacity-100');
 
@@ -881,6 +1005,33 @@
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-20', 'opacity-0');
             }, 3000);
+        }
+
+        // Simple smooth scroll helper to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Countdown Timer for Flash Sale campaign
+        function startFlashSaleTimer() {
+            let totalSeconds = (2 * 3600) + (45 * 60) + 18; // 2h 45m 18s
+            
+            const timerInterval = setInterval(() => {
+                if (totalSeconds <= 0) {
+                    // Reset timer to simulate endless loop for urgency
+                    totalSeconds = (3 * 3600) + (15 * 60) + 40;
+                }
+                
+                totalSeconds--;
+                
+                const hrs = Math.floor(totalSeconds / 3600);
+                const mins = Math.floor((totalSeconds % 3600) / 60);
+                const secs = totalSeconds % 60;
+                
+                document.getElementById('hours').innerText = String(hrs).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(mins).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(secs).padStart(2, '0');
+            }, 1000);
         }
     </script>
 </body>
