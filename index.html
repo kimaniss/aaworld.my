@@ -94,13 +94,10 @@
 
 <div id="store-view" class="block">
         <div class="bg-white border-b border-gray-200 py-2 sticky top-[65px] z-30">
-            <div class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
+            <div id="category-bar-container" class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
                 <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
                 <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white">Semua Produk</button>
-                <button onclick="filterCategory('nonstick')" id="btn-nonstick" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">Granit Non-Stick 🔥</button>
-                <button onclick="filterCategory('stainless')" id="btn-stainless" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">Stainless Steel ⭐</button>
-                <button onclick="filterCategory('castiron')" id="btn-castiron" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200">Cast Iron & Tanah Liat</button>
-            </div>
+                </div>
         </div>
 
 <main class="container mx-auto px-4 py-4 flex-1">
@@ -124,7 +121,9 @@
 
 <div class="bg-black/20 backdrop-blur-md p-3.5 rounded-xl border border-white/20 text-center shrink-0 w-full md:w-auto">
                         <p class="text-xs font-bold text-yellow-300 uppercase tracking-widest mb-1.5"><i class="fa-solid fa-bolt mr-1"></i> Tawaran Kilat Tamat Dalam</p>
-                        <div class="flex justify-center items-center space-x-2 font-mono text-base font-bold">
+                        <div class="flex justify-center items-center space-x-1.5 font-mono text-base font-bold">
+                            <span id="days" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">00</span>
+                            <span class="text-xs font-sans font-bold self-end pb-0.5">Hari</span>
                             <span id="hours" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">02</span>
                             <span>:</span>
                             <span id="minutes" class="bg-white text-gray-900 rounded px-2 py-1 shadow-sm">45</span>
@@ -214,6 +213,7 @@
                 <p class="text-xs text-gray-500 font-medium mt-0.5">Selamat bekerja, <span id="active-admin-name" class="font-bold text-brand-blue">Admin</span></p>
             </div>
             <div class="flex space-x-2 w-full sm:w-auto">
+                <button onclick="openCategoryCrudModal()" class="flex-1 sm:flex-initial bg-amber-500 hover:bg-amber-600 text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all"><i class="fa-solid fa-folder-plus mr-1"></i> Kategori Baru</button>
                 <button onclick="openProductCrudModal()" class="flex-1 sm:flex-initial bg-brand-blue hover:bg-brand-blueDark text-white px-4 py-2.5 rounded-xl text-xs font-bold shadow-sm transition-all"><i class="fa-solid fa-plus mr-1"></i> Produk Baru</button>
                 <button onclick="logoutAdmin()" class="bg-red-50 text-red-600 border border-red-100 px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-red-100 transition-all">Log Keluar</button>
             </div>
@@ -253,9 +253,13 @@
                     <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Keterangan / Deskripsi Ringkas</label>
                     <input type="text" id="campaign-input-desc" required class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue" placeholder="cth: Senang diguna, 100% bebas toksik...">
                 </div>
-                <div class="flex items-end">
-                    <button type="submit" id="campaign-submit-btn" class="w-full bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-2 rounded-xl transition-all shadow-sm">
-                        <span id="campaign-submit-text">Kemas Kini Banner</span>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tarikh Tamat (Tepat 12:00 Mlm)</label>
+                    <input type="date" id="campaign-input-enddate" required class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-bold text-brand-blue">
+                </div>
+                <div class="md:col-span-4 flex justify-end mt-1">
+                    <button type="submit" id="campaign-submit-btn" class="w-full md:w-auto md:px-8 bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-2.5 rounded-xl transition-all shadow-sm">
+                        <span id="campaign-submit-text">Kemas Kini Kempen & Jam</span>
                     </button>
                 </div>
             </form>
@@ -351,11 +355,7 @@
                     </div>
                     <div class="col-span-2">
                         <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Kategori Sistem</label>
-                        <select id="crud-category" class="w-full border border-gray-200 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-semibold text-gray-700">
-                            <option value="nonstick">Granit Non-Stick 🔥 (nonstick)</option>
-                            <option value="stainless">Stainless Steel ⭐ (stainless)</option>
-                            <option value="castiron">Cast Iron & Tanah Liat (castiron)</option>
-                        </select>
+                        <select id="crud-category" class="w-full border border-gray-200 px-3 py-2.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-semibold text-gray-700"></select>
                     </div>
                 </div>
                 <div>
@@ -398,6 +398,32 @@
                     <button type="button" onclick="closeProductCrudModal()" class="w-1/3 border border-gray-200 text-gray-500 font-bold py-2.5 rounded-xl hover:bg-gray-50">Batal</button>
                     <button type="submit" id="crud-submit-btn" class="w-2/3 bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-2.5 rounded-xl shadow-sm transition-all flex items-center justify-center">
                         <span id="crud-submit-btn-text">Simpan Ke Google Sheet</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div id="crud-category-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <div onclick="closeCategoryCrudModal()" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full z-10 p-6 relative transform transition-all border border-gray-100">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-black text-brand-blueDark"><i class="fa-solid fa-folder-plus text-brand-blue mr-1"></i> Tambah Kategori Sistem</h3>
+                <button onclick="closeCategoryCrudModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="crud-category-form" onsubmit="handleCategoryCrudSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1 tracking-wide">ID Sistem Kategori (Satu Perkataan / Huruf Kecil)</label>
+                    <input type="text" id="cat-id" required pattern="^[a-z0-9]+$" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="cth: seramik, setperiuk, premium">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1 tracking-wide">Nama Paparan Kategori (Boleh Letak Emoji)</label>
+                    <input type="text" id="cat-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="cth: Gred Seramik 🌟, Set Jimat Berbaloi">
+                </div>
+                <div class="pt-2 flex space-x-2">
+                    <button type="button" onclick="closeCategoryCrudModal()" class="w-1/3 border border-gray-200 text-gray-500 font-bold py-2 rounded-xl hover:bg-gray-50">Batal</button>
+                    <button type="submit" id="cat-submit-btn" class="w-2/3 bg-amber-500 hover:bg-amber-600 text-white font-extrabold py-2 rounded-xl shadow-sm transition-all flex items-center justify-center">
+                        <span id="cat-submit-btn-text">Simpan Kategori</span>
                     </button>
                 </div>
             </form>
@@ -581,9 +607,11 @@
 
         let PRODUCTS = [];
         let ORDERS = [];
+        let CATEGORIES = []; // BARU!! Mengandungi senarai semua kategori dinamik dari Google Sheets
         let cart = [];
         let currentFilter = 'all';
         const FREE_SHIPPING_THRESHOLD = 150.00;
+        let targetEndDateStr = "17-07-2026"; // Menyimpan string tarikh tamat dari Google Sheet
 
         window.onload = function() {
             loadCartFromLocalStorage();
@@ -601,6 +629,18 @@
         function closeAdminModal() {
             const loginModal = document.getElementById('admin-login-modal');
             if (loginModal) loginModal.classList.add('hidden');
+        }
+
+        // BARU!! Pengendali buka/tutup Borang Tambah Kategori Baru
+        function openCategoryCrudModal() {
+            document.getElementById('crud-category-form').reset();
+            const modal = document.getElementById('crud-category-modal');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeCategoryCrudModal() {
+            const modal = document.getElementById('crud-category-modal');
+            if (modal) modal.classList.add('hidden');
         }
 
         function checkAdminSession() {
@@ -649,15 +689,32 @@
                             document.getElementById('notice-input-text').value = resData.notice.text || '';
                         }
 
-                        // BARU: Set teks pada bahagian view dan isikan data dalam input borang admin kempen
+                        // BARU: Render data dari sheet Campaign (Termasuk Tarikh Akhir Kempen)
                         if (resData.campaign) {
                             document.getElementById('promo-tag').innerText = resData.campaign.tag || 'KEMPEN JIMAT';
                             document.getElementById('promo-title').innerText = resData.campaign.title || 'Koleksi Periuk Gred Premium';
                             document.getElementById('promo-desc').innerText = resData.campaign.desc || '';
                             
+                            targetEndDateStr = resData.campaign.end_date || '17-07-2026';
+                            
                             document.getElementById('campaign-input-tag').value = resData.campaign.tag || '';
                             document.getElementById('campaign-input-title').value = resData.campaign.title || '';
                             document.getElementById('campaign-input-desc').value = resData.campaign.desc || '';
+                            
+                            // Tukar format DD-MM-YYYY ke YYYY-MM-DD untuk input date kalendar HTML biasa
+                            if(targetEndDateStr.includes('-')) {
+                                const parts = targetEndDateStr.split('-');
+                                if(parts.length === 3) {
+                                    document.getElementById('campaign-input-enddate').value = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                                }
+                            }
+                        }
+
+                        // BARU!! Memproses senarai kategori dinamik dari Google Sheets
+                        if (resData.categories) {
+                            CATEGORIES = resData.categories;
+                            renderCategoryBar(); // Kemas kini bar menu atas kedai
+                            populateProductCategoryDropdown(); // Kemas kini dropdown pilihan borang
                         }
                         
                         document.getElementById('loading-catalog').classList.add('hidden');
@@ -672,6 +729,41 @@
                     console.error("Ralat katalog:", err);
                     alert("Ralat sambungan pelayan semasa memuat katalog.");
                 });
+        }
+
+        // BARU!! Fungsi membina butang kategori atas kedai secara dinamik mengikut senarai Sheets
+        function renderCategoryBar() {
+            const container = document.getElementById('category-bar-container');
+            if (!container) return;
+            
+            // Simpan pengepala tajuk dan butang "Semua Produk" asal
+            container.innerHTML = `
+                <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
+                <button onclick="filterCategory('all')" id="btn-all" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white active">Semua Produk</button>
+            `;
+            
+            CATEGORIES.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.id = `btn-${cat.id}`;
+                btn.onclick = () => filterCategory(cat.id);
+                btn.className = "category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200";
+                btn.innerText = cat.name;
+                container.appendChild(btn);
+            });
+        }
+
+        // BARU!! Fungsi menyuntik pilihan kategori dinamik ke dalam borang tambah produk baru
+        function populateProductCategoryDropdown() {
+            const selectEl = document.getElementById('crud-category');
+            if (!selectEl) return;
+            selectEl.innerHTML = '';
+            
+            CATEGORIES.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat.id;
+                opt.innerText = `${cat.name} (${cat.id})`;
+                selectEl.appendChild(opt);
+            });
         }
 
         // Simpan atau Kemaskini Notis Banner Utama dari Dashboard Admin (POST Action)
@@ -695,13 +787,13 @@
                 headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify(payload)
             })
+            .define
             .then(res => res.text())
             .then(text => {
                 btn.disabled = false;
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 btnText.innerText = "Kemas Kini Notis";
 
-                // PEMBETULAN ISU 4: Ralat parsing JSON untuk modul banner notis
                 let resData;
                 try {
                     resData = JSON.parse(text);
@@ -728,7 +820,7 @@
             });
         }
 
-        // BARU: Fungsi hantar data kempen oleh Admin (POST)
+        // BARU: Mengendalikan hantaran data Borang Kempen beserta Tarikh Akhir DD-MM-YYYY
         function handleCampaignCrudSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('campaign-submit-btn');
@@ -738,11 +830,20 @@
             btn.classList.add('opacity-50', 'cursor-not-allowed');
             btnText.innerText = "Menyimpan...";
 
+            const inputDateVal = document.getElementById('campaign-input-enddate').value; // Ambil nilai YYYY-MM-DD
+            let formattedUIDate = "17-07-2026";
+            
+            if(inputDateVal.includes('-')) {
+                const parts = inputDateVal.split('-');
+                formattedUIDate = `${parts[2]}-${parts[1]}-${parts[0]}`; // Tukar ke format DD-MM-YYYY
+            }
+
             const payload = {
                 action: "saveCampaign",
                 tag: document.getElementById('campaign-input-tag').value,
                 title: document.getElementById('campaign-input-title').value,
-                desc: document.getElementById('campaign-input-desc').value
+                desc: document.getElementById('campaign-input-desc').value,
+                end_date: formattedUIDate
             };
 
             fetch(API_URL, {
@@ -754,14 +855,14 @@
             .then(text => {
                 btn.disabled = false;
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                btnText.innerText = "Kemas Kini Banner";
+                btnText.innerText = "Kemas Kini Kempen & Jam";
 
                 let resData;
                 try {
                     resData = JSON.parse(text);
                 } catch (e) {
                     console.error("Format respon bukan JSON:", text);
-                    alert("Gagal mengemaskini banner kempen. Pelayan memulangkan ralat.");
+                    alert("Gagal mengemaskini kempen. Pelayan memulangkan ralat.");
                     return;
                 }
 
@@ -769,7 +870,8 @@
                     document.getElementById('promo-tag').innerText = payload.tag;
                     document.getElementById('promo-title').innerText = payload.title;
                     document.getElementById('promo-desc').innerText = payload.desc;
-                    showSuccessToast("Banner kempen jimat berjaya dikemaskini!");
+                    targetEndDateStr = payload.end_date; // Tukar sasaran pemasa masa nyata frontend
+                    showSuccessToast("Banner kempen & pemasa berjaya dikemaskini!");
                 } else {
                     alert(resData.message);
                 }
@@ -778,8 +880,54 @@
                 console.error(err);
                 btn.disabled = false;
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                btnText.innerText = "Kemas Kini Banner";
+                btnText.innerText = "Kemas Kini Kempen & Jam";
                 alert("Gagal menghubungi pelayan Google Sheet.");
+            });
+        }
+
+        // BARU!! Fungsi hantaran data borang pentadbir bagi penyimpanan Kategori Baru (POST)
+        function handleCategoryCrudSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('cat-submit-btn');
+            const btnText = document.getElementById('cat-submit-btn-text');
+            
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            btnText.innerText = "Menyimpan...";
+            
+            const payload = {
+                action: "saveCategory",
+                id: document.getElementById('cat-id').value.trim().toLowerCase(),
+                name: document.getElementById('cat-name').value.trim()
+            };
+            
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.text())
+            .then(text => {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Simpan Kategori";
+                
+                let resData;
+                try { resData = JSON.parse(text); } catch(err) { return; }
+                
+                if (resData.status === 'success') {
+                    closeCategoryCrudModal();
+                    fetchProductsFromSheet(); // Muat semula data penuh termasuk bar kategori
+                    showSuccessToast("Kategori sistem berjaya dicipta!");
+                } else {
+                    alert(resData.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnText.innerText = "Simpan Kategori";
             });
         }
 
@@ -792,7 +940,6 @@
             })
             .then(res => res.text())
             .then(text => {
-                // PEMBETULAN ISU 4: Safe parsing JSON untuk fetch orders
                 let resData;
                 try {
                     resData = JSON.parse(text);
@@ -819,7 +966,6 @@
 
             if (searchTerm.trim() !== '') {
                 const term = searchTerm.toLowerCase().trim();
-                // PEMBETULAN ISU 2: Memastikan jenis data ditukar ke String dahulu sebelum dipanggil .toLowerCase()
                 filtered = filtered.filter(p => 
                     String(p.name || '').toLowerCase().includes(term) || 
                     String(p.desc || '').toLowerCase().includes(term) || 
@@ -916,7 +1062,6 @@
             renderProducts(currentFilter, '');
         }
 
-        // Auto focus carian
         function focusSearch() {
             const input = document.getElementById('search-input');
             input.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1043,9 +1188,14 @@
             updateCartUI();
         }
 
+        // Buka paparan spesifikasi produk modal popup
         function openProductModal(product) {
             document.getElementById('modal-product-img').src = product.img;
-            document.getElementById('modal-product-tag').innerText = product.category === 'nonstick' ? 'Granit Non-Stick' : (product.category === 'stainless' ? 'Stainless Steel' : 'Cast Iron & Tanah Liat');
+            
+            // Pencarian padanan nama kategori paparan berasaskan senarai objek CATEGORIES
+            const matchedCat = CATEGORIES.find(c => c.id === product.category);
+            document.getElementById('modal-product-tag').innerText = matchedCat ? matchedCat.name : product.category;
+            
             document.getElementById('modal-product-title').innerText = product.name;
             document.getElementById('modal-product-desc').innerText = product.desc;
             document.getElementById('modal-product-size').innerText = product.size;
@@ -1071,7 +1221,6 @@
             document.getElementById('product-detail-modal').classList.add('hidden');
         }
 
-        // Buka / Tutup panel troli
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-backdrop');
@@ -1189,7 +1338,6 @@
                 submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 submitText.innerText = "Pesan Melalui WA";
 
-                // PEMBETULAN ISU 4: Safe parsing JSON untuk modul pemprosesan checkout order
                 let sheetResponse;
                 try {
                     sheetResponse = JSON.parse(text);
@@ -1269,7 +1417,6 @@
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 btnText.innerText = "Log Masuk Pengurusan";
                 
-                // PEMBETULAN ISU 4: Safe parsing JSON untuk respon log masuk admin
                 let data;
                 try {
                     data = JSON.parse(text);
@@ -1280,7 +1427,6 @@
                 }
 
                 if (data.status === 'success') {
-                    // PEMBETULAN ISU 3: Menyediakan data admin fallback string sekiranya Apps Script kosong
                     const adminDisplayName = data.adminName || 'Admin A&A';
                     localStorage.setItem('aa_admin_session_name', adminDisplayName);
                     document.getElementById('active-admin-name').innerText = adminDisplayName;
@@ -1388,13 +1534,18 @@
             PRODUCTS.forEach(p => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-gray-50/50 transition-colors";
+                
+                // Padanan kod visual id kategori kepada nama paparan string
+                const currentCatObj = CATEGORIES.find(c => c.id === p.category);
+                const categoryBadgeName = currentCatObj ? currentCatObj.name : p.category;
+
                 tr.innerHTML = `
                     <td class="p-4 text-center font-mono font-bold text-gray-400">${p.id}</td>
                     <td class="p-4 flex items-center space-x-3 border-r border-gray-50">
                         <img src="${p.img}" class="w-10 h-10 object-cover rounded-xl border border-gray-100 shrink-0">
                         <span class="truncate max-w-xs font-semibold text-gray-900">${p.name}</span>
                     </td>
-                    <td class="p-4"><span class="bg-brand-lightBlue text-brand-blue px-2 py-1 rounded-md text-[10px] uppercase font-black">${p.category}</span></td>
+                    <td class="p-4"><span class="bg-brand-lightBlue text-brand-blue px-2 py-1 rounded-md text-[10px] uppercase font-black">${categoryBadgeName}</span></td>
                     <td class="p-4 font-black text-brand-blue">RM ${p.price.toFixed(2)}</td>
                     <td class="p-4 text-gray-400 line-through">RM ${p.originalPrice.toFixed(2)}</td>
                     <td class="p-4 text-gray-500 font-semibold">${p.size}</td>
@@ -1494,12 +1645,11 @@
                 btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 btnText.innerText = "Simpan Ke Google Sheet";
                 
-                // PEMBETULAN ISU 4: Safe parsing JSON untuk modul penambahan produk CRUD
                 let resData;
                 try {
                     resData = JSON.parse(text);
                 } catch(e) {
-                    console.error("Format save produk respon bukan JSON:", text);
+                    console.error("Format save periuk bukan JSON:", text);
                     alert("Gagal menyimpan. Respon pelayan bermasalah.");
                     return;
                 }
@@ -1531,7 +1681,6 @@
             })
             .then(res => res.text())
             .then(text => {
-                // PEMBETULAN ISU 4: Safe parsing JSON untuk modul padam produk
                 let resData;
                 try {
                     resData = JSON.parse(text);
@@ -1561,7 +1710,6 @@
             }
         }
 
-        // Tunjuk status success toast popup
         function showSuccessToast(message) {
             const toast = document.getElementById('success-toast');
             document.getElementById('toast-text').innerText = message;
@@ -1578,18 +1726,32 @@
         }
 
         function startFlashSaleTimer() {
-            let totalSeconds = (2 * 3600) + (45 * 60) + 18;
             setInterval(() => {
-                if (totalSeconds <= 0) totalSeconds = (3 * 3600) + (15 * 60) + 40;
-                totalSeconds--;
-                const hrs = Math.floor(totalSeconds / 3600);
-                const mins = Math.floor((totalSeconds % 3600) / 60);
-                const secs = totalSeconds % 60;
+                if (!targetEndDateStr || !targetEndDateStr.includes('-')) return;
                 
+                const parts = targetEndDateStr.split('-');
+                if (parts.length !== 3) return;
+
+                const targetDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]), 0, 0, 0);
+                const now = new Date();
+                
+                let diffSeconds = Math.floor((targetDate.getTime() - now.getTime()) / 1000);
+
+                if (diffSeconds <= 0) {
+                    diffSeconds = 0;
+                }
+
+                const days = Math.floor(diffSeconds / 86400);
+                const hrs = Math.floor((diffSeconds % 86400) / 3600);
+                const mins = Math.floor((diffSeconds % 3600) / 60);
+                const secs = diffSeconds % 60;
+                
+                const dEl = document.getElementById('days');
                 const hEl = document.getElementById('hours');
                 const mEl = document.getElementById('minutes');
                 const sEl = document.getElementById('seconds');
                 
+                if(dEl) dEl.innerText = String(days).padStart(2, '0');
                 if(hEl) hEl.innerText = String(hrs).padStart(2, '0');
                 if(mEl) mEl.innerText = String(mins).padStart(2, '0');
                 if(sEl) sEl.innerText = String(secs).padStart(2, '0');
