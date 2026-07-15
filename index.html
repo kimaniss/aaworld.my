@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A&A WORLD | Premium Kitchenware</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <script>
@@ -63,7 +63,7 @@
 
 <div id="search-container" class="flex-1 max-w-xl relative">
                     <div class="relative">
-                        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari periuk impian anda... (cth: Granit, Sauté)" class="w-full bg-gray-100 focus:bg-white text-sm border-2 border-transparent focus:border-brand-blue px-4 py-2.5 rounded-lg pl-10 focus:outline-none transition-all">
+                        <input type="text" id="search-input" oninput="handleSearch()" placeholder="Cari peralatan dapur impian anda... (cth: Granit, Pisau, Sudip)" class="w-full bg-gray-100 focus:bg-white text-sm border-2 border-transparent focus:border-brand-blue px-4 py-2.5 rounded-lg pl-10 focus:outline-none transition-all">
                         <div class="absolute left-3.5 top-3.5 text-gray-400">
                             <i class="fa-solid fa-magnifying-glass text-sm"></i>
                         </div>
@@ -97,7 +97,7 @@
             <div id="category-bar-container" class="container mx-auto px-4 flex items-center space-x-2 overflow-x-auto no-scrollbar">
                 <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
                 <button onclick="filterCategory('all')" id="btn-all" class="category-btn active shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white">Semua Produk</button>
-                </div>
+            </div>
         </div>
 
 <main class="container mx-auto px-4 py-4 flex-1">
@@ -114,9 +114,9 @@
                     <div class="text-center md:text-left space-y-2">
                         <div class="flex items-center justify-center md:justify-start gap-2">
                             <span id="promo-tag" class="bg-yellow-400 text-brand-blueDark font-extrabold text-[10px] px-2 py-0.5 rounded uppercase">KEMPEN JIMAT</span>
-                            <h2 id="promo-title" class="text-xl sm:text-2xl font-black tracking-tight">Koleksi Periuk Gred Premium</h2>
+                            <h2 id="promo-title" class="text-xl sm:text-2xl font-black tracking-tight">Koleksi Peralatan Dapur Gred Premium</h2>
                         </div>
-                        <p id="promo-desc" class="text-sm text-blue-100 opacity-90 max-w-md">Senang diguna, 100% bebas bahan kimia bertoksik & jaminan makanan selamat sekeluarga.</p>
+                        <p id="promo-desc" class="text-sm text-blue-100 opacity-90 max-w-md">Membuatkan kerja memasak lebih mudah, selamat, 100% bebas toksik & gred makanan sekeluarga.</p>
                     </div>
 
 <div class="bg-black/20 backdrop-blur-md p-3.5 rounded-xl border border-white/20 text-center shrink-0 w-full md:w-auto">
@@ -139,15 +139,15 @@
                     <div class="w-1.5 h-6 bg-brand-blue rounded"></div>
                     <h3 class="font-extrabold text-sm sm:text-base tracking-tight text-gray-900 uppercase">Semua Pilihan Terbaik Anda</h3>
                 </div>
-                <span id="results-count" class="text-xs text-gray-500 font-medium">Memaparkan 0 periuk</span>
+                <span id="results-count" class="text-xs text-gray-500 font-medium">Memaparkan 0 produk premium</span>
             </div>
 
 <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-2 sm:gap-4 hidden"></div>
 
 <div id="empty-search-state" class="hidden text-center py-16 bg-white rounded-2xl shadow-sm mt-4 p-6">
                 <div class="text-gray-300 text-6xl mb-4"><i class="fa-solid fa-magnifying-glass-minus"></i></div>
-                <h4 class="text-lg font-bold text-gray-700">Maaf, periuk tidak dijumpai</h4>
-                <p class="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Cuba gunakan kata kunci yang berbeza seperti 'nonstick', 'seramik' or 'set'.</p>
+                <h4 class="text-lg font-bold text-gray-700">Maaf, barangan dapur tidak dijumpai</h4>
+                <p class="text-sm text-gray-400 mt-1 max-w-xs mx-auto">Cuba gunakan kata kunci yang berbeza seperti 'nonstick', 'pisau', 'sudip' atau 'set'.</p>
                 <button onclick="clearSearch()" class="mt-4 px-5 py-2 bg-brand-blue hover:bg-brand-blueDark text-white rounded-lg text-xs font-bold shadow transition-all">Lihat Semua Produk</button>
             </div>
 
@@ -180,7 +180,7 @@
                         <span class="text-xs font-extrabold text-brand-blue uppercase tracking-wider">Lokasi Kedai Kami</span>
                         <h4 class="text-2xl font-black text-brand-blueDark mt-1">A&A WORLD Kitchenware</h4>
                         <p class="text-gray-600 text-sm mt-3 leading-relaxed">
-                            Kami bertapak di <strong>Wakaf Che Yeh, Kota Bharu, Kelantan</strong>. Sejak bertahun kami komited membekalkan periuk terbaik yang tahan calar, tidak melekat, serta bebas PFOA/plumbum bagi menjamin kualiti masakan anda harian.
+                            Kami bertapak di <strong>Wakaf Che Yeh, Kota Bharu, Kelantan</strong>. Sejak bertahun kami komited membekalkan perkakas dapur premium terbaik yang tahan calar, tidak melekat, serta bebas PFOA/plumbum bagi menjamin kualiti masakan anda harian.
                         </p>
                         <div class="flex space-x-6 mt-4">
                             <div>
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="relative rounded-2xl overflow-hidden h-48 md:h-64 shadow-inner">
-                        <img src="https://images.unsplash.com/photo-1590794056226-79ef3a8147e1?auto=format&fit=crop&q=80&w=800" alt="Kedai A&A World" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
+                        <img src="https://arleta.site/interactivelink/118/hero-image_compressed.webp" alt="Kedai A&A World" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/355ca4/ffffff?text=About+A%26A+WORLD'">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
                             <p class="text-white text-xs font-bold"><i class="fa-solid fa-map-pin text-brand-blue mr-1"></i> Wakaf Che Yeh, Kota Bharu, Kelantan</p>
                         </div>
@@ -295,7 +295,8 @@
             </div>
         </div>
 
-<div id="admin-orders-sec" class="hidden">
+<!-- REKOD TEMPAHAN ADMIN DENGAN KOLUM TINDAKAN BARU -->
+        <div id="admin-orders-sec" class="hidden">
             <div class="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-xs whitespace-nowrap">
@@ -304,10 +305,11 @@
                                 <th class="p-4">ID Tempahan</th>
                                 <th class="p-4">Nama Pelanggan</th>
                                 <th class="p-4">No. Telefon (WA)</th>
-                                <th class="p-4">Kawasan</th>
+                                <th class="p-4">Kawasan / Negeri</th>
                                 <th class="p-4">Senarai Item Dipesan</th>
                                 <th class="p-4 text-right">Total (RM)</th>
                                 <th class="p-4 text-center">Status</th>
+                                <th class="p-4 text-center">Tindakan</th>
                             </tr>
                         </thead>
                         <tbody id="admin-orders-table-body" class="divide-y divide-gray-100 text-gray-700 font-medium"></tbody>
@@ -359,8 +361,8 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Nama Periuk / Set</label>
-                    <input type="text" id="crud-name" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-medium" placeholder="cth: Set Periuk Granit Premium">
+                    <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Nama Produk / Set Barangan</label>
+                    <input type="text" id="crud-name" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-medium" placeholder="cth: Pisau Chef Stainless Steel Premium">
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
@@ -375,7 +377,7 @@
                 <div class="grid grid-cols-3 gap-3">
                     <div class="col-span-1">
                         <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Saiz / Variasi</label>
-                        <input type="text" id="crud-size" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white" placeholder="24cm">
+                        <input type="text" id="crud-size" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white" placeholder="24cm / Set 5-dalam-1">
                     </div>
                     <div class="col-span-1">
                         <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Bil Terjual</label>
@@ -392,7 +394,7 @@
                 </div>
                 <div>
                     <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Deskripsi & Kelebihan Produk</label>
-                    <textarea id="crud-desc" required rows="3" class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white resize-none leading-relaxed text-gray-600" placeholder="Keterangan periuk..."></textarea>
+                    <textarea id="crud-desc" required rows="3" class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white resize-none leading-relaxed text-gray-600" placeholder="Keterangan perkakas dapur..."></textarea>
                 </div>
                 <div class="pt-2 flex space-x-2 shrink-0">
                     <button type="button" onclick="closeProductCrudModal()" class="w-1/3 border border-gray-200 text-gray-500 font-bold py-2.5 rounded-xl hover:bg-gray-50">Batal</button>
@@ -414,11 +416,11 @@
             <form id="crud-category-form" onsubmit="handleCategoryCrudSubmit(event)" class="space-y-4 text-xs">
                 <div>
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1 tracking-wide">ID Sistem Kategori (Satu Perkataan / Huruf Kecil)</label>
-                    <input type="text" id="cat-id" required pattern="^[a-z0-9]+$" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="cth: seramik, setperiuk, premium">
+                    <input type="text" id="cat-id" required pattern="^[a-z0-9]+$" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="cth: seramik, knives, storage">
                 </div>
                 <div>
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1 tracking-wide">Nama Paparan Kategori (Boleh Letak Emoji)</label>
-                    <input type="text" id="cat-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="cth: Gred Seramik 🌟, Set Jimat Berbaloi">
+                    <input type="text" id="cat-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white transition-all" placeholder="cth: Koleksi Pisau Chef 🔪, Bekas Kedap Udara 🍱">
                 </div>
                 <div class="pt-2 flex space-x-2">
                     <button type="button" onclick="closeCategoryCrudModal()" class="w-1/3 border border-gray-200 text-gray-500 font-bold py-2 rounded-xl hover:bg-gray-50">Batal</button>
@@ -434,7 +436,7 @@
         <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
             <div class="relative">
-                <img id="modal-product-img" src="" alt="Periuk" class="w-full h-64 sm:h-72 object-cover">
+                <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-64 sm:h-72 object-cover">
                 <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -442,7 +444,7 @@
             <div class="p-6 space-y-4">
                 <div>
                     <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
-                    <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Periuk</h3>
+                    <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Produk</h3>
                     <div class="flex items-center space-x-2 mt-2">
                         <div class="flex text-brand-gold text-xs"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                         <span id="modal-product-rating" class="text-xs font-bold text-gray-900">5.0</span>
@@ -505,7 +507,8 @@
         </div>
     </div>
 
-<div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+<!-- MODAL CHECKOUT YANG TELAH DIKEMAS KINI -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
         <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
             <div class="bg-brand-blue text-white px-5 py-4 flex items-center justify-between">
@@ -521,18 +524,44 @@
                     <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">No. Telefon WhatsApp <span class="text-red-500">*</span></label>
                     <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 0123456789">
                 </div>
+
+<!-- MEDAL PECAHAN ALAMAT, POSKOD & NEGERI -->
                 <div>
-                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat Lengkap Rumah / Pejabat <span class="text-red-500">*</span></label>
-                    <textarea id="cust-address" required rows="3" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none" placeholder="cth: No 12, Wakaf Che Yeh, 15150 Kota Bharu, Kelantan"></textarea>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat Rumah / Pejabat (Jalan, No Rumah, etc) <span class="text-red-500">*</span></label>
+                    <textarea id="cust-address" required rows="2" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none" placeholder="cth: No 12, Wakaf Che Yeh"></textarea>
                 </div>
-                <div>
-                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Kawasan Penghantaran <span class="text-red-500">*</span></label>
-                    <select id="cust-region" onchange="recalculateShipping()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                        <option value="Semenanjung">Semenanjung Malaysia (Caj biasa RM10)</option>
-                        <option value="SabahSarawak">Sabah & Sarawak (Caj biasa RM20)</option>
-                    </select>
+
+<div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Poskod <span class="text-red-500">*</span></label>
+                        <!-- PERBAIKAN: Menukar pattern daripada "\\d{5}" kepada "\d{5}" -->
+                        <input type="text" id="cust-postcode" required pattern="\d{5}" maxlength="5" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 15150">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Negeri <span class="text-red-500">*</span></label>
+                        <select id="cust-state" required onchange="handleStateChange()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                            <option value="" disabled selected>Pilih Negeri</option>
+                            <option value="Johor">Johor</option>
+                            <option value="Kedah">Kedah</option>
+                            <option value="Kelantan">Kelantan</option>
+                            <option value="Melaka">Melaka</option>
+                            <option value="Negeri Sembilan">Negeri Sembilan</option>
+                            <option value="Pahang">Pahang</option>
+                            <option value="Perak">Perak</option>
+                            <option value="Perlis">Perlis</option>
+                            <option value="Pulau Pinang">Pulau Pinang</option>
+                            <option value="Sabah">Sabah</option>
+                            <option value="Sarawak">Sarawak</option>
+                            <option value="Selangor">Selangor</option>
+                            <option value="Terengganu">Terengganu</option>
+                            <option value="WP Kuala Lumpur">WP Kuala Lumpur</option>
+                            <option value="WP Labuan">WP Labuan</option>
+                            <option value="WP Putrajaya">WP Putrajaya</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+
+<div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
                     <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2">Sahkan Pesanan Anda</h4>
                     <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1"></div>
                     <div class="flex justify-between font-black text-sm text-brand-blue pt-2 border-t border-gray-200">
@@ -564,7 +593,7 @@
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div class="space-y-4">
                 <img src="https://arleta.site/interactivelink/118/aaworld-logo.png" alt="A&A Logo" class="h-12 w-auto object-contain brightness-110">
-                <p class="text-xs text-gray-300 line-height-relaxed">Membekalkan koleksi periuk premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk dapur selesa anda.</p>
+                <p class="text-xs text-gray-300 line-height-relaxed">Membekalkan koleksi perkakas dapur premium berkualiti tinggi, mesra kesihatan serta tahan lama untuk dapur selesa anda.</p>
             </div>
             <div>
                 <h4 class="font-extrabold text-xs uppercase tracking-wider mb-4 text-blue-300">Pautan Pantas</h4>
@@ -620,7 +649,22 @@
             checkAdminSession(); 
         };
 
-        // PEMBETULAN ISU 1: Menambah fungsi membuka dan menutup modal admin yang tertinggal
+        // Menentukan zon penghantaran berdasarkan negeri
+        function getStateRegion(state) {
+            const semenanjungStates = [
+                "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", 
+                "Pahang", "Perak", "Perlis", "Pulau Pinang", "Selangor", 
+                "Terengganu", "WP Kuala Lumpur", "WP Putrajaya"
+            ];
+            if (!state) return "Semenanjung"; // Default fallback
+            return semenanjungStates.includes(state) ? "Semenanjung" : "SabahSarawak";
+        }
+
+        // Pengendali perubahan negeri dinamik
+        function handleStateChange() {
+            recalculateShipping();
+        }
+
         function openAdminModal() {
             const loginModal = document.getElementById('admin-login-modal');
             if (loginModal) loginModal.classList.remove('hidden');
@@ -631,7 +675,6 @@
             if (loginModal) loginModal.classList.add('hidden');
         }
 
-        // BARU!! Pengendali buka/tutup Borang Tambah Kategori Baru
         function openCategoryCrudModal() {
             document.getElementById('crud-category-form').reset();
             const modal = document.getElementById('crud-category-modal');
@@ -657,7 +700,6 @@
             fetch(API_URL)
                 .then(res => res.text())
                 .then(text => {
-                    // PEMBETULAN ISU 4: Pengendalian ralat parsing text ke JSON yang lebih selamat
                     let resData;
                     try {
                         resData = JSON.parse(text);
@@ -689,7 +731,6 @@
                             document.getElementById('notice-input-text').value = resData.notice.text || '';
                         }
 
-                        // BARU: Render data dari sheet Campaign (Termasuk Tarikh Akhir Kempen)
                         if (resData.campaign) {
                             document.getElementById('promo-tag').innerText = resData.campaign.tag || 'KEMPEN JIMAT';
                             document.getElementById('promo-title').innerText = resData.campaign.title || 'Koleksi Periuk Gred Premium';
@@ -701,7 +742,6 @@
                             document.getElementById('campaign-input-title').value = resData.campaign.title || '';
                             document.getElementById('campaign-input-desc').value = resData.campaign.desc || '';
                             
-                            // Tukar format DD-MM-YYYY ke YYYY-MM-DD untuk input date kalendar HTML biasa
                             if(targetEndDateStr.includes('-')) {
                                 const parts = targetEndDateStr.split('-');
                                 if(parts.length === 3) {
@@ -710,11 +750,10 @@
                             }
                         }
 
-                        // BARU!! Memproses senarai kategori dinamik dari Google Sheets
                         if (resData.categories) {
                             CATEGORIES = resData.categories;
-                            renderCategoryBar(); // Kemas kini bar menu atas kedai
-                            populateProductCategoryDropdown(); // Kemas kini dropdown pilihan borang
+                            renderCategoryBar(); 
+                            populateProductCategoryDropdown(); 
                         }
                         
                         document.getElementById('loading-catalog').classList.add('hidden');
@@ -731,12 +770,10 @@
                 });
         }
 
-        // BARU!! Fungsi membina butang kategori atas kedai secara dinamik mengikut senarai Sheets
         function renderCategoryBar() {
             const container = document.getElementById('category-bar-container');
             if (!container) return;
             
-            // Simpan pengepala tajuk dan butang "Semua Produk" asal
             container.innerHTML = `
                 <span class="text-xs font-bold text-gray-500 uppercase shrink-0 mr-1"><i class="fa-solid fa-sliders mr-1"></i> Kategori:</span>
                 <button onclick="filterCategory('all')" id="btn-all" class="category-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-blue text-white active">Semua Produk</button>
@@ -752,7 +789,6 @@
             });
         }
 
-        // BARU!! Fungsi menyuntik pilihan kategori dinamik ke dalam borang tambah produk baru
         function populateProductCategoryDropdown() {
             const selectEl = document.getElementById('crud-category');
             if (!selectEl) return;
@@ -766,7 +802,6 @@
             });
         }
 
-        // Simpan atau Kemaskini Notis Banner Utama dari Dashboard Admin (POST Action)
         function handleNoticeCrudSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('notice-submit-btn');
@@ -787,7 +822,6 @@
                 headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify(payload)
             })
-            .define
             .then(res => res.text())
             .then(text => {
                 btn.disabled = false;
@@ -820,7 +854,7 @@
             });
         }
 
-        // BARU: Mengendalikan hantaran data Borang Kempen beserta Tarikh Akhir DD-MM-YYYY
+        // PERBAIKAN: Membuang pepijat '.define' daripada kod asal
         function handleCampaignCrudSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('campaign-submit-btn');
@@ -830,12 +864,12 @@
             btn.classList.add('opacity-50', 'cursor-not-allowed');
             btnText.innerText = "Menyimpan...";
 
-            const inputDateVal = document.getElementById('campaign-input-enddate').value; // Ambil nilai YYYY-MM-DD
+            const inputDateVal = document.getElementById('campaign-input-enddate').value; 
             let formattedUIDate = "17-07-2026";
             
             if(inputDateVal.includes('-')) {
                 const parts = inputDateVal.split('-');
-                formattedUIDate = `${parts[2]}-${parts[1]}-${parts[0]}`; // Tukar ke format DD-MM-YYYY
+                formattedUIDate = `${parts[2]}-${parts[1]}-${parts[0]}`; 
             }
 
             const payload = {
@@ -870,7 +904,7 @@
                     document.getElementById('promo-tag').innerText = payload.tag;
                     document.getElementById('promo-title').innerText = payload.title;
                     document.getElementById('promo-desc').innerText = payload.desc;
-                    targetEndDateStr = payload.end_date; // Tukar sasaran pemasa masa nyata frontend
+                    targetEndDateStr = payload.end_date; 
                     showSuccessToast("Banner kempen & pemasa berjaya dikemaskini!");
                 } else {
                     alert(resData.message);
@@ -885,7 +919,6 @@
             });
         }
 
-        // BARU!! Fungsi hantaran data borang pentadbir bagi penyimpanan Kategori Baru (POST)
         function handleCategoryCrudSubmit(e) {
             e.preventDefault();
             const btn = document.getElementById('cat-submit-btn');
@@ -917,7 +950,7 @@
                 
                 if (resData.status === 'success') {
                     closeCategoryCrudModal();
-                    fetchProductsFromSheet(); // Muat semula data penuh termasuk bar kategori
+                    fetchProductsFromSheet(); 
                     showSuccessToast("Kategori sistem berjaya dicipta!");
                 } else {
                     alert(resData.message);
@@ -931,7 +964,6 @@
             });
         }
 
-        // Mengambil data tempahan untuk Admin (POST)
         function fetchOrdersFromSheet() {
             fetch(API_URL, {
                 method: "POST",
@@ -973,7 +1005,7 @@
                 );
             }
 
-            resultsCountSpan.innerText = `Menjumpai ${filtered.length} periuk`;
+            resultsCountSpan.innerText = `Menjumpai ${filtered.length} produk premium`;
 
             if (filtered.length === 0) {
                 emptyState.classList.remove('hidden');
@@ -1041,7 +1073,7 @@
                 activeBtn.classList.add('bg-brand-blue', 'text-white', 'active');
             }
             const searchVal = document.getElementById('search-input').value;
-            renderProducts(cat, searchVal);
+            renderProducts(currentFilter, searchVal);
         }
 
         function handleSearch() {
@@ -1055,35 +1087,7 @@
             renderProducts(currentFilter, val);
         }
 
-        function clearSearch() {
-            const input = document.getElementById('search-input');
-            input.value = '';
-            document.getElementById('clear-search-btn').classList.add('hidden');
-            renderProducts(currentFilter, '');
-        }
-
-        function focusSearch() {
-            const input = document.getElementById('search-input');
-            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            setTimeout(() => input.focus(), 500);
-        }
-
-        function addToCart(id) {
-            const product = PRODUCTS.find(p => p.id === id);
-            if (!product) return;
-
-            const existing = cart.find(item => item.id === id);
-            if (existing) {
-                existing.quantity += 1;
-            } else {
-                cart.push({ ...product, quantity: 1 });
-            }
-
-            saveCartToLocalStorage();
-            updateCartUI();
-            showSuccessToast(product.name + " berjaya ditambah ke troli!");
-        }
-
+        // KEMAS KINI PENYUNTINGAN SHIIPPING DINAMIK BERDASARKAN NEGERI
         function updateCartUI() {
             const badge = document.getElementById('cart-badge');
             const mobileBadge = document.getElementById('mobile-cart-badge');
@@ -1151,7 +1155,9 @@
                 activeContainer.appendChild(row);
             });
 
-            const region = document.getElementById('cust-region').value;
+            // KEMAS KINI PENYUNTINGAN SHIIPPING DINAMIK BERDASARKAN NEGERI
+            const stateVal = document.getElementById('cust-state').value;
+            const region = getStateRegion(stateVal);
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
 
             const reminder = document.getElementById('free-shipping-reminder');
@@ -1168,6 +1174,35 @@
             document.getElementById('cart-subtotal').innerText = `RM ${subtotal.toFixed(2)}`;
             document.getElementById('cart-shipping').innerText = shippingFee === 0 ? 'PERCUMA' : `RM ${shippingFee.toFixed(2)}`;
             document.getElementById('cart-total').innerText = `RM ${total.toFixed(2)}`;
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('search-input');
+            input.value = '';
+            document.getElementById('clear-search-btn').classList.add('hidden');
+            renderProducts(currentFilter, '');
+        }
+
+        function focusSearch() {
+            const input = document.getElementById('search-input');
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => input.focus(), 500);
+        }
+
+        function addToCart(id) {
+            const product = PRODUCTS.find(p => p.id === id);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCartToLocalStorage();
+            updateCartUI();
+            showSuccessToast(product.name + " berjaya ditambah ke troli!");
         }
 
         function adjustQty(id, value) {
@@ -1188,11 +1223,9 @@
             updateCartUI();
         }
 
-        // Buka paparan spesifikasi produk modal popup
         function openProductModal(product) {
             document.getElementById('modal-product-img').src = product.img;
             
-            // Pencarian padanan nama kategori paparan berasaskan senarai objek CATEGORIES
             const matchedCat = CATEGORIES.find(c => c.id === product.category);
             document.getElementById('modal-product-tag').innerText = matchedCat ? matchedCat.name : product.category;
             
@@ -1219,6 +1252,38 @@
 
         function closeProductModal() {
             document.getElementById('product-detail-modal').classList.add('hidden');
+        }
+
+        // FUNGSI BARU: Mengemas kini status tempahan secara terus ke Google Sheet
+        function updateOrderStatus(orderId, newStatus) {
+            if(!confirm(`Adakah anda pasti mahu menukar status Tempahan #${orderId} kepada ${newStatus}?`)) return;
+            
+            fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify({ action: "updateOrderStatus", orderId: orderId, status: newStatus })
+            })
+            .then(res => res.text())
+            .then(text => {
+                let resData;
+                try {
+                    resData = JSON.parse(text);
+                } catch(e) {
+                    console.error("Format respon bukan JSON:", text);
+                    return;
+                }
+
+                if(resData.status === 'success') {
+                    showSuccessToast(`Status order ${orderId} berjaya ditukar kepada ${newStatus}!`);
+                    fetchOrdersFromSheet(); // Muat semula rekod tempahan dalam admin
+                } else {
+                    alert(resData.message);
+                }
+            })
+            .catch(err => {
+                console.error("Ralat kemas kini status:", err);
+                alert("Gagal menukar status tempahan.");
+            });
         }
 
         function toggleCart() {
@@ -1258,7 +1323,8 @@
                 subtotal += item.price * item.quantity;
             });
 
-            const region = document.getElementById('cust-region').value;
+            const stateVal = document.getElementById('cust-state').value;
+            const region = getStateRegion(stateVal);
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
                 shippingFee = 0.00;
@@ -1274,7 +1340,8 @@
         function recalculateShipping() {
             updateCartUI();
             const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
-            const region = document.getElementById('cust-region').value;
+            const stateVal = document.getElementById('cust-state').value;
+            const region = getStateRegion(stateVal);
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
                 shippingFee = 0.00;
@@ -1283,6 +1350,7 @@
             document.getElementById('checkout-summary-total').innerText = `RM ${total.toFixed(2)}`;
         }
 
+        // KEMAS KINI PROSES CHECKOUT DENGAN ALAMAT TERASING
         function handleCheckoutSubmit(event) {
             event.preventDefault();
 
@@ -1296,7 +1364,9 @@
             const name = document.getElementById('cust-name').value;
             const phone = document.getElementById('cust-phone').value;
             const address = document.getElementById('cust-address').value;
-            const region = document.getElementById('cust-region').value;
+            const postcode = document.getElementById('cust-postcode').value;
+            const state = document.getElementById('cust-state').value;
+            const region = getStateRegion(state);
 
             let subtotal = 0;
             let itemsStringList = [];
@@ -1314,12 +1384,15 @@
             const finalTotal = subtotal + shippingFee;
             const generatedOrderId = "AA-" + Math.floor(100000 + Math.random() * 900000);
 
+            // MENGHANTAR PAYLOAD TERASING KE APPS SCRIPT
             const payload = {
                 orderId: generatedOrderId,
                 customerName: name,
                 whatsappPhone: phone,
                 region: region,
-                fullAddress: address,
+                address: address,
+                postcode: postcode,
+                state: state,
                 itemsOrdered: itemsStringList.join(', '),
                 subtotal: subtotal.toFixed(2),
                 shippingFee: shippingFee.toFixed(2),
@@ -1354,9 +1427,11 @@
                     message += `• *No Tempahan:* ${generatedOrderId}\n`;
                     message += `• *Nama:* ${name}\n`;
                     message += `• *Telefon:* ${phone}\n`;
-                    message += `• *Kawasan:* ${region}\n`;
-                    message += `• *Alamat:* ${address}\n\n`;
-                    message += `*📦 BUTIRAN PESANAN PERIUK:*\n`;
+                    message += `• *Kawasan:* ${region} (${state})\n`;
+                    message += `• *Alamat:* ${address}\n`;
+                    message += `• *Poskod:* ${postcode}\n`;
+                    message += `• *Negeri:* ${state}\n\n`;
+                    message += `*📦 BUTIRAN PESANAN BARANGAN:*\n`;
 
                     cart.forEach((item, index) => {
                         message += `${index + 1}. *${item.name}* (${item.size})\n    └─ Jml: ${item.quantity} x RM ${item.price.toFixed(2)} = *RM ${(item.price * item.quantity).toFixed(2)}*\n`;
@@ -1390,7 +1465,6 @@
             });
         }
 
-        // handleAdminLogin
         function handleAdminLogin(e) {
             e.preventDefault();
             const btn = document.getElementById('admin-login-btn');
@@ -1421,7 +1495,7 @@
                 try {
                     data = JSON.parse(text);
                 } catch(e) {
-                    console.error("Format login respon bukan JSON:", text);
+                    console.error("Ralat respon log masuk dari pelayan:", text);
                     alert("Ralat respon log masuk dari pelayan Google Apps Script.");
                     return;
                 }
@@ -1535,7 +1609,6 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-gray-50/50 transition-colors";
                 
-                // Padanan kod visual id kategori kepada nama paparan string
                 const currentCatObj = CATEGORIES.find(c => c.id === p.category);
                 const categoryBadgeName = currentCatObj ? currentCatObj.name : p.category;
 
@@ -1558,6 +1631,7 @@
             });
         }
 
+        // KEMAS KINI PAPARAN ORDERS ADMIN DENGAN LOKASI DINAMIK & WA LINK & APPROVE/REJECT BUTTONS
         function updateAdminOrdersTable() {
             document.getElementById('admin-order-count').innerText = ORDERS.length;
             const tbody = document.getElementById('admin-orders-table-body');
@@ -1567,14 +1641,54 @@
             ORDERS.forEach(o => {
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-gray-50/50 transition-colors";
+                
+                // Menyokong backward compatibility dan reka bentuk pecahan baharu
+                const formattedLocation = o.State ? `${o.Region || '-'} (${o.State})` : (o.Region || '-');
+                const fullAddressTooltip = o.Address ? `${o.Address}, ${o.Postcode || ''}, ${o.State || ''}` : (o['Full Address'] || '-');
+
+                // Pembersihan no telefon untuk link wa.me
+                const phoneDisplay = o['WhatsApp Phone'] || o['Whatsapp Phone'] || o['whatsappPhone'] || '';
+                const rawPhone = String(phoneDisplay).replace(/\D/g, '');
+                let cleanPhone = rawPhone;
+                if (cleanPhone.startsWith('0')) {
+                    cleanPhone = '6' + cleanPhone;
+                } else if (cleanPhone && !cleanPhone.startsWith('6')) {
+                    if (cleanPhone.startsWith('1')) {
+                        cleanPhone = '60' + cleanPhone;
+                    } else {
+                        cleanPhone = '6' + cleanPhone;
+                    }
+                }
+                const waLink = cleanPhone ? `https://wa.me/${cleanPhone}` : '#';
+
+                // Menentukan kelas status
+                const currentStatus = o.Status || 'Pending';
+                let statusClass = "bg-yellow-100 text-yellow-700";
+                if (currentStatus === 'Approved') {
+                    statusClass = "bg-green-100 text-green-700";
+                } else if (currentStatus === 'Rejected') {
+                    statusClass = "bg-red-100 text-red-700";
+                }
+
+                const orderId = o['Order ID'] || o['orderId'] || '';
+                const actionsHtml = orderId ? `
+                    <div class="flex items-center justify-center space-x-1">
+                        <button onclick="updateOrderStatus('${orderId}', 'Approved')" class="text-green-600 hover:text-green-800 font-bold bg-green-50 px-2 py-1 rounded transition-all text-[10px]" title="Terima Tempahan"><i class="fa-solid fa-check"></i> Terima</button>
+                        <button onclick="updateOrderStatus('${orderId}', 'Rejected')" class="text-red-600 hover:text-red-800 font-bold bg-red-50 px-2 py-1 rounded transition-all text-[10px]" title="Tolak Tempahan"><i class="fa-solid fa-xmark"></i> Tolak</button>
+                    </div>
+                ` : '-';
+
                 tr.innerHTML = `
-                    <td class="p-4 font-bold text-brand-blueDark">${o['Order ID'] || '-'}</td>
-                    <td class="p-4 font-bold text-gray-900">${o['Customer Name'] || '-'}</td>
-                    <td class="p-4 font-mono text-gray-600">${o['WhatsApp Phone'] || o['Whatsapp Phone'] || '-'}</td>
-                    <td class="p-4"><span class="bg-gray-100 px-2 py-1 rounded font-bold">${o.Region || '-'}</span></td>
-                    <td class="p-4 text-gray-500 max-w-xs truncate" title="${o['Items Ordered']}">${o['Items Ordered'] || '-'}</td>
-                    <td class="p-4 text-right font-black text-gray-900">RM ${Number(o['Total Payment'] || 0).toFixed(2)}</td>
-                    <td class="p-4 text-center"><span class="bg-yellow-100 text-yellow-700 font-black px-2 py-1 rounded-lg text-[10px]">${o.Status || 'Pending'}</span></td>
+                    <td class="p-4 font-bold text-brand-blueDark">${orderId || '-'}</td>
+                    <td class="p-4 font-bold text-gray-900 cursor-help" title="Alamat penuh: ${fullAddressTooltip}">${o['Customer Name'] || o['customerName'] || '-'}</td>
+                    <td class="p-4 font-mono">
+                        ${cleanPhone ? `<a href="${waLink}" target="_blank" class="text-brand-blue hover:underline inline-flex items-center gap-1 font-semibold"><i class="fa-brands fa-whatsapp text-green-500"></i> ${phoneDisplay}</a>` : (phoneDisplay || '-')}
+                    </td>
+                    <td class="p-4"><span class="bg-gray-100 px-2 py-1 rounded font-bold text-xs">${formattedLocation}</span></td>
+                    <td class="p-4 text-gray-500 max-w-xs truncate" title="${o['Items Ordered'] || o['itemsOrdered']}">${o['Items Ordered'] || o['itemsOrdered'] || '-'}</td>
+                    <td class="p-4 text-right font-black text-gray-900">RM ${Number(o['Total Payment'] || o['totalPayment'] || 0).toFixed(2)}</td>
+                    <td class="p-4 text-center"><span class="${statusClass} font-black px-2 py-1 rounded-lg text-[10px]">${currentStatus}</span></td>
+                    <td class="p-4 text-center">${actionsHtml}</td>
                 `;
                 tbody.appendChild(tr);
             });
