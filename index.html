@@ -463,13 +463,16 @@
         </div>
     </div>
 
-    <!-- MODAL DETAIL PRODUK -->
+    <!-- MODAL DETAIL PRODUK (KLIK GAMBAR UNTUK FULLSCREEN) -->
     <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
         <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full z-10 overflow-hidden transform transition-all flex flex-col my-8 max-h-[90vh]">
-            <div class="relative bg-gray-100 flex items-center justify-center p-2 min-h-[300px] max-h-[450px]">
-                <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-full max-h-[430px] object-contain rounded-lg">
-                <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all z-20">
+            <div class="relative bg-gray-100 flex items-center justify-center p-2 min-h-[300px] max-h-[450px] group cursor-pointer" onclick="openLightbox(document.getElementById('modal-product-img').src)">
+                <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-full max-h-[430px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-105 cursor-zoom-in">
+                <span class="absolute bottom-4 right-4 bg-black/60 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none backdrop-blur-sm flex items-center gap-1 shadow">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i> Klik untuk Skrin Penuh
+                </span>
+                <button onclick="event.stopPropagation(); closeProductModal();" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all z-20">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -498,6 +501,17 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- MODAL LIGHTBOX FULLSCREEN IMAGE VIEWER -->
+    <div id="image-lightbox-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-2 sm:p-4">
+        <div onclick="closeLightbox()" class="fixed inset-0 bg-black/90 backdrop-blur-md transition-opacity"></div>
+        <div class="relative z-10 max-w-5xl w-full max-h-[95vh] flex flex-col items-center justify-center">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 sm:top-2 sm:right-2 text-white bg-white/20 hover:bg-white/40 w-10 h-10 rounded-full flex items-center justify-center transition-all z-20 shadow-lg">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <img id="lightbox-full-img" src="" alt="Gambar Skrin Penuh" class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl">
         </div>
     </div>
 
@@ -704,6 +718,20 @@
             checkAdminSession(); 
         };
 
+        // FUNGSI MEMBUKA & MENUTUP LIGHTBOX FULLSCREEN IMAGE
+        function openLightbox(imgSrc) {
+            if(!imgSrc) return;
+            const lightbox = document.getElementById('image-lightbox-modal');
+            const fullImg = document.getElementById('lightbox-full-img');
+            fullImg.src = imgSrc;
+            lightbox.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('image-lightbox-modal');
+            lightbox.classList.add('hidden');
+        }
+
         function getStateRegion(state) {
             const semenanjungStates = [
                 "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", 
@@ -778,7 +806,6 @@
             }
         }
 
-        // TAMBAH EVENT LISTENER UNTUK CHECKBOX TIMER ADMIN
         document.getElementById('campaign-input-showtimer').addEventListener('change', toggleCampaignFormFields);
 
         function fetchProductsFromSheet() {
@@ -820,7 +847,6 @@
                             document.getElementById('notice-input-text').value = resData.notice.text || '';
                         }
 
-                        // TETAPAN PAPARAN BANNER UTAMA BERDASARKAN MODE
                         if (resData.campaign) {
                             campaignMode = String(resData.campaign.mode || 'text').toLowerCase();
                             campaignShowTimer = String(resData.campaign.show_timer) !== 'false';
@@ -831,7 +857,6 @@
                             
                             targetEndDateStr = resData.campaign.end_date || '17-07-2026';
                             
-                            // ISIKAN DATA KE BORANG ADMIN
                             document.getElementById('campaign-input-mode').value = campaignMode;
                             document.getElementById('campaign-input-showtimer').checked = campaignShowTimer;
                             document.getElementById('campaign-input-tag').value = resData.campaign.tag || '';
@@ -846,9 +871,8 @@
                                 }
                             }
 
-                            toggleCampaignFormFields(); // Kemaskini borang admin
+                            toggleCampaignFormFields();
 
-                            // PAPARAN DI WEBSITE FRONTEND
                             const promoBannerBox = document.getElementById('promo-banner');
                             const textBannerEl = document.getElementById('campaign-text-banner');
                             const timerBoxEl = document.getElementById('campaign-timer-box');
@@ -862,7 +886,7 @@
                                 textBannerEl.classList.add('hidden');
                                 imageBannerEl.classList.remove('hidden');
                                 posterImgEl.src = resData.campaign.banner_img || '';
-                            } else { // 'text' mode
+                            } else {
                                 promoBannerBox.classList.remove('hidden');
                                 textBannerEl.classList.remove('hidden');
                                 imageBannerEl.classList.add('hidden');
@@ -1029,7 +1053,7 @@
 
                 if (resData.status === 'success') {
                     showSuccessToast("Tetapan banner kempen berjaya dikemaskini!");
-                    fetchProductsFromSheet(); // Muat semula untuk kemaskini paparan
+                    fetchProductsFromSheet();
                 } else {
                     alert(resData.message);
                 }
@@ -1276,7 +1300,7 @@
                 const row = document.createElement('div');
                 row.className = "flex items-center space-x-3 bg-gray-50 p-3 rounded-xl border border-gray-150";
                 row.innerHTML = `
-                    <img src="${displayImg}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-gray-200 shrink-0" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
+                    <img src="${displayImg}" alt="${item.name}" onclick="openLightbox('${item.img || displayImg}')" class="w-16 h-16 object-cover rounded-lg border border-gray-200 shrink-0 cursor-zoom-in hover:opacity-90" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
                     <div class="flex-1 min-w-0">
                         <h4 class="text-sm font-bold text-gray-800 truncate">${item.name}</h4>
                         <p class="text-xs text-gray-500 font-medium">RM ${currentPrice.toFixed(2)} (${item.size})</p>
@@ -1917,7 +1941,7 @@
                 tr.innerHTML = `
                     <td class="p-4 text-center font-mono font-bold text-gray-400">${p.id}</td>
                     <td class="p-4 flex items-center space-x-3 border-r border-gray-50">
-                        <div class="relative w-12 h-16 bg-gray-100 rounded-lg overflow-hidden border border-gray-200 shrink-0 shadow-sm">
+                        <div class="relative w-12 h-16 bg-gray-100 rounded-lg overflow-hidden border border-gray-200 shrink-0 shadow-sm cursor-zoom-in" onclick="openLightbox('${p.img || displayThumb}')">
                             <img src="${displayThumb}" alt="${p.name}" class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110" onerror="this.src='https://placehold.co/150x200/355ca4/ffffff?text=A%26A+Product'">
                         </div>
                         <div class="flex flex-col min-w-0">
