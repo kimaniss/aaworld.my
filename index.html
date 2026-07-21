@@ -283,7 +283,8 @@
                                 <th class="p-4 w-16 text-center">ID</th>
                                 <th class="p-4">Imej & Nama Produk</th>
                                 <th class="p-4">Kategori</th>
-                                <th class="p-4">Harga Jual</th>
+                                <th class="p-4">Harga Semenanjung</th>
+                                <th class="p-4">Harga Sabah/Sarawak/Labuan</th>
                                 <th class="p-4">Harga Asal</th>
                                 <th class="p-4">Saiz / Pakej</th>
                                 <th class="p-4 text-center">Tindakan</th>
@@ -366,13 +367,17 @@
                 </div>
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Jualan (RM)</label>
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Semenanjung (RM)</label>
                         <input type="number" step="0.01" id="crud-price" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-bold text-brand-blue" placeholder="189.00">
                     </div>
                     <div>
-                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Asal (RM)</label>
-                        <input type="number" step="0.01" id="crud-original" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white text-gray-400" placeholder="250.00">
+                        <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Sabah/Sarawak/Labuan (RM)</label>
+                        <input type="number" step="0.01" id="crud-price-ss" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white font-bold text-brand-blue" placeholder="209.00">
                     </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Harga Asal (RM)</label>
+                    <input type="number" step="0.01" id="crud-original" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white text-gray-400" placeholder="250.00">
                 </div>
                 <div class="grid grid-cols-3 gap-3">
                     <div class="col-span-1">
@@ -434,14 +439,14 @@
 
 <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
-            <div class="relative">
-                <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-64 sm:h-72 object-cover">
-                <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full z-10 overflow-hidden transform transition-all flex flex-col my-8 max-h-[90vh]">
+            <div class="relative bg-gray-100 flex items-center justify-center p-2 min-h-[300px] max-h-[450px]">
+                <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-full max-h-[430px] object-contain rounded-lg">
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all z-20">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
-            <div class="p-6 space-y-4">
+            <div class="p-6 space-y-4 overflow-y-auto">
                 <div>
                     <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
                     <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Produk</h3>
@@ -452,9 +457,15 @@
                         <span id="modal-product-sold" class="text-xs text-gray-500 font-semibold">0 terjual</span>
                     </div>
                 </div>
-                <div class="flex items-baseline space-x-2">
-                    <span id="modal-product-price" class="text-2xl font-black text-brand-blue">RM 0.00</span>
-                    <span id="modal-product-original" class="text-xs text-gray-400 line-through">RM 0.00</span>
+                <div class="space-y-1">
+                    <div class="flex items-baseline space-x-2">
+                        <span id="modal-product-price" class="text-xl font-black text-brand-blue">Semenanjung: RM 0.00</span>
+                        <span id="modal-product-original" class="text-xs text-gray-400 line-through">RM 0.00</span>
+                    </div>
+                    <div class="text-sm font-bold text-brand-blueDark" id="modal-product-price-ss">Sabah/Sarawak/Labuan: RM 0.00</div>
+                    <div class="text-xs font-extrabold text-amber-600 bg-amber-50 p-2 rounded-lg border border-amber-200 inline-block mt-1" id="modal-product-installment">
+                        <i class="fa-solid fa-calculator mr-1"></i> Ansuran Bulanan (5 Bulan): RM 0.00 / bulan
+                    </div>
                 </div>
                 <div>
                     <h4 class="text-xs font-extrabold text-gray-500 uppercase tracking-wider mb-1">Butiran Produk:</h4>
@@ -710,18 +721,23 @@
                     }
 
                     if(resData.status === 'success') {
-                        PRODUCTS = resData.data.map(p => ({
-                            id: Number(p.id),
-                            name: String(p.name || ''),
-                            category: String(p.category || ''),
-                            price: Number(p.price || 0),
-                            originalPrice: Number(p['original Price'] || p.originalPrice || p.original || 0),
-                            desc: String(p.desc || ''),
-                            img: String(p.img || ''),
-                            size: String(p.size || ''),
-                            sold: String(p.sold || '0'),
-                            rating: String(p.rating || '5.0')
-                        }));
+                        PRODUCTS = resData.data.map(p => {
+                            const priceSem = Number(p.price || 0);
+                            const priceSS = Number(p.priceSS || p.price_ss || priceSem);
+                            return {
+                                id: Number(p.id),
+                                name: String(p.name || ''),
+                                category: String(p.category || ''),
+                                price: priceSem,
+                                priceSS: priceSS,
+                                originalPrice: Number(p['original Price'] || p.originalPrice || p.original || 0),
+                                desc: String(p.desc || ''),
+                                img: String(p.img || ''),
+                                size: String(p.size || ''),
+                                sold: String(p.sold || '0'),
+                                rating: String(p.rating || '5.0')
+                            };
+                        });
 
                         if (resData.notice) {
                             document.getElementById('top-notice-badge').innerText = resData.notice.badge || '';
@@ -1018,6 +1034,7 @@
 
             filtered.forEach(product => {
                 const discountPercent = product.originalPrice > 0 ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
+                const monthlyInstallment = (product.price / 5).toFixed(2);
                 const card = document.createElement('div');
                 card.className = "bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md border border-gray-150 transition-all flex flex-col cursor-pointer group";
                 
@@ -1046,14 +1063,22 @@
                                 <span class="text-[9px] text-brand-greyText font-medium">${product.sold} terjual</span>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-gray-50">
-                            <div>
-                                <span class="text-xs text-gray-400 line-through block leading-none">RM ${product.originalPrice.toFixed(2)}</span>
-                                <span class="text-sm sm:text-base font-black text-brand-blueDark leading-tight">RM ${product.price.toFixed(2)}</span>
+                        <div class="mt-2 pt-1.5 border-t border-gray-50">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs text-gray-400 line-through block leading-none">RM ${product.originalPrice.toFixed(2)}</span>
+                                    <span class="text-sm sm:text-base font-black text-brand-blueDark leading-tight">RM ${product.price.toFixed(2)}</span>
+                                </div>
+                                <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-brand-blue hover:bg-brand-blueDark text-white w-8 h-8 rounded-full flex items-center justify-center transition-all shadow shrink-0 hover:scale-110" title="Tambah ke troli">
+                                    <i class="fa-solid fa-plus text-xs"></i>
+                                </button>
                             </div>
-                            <button onclick="addToCart(${product.id})" class="add-btn-bubble bg-brand-blue hover:bg-brand-blueDark text-white w-8 h-8 rounded-full flex items-center justify-center transition-all shadow shrink-0 hover:scale-110" title="Tambah ke troli">
-                                <i class="fa-solid fa-plus text-xs"></i>
-                            </button>
+                            <div class="mt-1 text-[10px] font-bold text-gray-500">
+                                SS/Labuan: <span class="text-brand-blue font-extrabold">RM ${product.priceSS.toFixed(2)}</span>
+                            </div>
+                            <div class="mt-0.5 text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
+                                Ansuran (5 Mth): RM ${monthlyInstallment}/bln
+                            </div>
                         </div>
                     </div>
                 `;
@@ -1085,6 +1110,12 @@
                 clearBtn.classList.add('hidden');
             }
             renderProducts(currentFilter, val);
+        }
+
+        function getActiveItemPrice(item) {
+            const stateVal = document.getElementById('cust-state').value;
+            const region = getStateRegion(stateVal);
+            return region === 'SabahSarawak' ? (item.priceSS || item.price) : item.price;
         }
 
         // KEMAS KINI PENYUNTINGAN SHIIPPING DINAMIK BERDASARKAN NEGERI
@@ -1131,7 +1162,8 @@
             let subtotal = 0;
 
             cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
+                const currentPrice = getActiveItemPrice(item);
+                const itemTotal = currentPrice * item.quantity;
                 subtotal += itemTotal;
 
                 const row = document.createElement('div');
@@ -1140,7 +1172,7 @@
                     <img src="${item.img}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg border border-gray-200 shrink-0" onerror="this.src='https://placehold.co/150x150/355ca4/ffffff?text=Pot'">
                     <div class="flex-1 min-w-0">
                         <h4 class="text-sm font-bold text-gray-800 truncate">${item.name}</h4>
-                        <p class="text-xs text-gray-500 font-medium">RM ${item.price.toFixed(2)} (${item.size})</p>
+                        <p class="text-xs text-gray-500 font-medium">RM ${currentPrice.toFixed(2)} (${item.size})</p>
                         <div class="flex items-center space-x-2.5 mt-2">
                             <button onclick="adjustQty(${item.id}, -1)" class="w-6 h-6 rounded bg-white border border-gray-200 flex items-center justify-center hover:bg-gray-100 text-xs font-bold text-gray-600">-</button>
                             <span class="text-sm font-extrabold text-gray-700 min-w-[16px] text-center">${item.quantity}</span>
@@ -1232,7 +1264,10 @@
             document.getElementById('modal-product-title').innerText = product.name;
             document.getElementById('modal-product-desc').innerText = product.desc;
             document.getElementById('modal-product-size').innerText = product.size;
-            document.getElementById('modal-product-price').innerText = `RM ${product.price.toFixed(2)}`;
+            document.getElementById('modal-product-price').innerText = `Semenanjung: RM ${product.price.toFixed(2)}`;
+            document.getElementById('modal-product-price-ss').innerText = `Sabah/Sarawak/Labuan: RM ${product.priceSS.toFixed(2)}`;
+            const monthlyInstallment = (product.price / 5).toFixed(2);
+            document.getElementById('modal-product-installment').innerText = `Ansuran Bulanan (5 Bulan): RM ${monthlyInstallment} / bulan`;
             document.getElementById('modal-product-original').innerText = `RM ${product.originalPrice.toFixed(2)}`;
             document.getElementById('modal-product-sold').innerText = `${product.sold} terjual`;
             document.getElementById('modal-product-rating').innerText = product.rating;
@@ -1286,6 +1321,86 @@
             });
         }
 
+        // FUNGSI BARU: PENJANA RESIT TEMPAHAN
+        function generateReceipt(orderId) {
+            const o = ORDERS.find(item => (item['Order ID'] || item['orderId']) === orderId);
+            if (!o) {
+                alert("Maklumat tempahan tidak dijumpai.");
+                return;
+            }
+
+            const phoneDisplay = o['WhatsApp Phone'] || o['Whatsapp Phone'] || o['whatsappPhone'] || '-';
+            const customerName = o['Customer Name'] || o['customerName'] || '-';
+            const items = o['Items Ordered'] || o['itemsOrdered'] || '-';
+            const subtotal = Number(o['Subtotal'] || 0).toFixed(2);
+            const shippingFee = Number(o['Shipping Fee'] || 0).toFixed(2);
+            const totalPayment = Number(o['Total Payment'] || o['totalPayment'] || 0).toFixed(2);
+            const status = o.Status || 'Approved';
+            const timestamp = o.Timestamp ? new Date(o.Timestamp).toLocaleString('ms-MY') : new Date().toLocaleString('ms-MY');
+
+            const fullAddress = o.Address ? `${o.Address}, ${o.Postcode || ''}, ${o.State || ''}` : (o['Full Address'] || '-');
+
+            const receiptWindow = window.open('', '_blank');
+            receiptWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Resit Rasmi - ${orderId}</title>
+                    <style>
+                        body { font-family: 'Helvetica', 'Arial', sans-serif; color: #333; padding: 20px; max-width: 600px; margin: auto; border: 1px solid #eee; }
+                        .header { text-align: center; border-bottom: 2px solid #355ca4; padding-bottom: 10px; margin-bottom: 20px; }
+                        .header h1 { color: #355ca4; margin: 0; font-size: 24px; }
+                        .header p { margin: 2px 0; font-size: 12px; color: #666; }
+                        .info-table, .item-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13px; }
+                        .info-table td { padding: 4px 0; }
+                        .item-table th, .item-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                        .item-table th { background-color: #f5f5f5; }
+                        .total-sec { text-align: right; font-size: 14px; margin-top: 10px; }
+                        .status-badge { display: inline-block; padding: 4px 8px; background: #eef4ff; color: #355ca4; font-weight: bold; border-radius: 4px; font-size: 12px; }
+                        .footer { text-align: center; margin-top: 30px; font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 10px; }
+                        @media print { .no-print { display: none; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>A&A WORLD KITCHENWARE</h1>
+                        <p>Wakaf Che Yeh, Kota Bharu, Kelantan | Tel: +60 13-970 3969</p>
+                        <p><strong>RESIT PEMBAYARAN / TEMPAHAN</strong></p>
+                    </div>
+
+                    <table class="info-table">
+                        <tr><td><strong>No. Tempahan:</strong> ${orderId}</td><td style="text-align:right;"><strong>Tarikh:</strong> ${timestamp}</td></tr>
+                        <tr><td><strong>Pelanggan:</strong> ${customerName}</td><td style="text-align:right;"><strong>Status:</strong> <span class="status-badge">${status}</span></td></tr>
+                        <tr><td><strong>No. Telefon:</strong> ${phoneDisplay}</td><td></td></tr>
+                        <tr><td colspan="2"><strong>Alamat Penghantaran:</strong> ${fullAddress}</td></tr>
+                    </table>
+
+                    <table class="item-table">
+                        <thead>
+                            <tr><th>Butiran Item Dipesan</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>${items}</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="total-sec">
+                        <p>Jumlah Kecil: <strong>RM ${subtotal}</strong></p>
+                        <p>Caj Penghantaran: <strong>RM ${shippingFee}</strong></p>
+                        <h3 style="color:#355ca4; margin:5px 0;">Jumlah Keseluruhan: RM ${totalPayment}</h3>
+                    </div>
+
+                    <div class="footer">
+                        <p>Terima kasih kerana membeli-belah di A&A WORLD Kitchenware!</p>
+                        <p>Resit ini dijana secara automatik oleh sistem komputer.</p>
+                        <button class="no-print" onclick="window.print()" style="margin-top:10px; padding:8px 16px; background:#355ca4; color:#fff; border:none; border-radius:4px; cursor:pointer;">Cetak Resit / Simpan PDF</button>
+                    </div>
+                </body>
+                </html>
+            `);
+            receiptWindow.document.close();
+        }
+
         function toggleCart() {
             const drawer = document.getElementById('cart-drawer');
             const backdrop = document.getElementById('cart-backdrop');
@@ -1313,14 +1428,15 @@
             let subtotal = 0;
 
             cart.forEach(item => {
+                const currentPrice = getActiveItemPrice(item);
                 const row = document.createElement('div');
                 row.className = "flex justify-between text-xs";
                 row.innerHTML = `
                     <span>${item.name} (x${item.quantity})</span>
-                    <span class="font-extrabold text-gray-800">RM ${(item.price * item.quantity).toFixed(2)}</span>
+                    <span class="font-extrabold text-gray-800">RM ${(currentPrice * item.quantity).toFixed(2)}</span>
                 `;
                 container.appendChild(row);
-                subtotal += item.price * item.quantity;
+                subtotal += currentPrice * item.quantity;
             });
 
             const stateVal = document.getElementById('cust-state').value;
@@ -1339,7 +1455,7 @@
 
         function recalculateShipping() {
             updateCartUI();
-            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const subtotal = cart.reduce((acc, item) => acc + (getActiveItemPrice(item) * item.quantity), 0);
             const stateVal = document.getElementById('cust-state').value;
             const region = getStateRegion(stateVal);
             let shippingFee = region === 'Semenanjung' ? 10.00 : 20.00;
@@ -1372,7 +1488,8 @@
             let itemsStringList = [];
             
             cart.forEach(item => {
-                const totalItem = item.price * item.quantity;
+                const currentPrice = getActiveItemPrice(item);
+                const totalItem = currentPrice * item.quantity;
                 subtotal += totalItem;
                 itemsStringList.push(`${item.name} (${item.size}) [x${item.quantity}]`);
             });
@@ -1434,7 +1551,8 @@
                     message += `*📦 BUTIRAN PESANAN BARANGAN:*\n`;
 
                     cart.forEach((item, index) => {
-                        message += `${index + 1}. *${item.name}* (${item.size})\n    └─ Jml: ${item.quantity} x RM ${item.price.toFixed(2)} = *RM ${(item.price * item.quantity).toFixed(2)}*\n`;
+                        const currentPrice = getActiveItemPrice(item);
+                        message += `${index + 1}. *${item.name}* (${item.size})\n    └─ Jml: ${item.quantity} x RM ${currentPrice.toFixed(2)} = *RM ${(currentPrice * item.quantity).toFixed(2)}*\n`;
                     });
 
                     message += `\n===============================\n`;
@@ -1620,6 +1738,7 @@
                     </td>
                     <td class="p-4"><span class="bg-brand-lightBlue text-brand-blue px-2 py-1 rounded-md text-[10px] uppercase font-black">${categoryBadgeName}</span></td>
                     <td class="p-4 font-black text-brand-blue">RM ${p.price.toFixed(2)}</td>
+                    <td class="p-4 font-black text-brand-blueDark">RM ${p.priceSS.toFixed(2)}</td>
                     <td class="p-4 text-gray-400 line-through">RM ${p.originalPrice.toFixed(2)}</td>
                     <td class="p-4 text-gray-500 font-semibold">${p.size}</td>
                     <td class="p-4 text-center space-x-2">
@@ -1631,7 +1750,7 @@
             });
         }
 
-        // KEMAS KINI PAPARAN ORDERS ADMIN DENGAN LOKASI DINAMIK & WA LINK & APPROVE/REJECT BUTTONS
+        // KEMAS KINI PAPARAN ORDERS ADMIN DENGAN BUTANG RESIT APABILA ACTION TELAH DIAMBIL
         function updateAdminOrdersTable() {
             document.getElementById('admin-order-count').innerText = ORDERS.length;
             const tbody = document.getElementById('admin-orders-table-body');
@@ -1671,12 +1790,25 @@
                 }
 
                 const orderId = o['Order ID'] || o['orderId'] || '';
-                const actionsHtml = orderId ? `
-                    <div class="flex items-center justify-center space-x-1">
-                        <button onclick="updateOrderStatus('${orderId}', 'Approved')" class="text-green-600 hover:text-green-800 font-bold bg-green-50 px-2 py-1 rounded transition-all text-[10px]" title="Terima Tempahan"><i class="fa-solid fa-check"></i> Terima</button>
-                        <button onclick="updateOrderStatus('${orderId}', 'Rejected')" class="text-red-600 hover:text-red-800 font-bold bg-red-50 px-2 py-1 rounded transition-all text-[10px]" title="Tolak Tempahan"><i class="fa-solid fa-xmark"></i> Tolak</button>
-                    </div>
-                ` : '-';
+                
+                // PENGUBAHSUAIAN LOGIK BUTANG TINDAKAN
+                let actionsHtml = '-';
+                if (orderId) {
+                    if (currentStatus === 'Pending') {
+                        actionsHtml = `
+                            <div class="flex items-center justify-center space-x-1">
+                                <button onclick="updateOrderStatus('${orderId}', 'Approved')" class="text-green-600 hover:text-green-800 font-bold bg-green-50 px-2 py-1 rounded transition-all text-[10px]" title="Terima Tempahan"><i class="fa-solid fa-check"></i> Terima</button>
+                                <button onclick="updateOrderStatus('${orderId}', 'Rejected')" class="text-red-600 hover:text-red-800 font-bold bg-red-50 px-2 py-1 rounded transition-all text-[10px]" title="Tolak Tempahan"><i class="fa-solid fa-xmark"></i> Tolak</button>
+                            </div>
+                        `;
+                    } else {
+                        actionsHtml = `
+                            <div class="flex items-center justify-center">
+                                <button onclick="generateReceipt('${orderId}')" class="text-brand-blue hover:text-brand-blueDark font-bold bg-brand-lightBlue px-2.5 py-1 rounded transition-all text-[10px] flex items-center gap-1 shadow-sm" title="Cetak Resit"><i class="fa-solid fa-file-invoice"></i> Resit</button>
+                            </div>
+                        `;
+                    }
+                }
 
                 tr.innerHTML = `
                     <td class="p-4 font-bold text-brand-blueDark">${orderId || '-'}</td>
@@ -1714,6 +1846,7 @@
             document.getElementById('crud-name').value = p.name;
             document.getElementById('crud-category').value = p.category;
             document.getElementById('crud-price').value = p.price;
+            document.getElementById('crud-price-ss').value = p.priceSS;
             document.getElementById('crud-original').value = p.originalPrice;
             document.getElementById('crud-size').value = p.size;
             document.getElementById('crud-img').value = p.img;
@@ -1740,6 +1873,7 @@
                 name: document.getElementById('crud-name').value,
                 category: document.getElementById('crud-category').value,
                 price: Number(document.getElementById('crud-price').value),
+                priceSS: Number(document.getElementById('crud-price-ss').value),
                 originalPrice: Number(document.getElementById('crud-original').value),
                 size: document.getElementById('crud-size').value,
                 img: document.getElementById('crud-img').value,
