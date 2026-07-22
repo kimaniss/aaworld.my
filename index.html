@@ -109,7 +109,7 @@
             <!-- CONTAINER BANNER KEMPEN UTAMA -->
             <div id="promo-banner" class="mb-6">
                 <!-- BANNER MOD TEKS (+ TIMER OPTIONAL) -->
-                <div id="campaign-text-banner" class="bg-gradient-to-r from-brand-blueDark to-brand-blue rounded-2xl p-4 sm:p-6 text-white relative overflow-hidden shadow-lg">
+                <div id="campaign-text-banner" class="rounded-2xl p-4 sm:p-6 text-white relative overflow-hidden shadow-lg transition-all duration-300" style="background: linear-gradient(to right, #1e3768, #355ca4);">
                     <div class="absolute -right-10 -bottom-10 opacity-15 text-[120px] pointer-events-none">
                         <i class="fa-solid fa-fire-burner"></i>
                     </div>
@@ -138,9 +138,20 @@
                     </div>
                 </div>
 
-                <!-- BANNER MOD POSTER IMEJ PENUH -->
-                <div id="campaign-image-banner" class="hidden rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white">
-                    <img id="campaign-poster-img" src="" alt="Poster Kempen Utama" class="w-full h-auto object-cover max-h-[350px] sm:max-h-[450px]">
+                <!-- BANNER MOD POSTER IMEJ PENUH (SLIDER / CAROUSEL) -->
+                <div id="campaign-image-banner" class="hidden rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white relative group">
+                    <div id="slider-track" class="flex transition-transform duration-500 ease-out w-full"></div>
+                    
+                    <!-- BUTANG NAVIGASI SLIDER (HANYA DITUNJUKKAN JIKA >1 GAMBAR) -->
+                    <button id="slider-prev-btn" onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 z-10">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <button id="slider-next-btn" onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 z-10">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+
+                    <!-- TITIK INDIKATOR (DOTS) -->
+                    <div id="slider-dots-container" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center space-x-1.5 z-10"></div>
                 </div>
             </div>
 
@@ -248,7 +259,7 @@
             </form>
         </div>
 
-        <!-- BORANG BANNER KEMPEN UTAMA ADMIN DENGAN TETAPAN MOD & TOGGLE -->
+        <!-- BORANG BANNER KEMPEN UTAMA ADMIN DENGAN TETAPAN MOD & COLOR PICKER & SLIDER -->
         <div class="bg-white border border-gray-100 p-4 rounded-2xl shadow-sm mb-6">
             <h3 class="text-xs font-black text-brand-blueDark uppercase tracking-wider mb-3"><i class="fa-solid fa-fire-burner text-brand-blue mr-1"></i> Kemas Kini Banner Kempen Utama Kedai</h3>
             <form id="admin-campaign-form" onsubmit="handleCampaignCrudSubmit(event)" class="space-y-4 text-xs">
@@ -257,7 +268,7 @@
                         <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Pilih Mod Paparan Banner</label>
                         <select id="campaign-input-mode" onchange="toggleCampaignFormFields()" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-bold text-brand-blueDark">
                             <option value="text">Mod 1: Banner Teks + Countdown Timer</option>
-                            <option value="image">Mod 2: Gambar Poster Hero Penuh</option>
+                            <option value="image">Mod 2: Gambar Poster Hero Penuh (Slider)</option>
                             <option value="off">Mod 3: Sembunyikan Banner (OFF)</option>
                         </select>
                     </div>
@@ -268,30 +279,53 @@
                     </div>
                 </div>
 
-                <!-- SUB-BORANG 1: TEKS BANNER -->
-                <div id="group-text-mode-fields" class="grid grid-cols-1 md:grid-cols-4 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tag Kempen Kecil</label>
-                        <input type="text" id="campaign-input-tag" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-extrabold text-amber-500" placeholder="cth: KEMPEN JIMAT">
+                <!-- SUB-BORANG 1: TEKS BANNER + COLOR PICKER -->
+                <div id="group-text-mode-fields" class="space-y-3">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tag Kempen Kecil</label>
+                            <input type="text" id="campaign-input-tag" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-extrabold text-amber-500" placeholder="cth: KEMPEN JIMAT">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tajuk Utama Kempen</label>
+                            <input type="text" id="campaign-input-title" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-bold" placeholder="cth: Koleksi Periuk Gred Premium">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Keterangan / Deskripsi Ringkas</label>
+                            <input type="text" id="campaign-input-desc" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue" placeholder="cth: Senang diguna, 100% bebas toksik...">
+                        </div>
+                        <div id="field-group-enddate">
+                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tarikh Tamat Timer (Tepat 12:00 Mlm)</label>
+                            <input type="date" id="campaign-input-enddate" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-bold text-brand-blue">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tajuk Utama Kempen</label>
-                        <input type="text" id="campaign-input-title" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-bold" placeholder="cth: Koleksi Periuk Gred Premium">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Keterangan / Deskripsi Ringkas</label>
-                        <input type="text" id="campaign-input-desc" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue" placeholder="cth: Senang diguna, 100% bebas toksik...">
-                    </div>
-                    <div id="field-group-enddate">
-                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1">Tarikh Tamat Timer (Tepat 12:00 Mlm)</label>
-                        <input type="date" id="campaign-input-enddate" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue font-bold text-brand-blue">
+
+                    <!-- UBAH WARNA BACKGROUND BANNER TEKS -->
+                    <div class="bg-blue-50/50 p-3 rounded-xl border border-blue-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                        <span class="text-xs font-bold text-brand-blueDark"><i class="fa-solid fa-palette mr-1"></i> Ubah Warna Background Banner:</span>
+                        <div class="flex items-center space-x-4 w-full sm:w-auto">
+                            <div class="flex items-center space-x-2">
+                                <label class="text-[10px] font-bold text-gray-500">Mula:</label>
+                                <input type="color" id="campaign-input-color1" value="#1e3768" class="w-8 h-8 rounded border border-gray-300 cursor-pointer p-0.5">
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <label class="text-[10px] font-bold text-gray-500">Akhir:</label>
+                                <input type="color" id="campaign-input-color2" value="#355ca4" class="w-8 h-8 rounded border border-gray-300 cursor-pointer p-0.5">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- SUB-BORANG 2: GAMBAR POSTER BANNER -->
-                <div id="group-image-mode-fields" class="hidden">
-                    <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1"><i class="fa-solid fa-image text-brand-blue mr-1"></i> URL Gambar Poster Banner Penuh (Responsive Hero Banner)</label>
-                    <input type="url" id="campaign-input-bannerimg" class="w-full border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue text-gray-600 text-[11px]" placeholder="https://... (Masukkan URL Gambar Poster)">
+                <!-- SUB-BORANG 2: GAMBAR POSTER SLIDER DENGAN BUTANG + DAN - -->
+                <div id="group-image-mode-fields" class="hidden space-y-3">
+                    <div class="flex justify-between items-center">
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase"><i class="fa-solid fa-images text-brand-blue mr-1"></i> Senarai URL Gambar Poster Banner (Slider Carousel)</label>
+                        <button type="button" onclick="addBannerImageInput('')" class="bg-brand-lightBlue hover:bg-blue-100 text-brand-blue font-bold px-3 py-1 rounded-lg text-xs transition-all flex items-center gap-1">
+                            <i class="fa-solid fa-plus text-xs"></i> Tambah Gambar
+                        </button>
+                    </div>
+
+                    <div id="banner-inputs-container" class="space-y-2"></div>
                 </div>
 
                 <div class="flex justify-end pt-2">
@@ -382,7 +416,7 @@
         </div>
     </div>
 
-    <!-- BORANG CRUD PRODUK -->
+    <!-- BORANG CRUD PRODUK (TERMASUK TOGGLE ANSURAN) -->
     <div id="crud-product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeProductCrudModal()" class="fixed inset-0 bg-black/60 backdrop-blur-sm"></div>
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full z-10 overflow-hidden my-8 transform transition-all flex flex-col max-h-[90vh]">
@@ -419,6 +453,15 @@
                     <label class="block text-[10px] font-black text-gray-500 uppercase mb-1">Saiz / Variasi</label>
                     <input type="text" id="crud-size" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white" placeholder="24cm / Set 5-dalam-1">
                 </div>
+
+                <!-- TOGGLE SKIM ANSURAN BULANAN -->
+                <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-200 flex items-center space-x-2.5">
+                    <input type="checkbox" id="crud-hasinstallment" checked class="w-4 h-4 text-brand-blue rounded border-gray-300 focus:ring-brand-blue cursor-pointer">
+                    <label for="crud-hasinstallment" class="text-xs font-bold text-gray-800 cursor-pointer select-none">
+                        Tawarkan Skim Ansuran Bulanan (5 Bulan)
+                    </label>
+                </div>
+
                 <div>
                     <label class="block text-[10px] font-black text-gray-500 uppercase mb-1"><i class="fa-solid fa-image text-brand-blue mr-1"></i> URL Gambar Thumbnail (Halaman Utama & Admin)</label>
                     <input type="url" id="crud-thumbnail" required class="w-full border border-gray-200 px-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-blue bg-gray-50 focus:bg-white text-gray-500 text-[11px]" placeholder="https://... (URL poster / thumbnail)">
@@ -706,6 +749,11 @@
         let campaignMode = 'text';
         let campaignShowTimer = true;
 
+        // PEMBOLEHUBAH SLIDER BANNER
+        let bannerImagesList = [];
+        let currentSlideIndex = 0;
+        let slideInterval = null;
+
         // PEMBOLEHUBAH PAGINASI
         const ITEMS_PER_PAGE = 10;
         let currentProductPage = 1;
@@ -717,6 +765,70 @@
             startFlashSaleTimer();
             checkAdminSession(); 
         };
+
+        // FUNGSI UTAMA INPUT BANNER GAMBAR DINAMIK (DENGAN BUTANG + DAN -)
+        function addBannerImageInput(urlVal = '') {
+            const container = document.getElementById('banner-inputs-container');
+            if(!container) return;
+
+            const div = document.createElement('div');
+            div.className = "banner-img-row flex items-center space-x-2";
+            div.innerHTML = `
+                <input type="url" value="${urlVal}" class="banner-img-url-input flex-1 border border-gray-200 px-3 py-2 rounded-lg bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-brand-blue text-gray-600 text-[11px]" placeholder="https://... (URL Gambar Poster)">
+                <button type="button" onclick="removeBannerImageInput(this)" class="remove-banner-btn bg-red-50 hover:bg-red-100 text-red-600 font-bold w-8 h-8 rounded-lg flex items-center justify-center transition-all shrink-0" title="Padam baris gambar">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+            `;
+            container.appendChild(div);
+            updateRemoveBannerButtonsState();
+        }
+
+        function removeBannerImageInput(btn) {
+            const row = btn.closest('.banner-img-row');
+            if (row) {
+                row.remove();
+                updateRemoveBannerButtonsState();
+            }
+        }
+
+        function updateRemoveBannerButtonsState() {
+            const rows = document.querySelectorAll('.banner-img-row');
+            rows.forEach(row => {
+                const btn = row.querySelector('.remove-banner-btn');
+                if(btn) {
+                    if (rows.length <= 1) {
+                        btn.disabled = true;
+                        btn.classList.add('opacity-40', 'cursor-not-allowed');
+                    } else {
+                        btn.disabled = false;
+                        btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                    }
+                }
+            });
+        }
+
+        function getBannerImagesFromInputs() {
+            const inputs = document.querySelectorAll('.banner-img-url-input');
+            let urls = [];
+            inputs.forEach(i => {
+                const val = i.value.trim();
+                if (val !== '') urls.push(val);
+            });
+            return urls.join(', ');
+        }
+
+        function setBannerImagesToInputs(rawString) {
+            const container = document.getElementById('banner-inputs-container');
+            if(!container) return;
+            container.innerHTML = '';
+
+            let urls = rawString ? rawString.split(',').map(s => s.trim()).filter(s => s !== '') : [];
+            if (urls.length === 0) {
+                addBannerImageInput('');
+            } else {
+                urls.forEach(u => addBannerImageInput(u));
+            }
+        }
 
         // FUNGSI MEMBUKA & MENUTUP LIGHTBOX FULLSCREEN IMAGE
         function openLightbox(imgSrc) {
@@ -776,7 +888,6 @@
             }
         }
 
-        // FUNGSI UNTUK KAWAL SUIS PADA FORM BANNER ADMIN
         function toggleCampaignFormFields() {
             const mode = document.getElementById('campaign-input-mode').value;
             const textGroup = document.getElementById('group-text-mode-fields');
@@ -827,6 +938,8 @@
                             const priceSS = Number(p.priceSS || p.price_ss || priceSem);
                             const imgUrl = String(p.img || p.thumbnail || '');
                             const thumbUrl = String(p.thumbnail || p.img || '');
+                            const hasInst = p.hasInstallment !== undefined ? String(p.hasInstallment).toLowerCase() === 'true' : true;
+
                             return {
                                 id: Number(p.id),
                                 name: String(p.name || ''),
@@ -835,7 +948,8 @@
                                 priceSS: priceSS,
                                 img: imgUrl,
                                 thumbnail: thumbUrl,
-                                size: String(p.size || '')
+                                size: String(p.size || ''),
+                                hasInstallment: hasInst
                             };
                         });
 
@@ -857,12 +971,18 @@
                             
                             targetEndDateStr = resData.campaign.end_date || '17-07-2026';
                             
+                            const color1 = resData.campaign.bg_color1 || '#1e3768';
+                            const color2 = resData.campaign.bg_color2 || '#355ca4';
+
                             document.getElementById('campaign-input-mode').value = campaignMode;
                             document.getElementById('campaign-input-showtimer').checked = campaignShowTimer;
                             document.getElementById('campaign-input-tag').value = resData.campaign.tag || '';
                             document.getElementById('campaign-input-title').value = resData.campaign.title || '';
                             document.getElementById('campaign-input-desc').value = resData.campaign.desc || '';
-                            document.getElementById('campaign-input-bannerimg').value = resData.campaign.banner_img || '';
+                            document.getElementById('campaign-input-color1').value = color1;
+                            document.getElementById('campaign-input-color2').value = color2;
+
+                            setBannerImagesToInputs(resData.campaign.banner_img || '');
 
                             if(targetEndDateStr.includes('-')) {
                                 const parts = targetEndDateStr.split('-');
@@ -877,7 +997,9 @@
                             const textBannerEl = document.getElementById('campaign-text-banner');
                             const timerBoxEl = document.getElementById('campaign-timer-box');
                             const imageBannerEl = document.getElementById('campaign-image-banner');
-                            const posterImgEl = document.getElementById('campaign-poster-img');
+
+                            // MASA KAN WARNA BACKGROUND BANNER TEKS
+                            textBannerEl.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
 
                             if (campaignMode === 'off') {
                                 promoBannerBox.classList.add('hidden');
@@ -885,7 +1007,8 @@
                                 promoBannerBox.classList.remove('hidden');
                                 textBannerEl.classList.add('hidden');
                                 imageBannerEl.classList.remove('hidden');
-                                posterImgEl.src = resData.campaign.banner_img || '';
+                                
+                                setupHeroImageSlider(resData.campaign.banner_img || '');
                             } else {
                                 promoBannerBox.classList.remove('hidden');
                                 textBannerEl.classList.remove('hidden');
@@ -917,6 +1040,89 @@
                     console.error("Ralat katalog:", err);
                     alert("Ralat sambungan pelayan semasa memuat katalog.");
                 });
+        }
+
+        // FUNGSI MEMBINA CAROUSEL SLIDER BANNER HERO (DIKEMAS KINI: BANNER TIDAK BOLEH DIKLIK)
+        function setupHeroImageSlider(rawBannerImgs) {
+            clearInterval(slideInterval);
+            bannerImagesList = rawBannerImgs ? rawBannerImgs.split(',').map(s => s.trim()).filter(s => s !== '') : [];
+            
+            const track = document.getElementById('slider-track');
+            const prevBtn = document.getElementById('slider-prev-btn');
+            const nextBtn = document.getElementById('slider-next-btn');
+            const dotsContainer = document.getElementById('slider-dots-container');
+
+            track.innerHTML = '';
+            dotsContainer.innerHTML = '';
+            currentSlideIndex = 0;
+
+            if (bannerImagesList.length === 0) {
+                document.getElementById('campaign-image-banner').classList.add('hidden');
+                return;
+            }
+
+            bannerImagesList.forEach((url, idx) => {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = `Poster Kempen ${idx + 1}`;
+                img.className = "w-full h-auto object-cover max-h-[350px] sm:max-h-[450px] shrink-0";
+                track.appendChild(img);
+
+                if(bannerImagesList.length > 1) {
+                    const dot = document.createElement('button');
+                    dot.className = `w-2.5 h-2.5 rounded-full transition-all ${idx === 0 ? 'bg-white w-6' : 'bg-white/50'}`;
+                    dot.onclick = () => goToSlide(idx);
+                    dotsContainer.appendChild(dot);
+                }
+            });
+
+            if (bannerImagesList.length > 1) {
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                dotsContainer.classList.remove('hidden');
+
+                slideInterval = setInterval(() => {
+                    nextSlide();
+                }, 4000);
+            } else {
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+                dotsContainer.classList.add('hidden');
+            }
+
+            updateSlidePosition();
+        }
+
+        function updateSlidePosition() {
+            const track = document.getElementById('slider-track');
+            if(!track) return;
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+            const dots = document.querySelectorAll('#slider-dots-container button');
+            dots.forEach((dot, idx) => {
+                if(idx === currentSlideIndex) {
+                    dot.className = "w-6 h-2.5 bg-white rounded-full transition-all";
+                } else {
+                    dot.className = "w-2.5 h-2.5 bg-white/50 rounded-full transition-all";
+                }
+            });
+        }
+
+        function nextSlide() {
+            if (bannerImagesList.length <= 1) return;
+            currentSlideIndex = (currentSlideIndex + 1) % bannerImagesList.length;
+            updateSlidePosition();
+        }
+
+        function prevSlide() {
+            if (bannerImagesList.length <= 1) return;
+            currentSlideIndex = (currentSlideIndex - 1 + bannerImagesList.length) % bannerImagesList.length;
+            updateSlidePosition();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateSlidePosition();
         }
 
         function renderCategoryBar() {
@@ -1028,7 +1234,9 @@
                 title: document.getElementById('campaign-input-title').value,
                 desc: document.getElementById('campaign-input-desc').value,
                 end_date: formattedUIDate,
-                banner_img: document.getElementById('campaign-input-bannerimg').value
+                banner_img: getBannerImagesFromInputs(),
+                bg_color1: document.getElementById('campaign-input-color1').value,
+                bg_color2: document.getElementById('campaign-input-color2').value
             };
 
             fetch(API_URL, {
@@ -1136,7 +1344,6 @@
             .catch(err => console.error("Ralat memuatkan orders:", err));
         }
 
-        // KAD PRODUK DI SKRIN UTAMA
         function renderProducts(category, searchTerm = '') {
             const grid = document.getElementById('products-grid');
             const emptyState = document.getElementById('empty-search-state');
@@ -1167,7 +1374,7 @@
             filtered.forEach(product => {
                 const monthlyInstallment = (product.price / 5).toFixed(2);
                 
-                const installmentHtml = product.price >= 100 
+                const installmentHtml = product.hasInstallment 
                     ? `<div class="mt-0.5 text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
                         Ansuran (5 Mth): RM ${monthlyInstallment}/bln
                        </div>` 
@@ -1368,7 +1575,6 @@
             updateCartUI();
         }
 
-        // MODAL DETAIL PRODUK
         function openProductModal(product) {
             document.getElementById('modal-product-img').src = product.img || product.thumbnail;
             
@@ -1381,9 +1587,9 @@
             document.getElementById('modal-product-price-ss').innerText = `Sabah/Sarawak/Labuan: RM ${product.priceSS.toFixed(2)}`;
             
             const installmentEl = document.getElementById('modal-product-installment');
-            if (product.price >= 100) {
+            if (product.hasInstallment) {
                 const monthlyInstallment = (product.price / 5).toFixed(2);
-                installmentEl.innerText = `Ansuran Bulanan (5 Bulan): RM ${monthlyInstallment} / bulan`;
+                installmentEl.innerHTML = `<i class="fa-solid fa-calculator mr-1"></i> Ansuran Bulanan (5 Bulan): RM ${monthlyInstallment} / bulan`;
                 installmentEl.classList.remove('hidden');
             } else {
                 installmentEl.classList.add('hidden');
@@ -2077,6 +2283,7 @@
         function openProductCrudModal() {
             document.getElementById('crud-product-form').reset();
             document.getElementById('crud-id').disabled = false;
+            document.getElementById('crud-hasinstallment').checked = true;
             document.getElementById('crud-modal-title').innerText = "Borang Tambah Produk Baru";
             document.getElementById('crud-product-modal').classList.remove('hidden');
         }
@@ -2096,6 +2303,7 @@
             document.getElementById('crud-price').value = p.price;
             document.getElementById('crud-price-ss').value = p.priceSS;
             document.getElementById('crud-size').value = p.size;
+            document.getElementById('crud-hasinstallment').checked = p.hasInstallment;
             document.getElementById('crud-thumbnail').value = p.thumbnail || p.img || '';
             document.getElementById('crud-img').value = p.img || p.thumbnail || '';
             
@@ -2120,6 +2328,7 @@
                 price: Number(document.getElementById('crud-price').value),
                 priceSS: Number(document.getElementById('crud-price-ss').value),
                 size: document.getElementById('crud-size').value,
+                hasInstallment: document.getElementById('crud-hasinstallment').checked,
                 thumbnail: document.getElementById('crud-thumbnail').value,
                 img: document.getElementById('crud-img').value
             };
