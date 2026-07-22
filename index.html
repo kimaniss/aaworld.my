@@ -1418,13 +1418,16 @@
             grid.classList.remove('hidden');
 
             filtered.forEach(product => {
-                const monthlyInstallment = (product.price / 5).toFixed(2);
-                
-                const installmentHtml = product.hasInstallment 
-                    ? `<div class="mt-0.5 text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
-                        Ansuran (5 Mth): RM ${monthlyInstallment}/bln
-                       </div>` 
-                    : '';
+                // Pengiraan ansuran mengikut kawasan
+const instSem = (product.price / 5).toFixed(2);
+const instSS = (product.priceSS / 5).toFixed(2);
+
+const installmentHtml = product.hasInstallment 
+    ? `<div class="mt-1 text-[9px] font-bold text-amber-600 bg-amber-50 p-1 rounded border border-amber-100">
+        <div>Ansuran (5 Mth) Sem: <b>RM ${instSem}</b>/bln</div>
+        <div>Ansuran (5 Mth) SS/Labuan: <b>RM ${instSS}</b>/bln</div>
+       </div>` 
+    : '';
 
                 const displayThumb = product.thumbnail || product.img;
 
@@ -1633,13 +1636,23 @@
             document.getElementById('modal-product-price-ss').innerText = `Sabah/Sarawak/Labuan: RM ${product.priceSS.toFixed(2)}`;
             
             const installmentEl = document.getElementById('modal-product-installment');
-            if (product.hasInstallment) {
-                const monthlyInstallment = (product.price / 5).toFixed(2);
-                installmentEl.innerHTML = `<i class="fa-solid fa-calculator mr-1"></i> Ansuran Bulanan (5 Bulan): RM ${monthlyInstallment} / bulan`;
-                installmentEl.classList.remove('hidden');
-            } else {
-                installmentEl.classList.add('hidden');
-            }
+if (product.hasInstallment) {
+    const instSem = (product.price / 5).toFixed(2);
+    const instSS = (product.priceSS / 5).toFixed(2);
+    
+    installmentEl.innerHTML = `
+        <div class="flex flex-col gap-1">
+            <span><i class="fa-solid fa-calculator mr-1"></i> <b>Ansuran Bulanan (5 Bulan):</b></span>
+            <div class="ml-4 text-xs font-bold text-amber-800">
+                • Semenanjung: <b>RM ${instSem}</b> / bulan<br>
+                • Sabah / Sarawak / Labuan: <b>RM ${instSS}</b> / bulan
+            </div>
+        </div>
+    `;
+    installmentEl.classList.remove('hidden');
+} else {
+    installmentEl.classList.add('hidden');
+}
 
             document.getElementById('modal-add-cart-btn').onclick = () => {
                 addToCart(product.id);
