@@ -1654,10 +1654,14 @@ const installmentHtml = product.hasInstallment
     document.getElementById('modal-product-price-ss').innerText = `Sabah/Sarawak/Labuan: RM ${product.priceSS.toFixed(2)}`;
     
     const installmentEl = document.getElementById('modal-product-installment');
+    const installmentWaBtn = document.getElementById('modal-installment-wa-btn');
+    
     const instSem = (product.price / 5).toFixed(2);
     const instSS = (product.priceSS / 5).toFixed(2);
 
+    // KAWALAN SYARAT: Jika hasInstallment == TRUE
     if (product.hasInstallment) {
+        // 1. Paparkan teks info ansuran
         installmentEl.innerHTML = `
             <div class="flex flex-col gap-1">
                 <span><i class="fa-solid fa-calculator mr-1"></i> <b>Ansuran Bulanan (5 Bulan):</b></span>
@@ -1668,10 +1672,30 @@ const installmentHtml = product.hasInstallment
             </div>
         `;
         installmentEl.classList.remove('hidden');
+
+        // 2. Paparkan Butang WhatsApp Ansuran
+        if (installmentWaBtn) {
+            installmentWaBtn.classList.remove('hidden');
+            installmentWaBtn.onclick = () => {
+                const textMsg = `Salam A%26A WORLD, saya berminat nak memohon *Ansuran 5 Bulan* untuk produk berikut:%0A%0A` +
+                                `*Produk:* ${encodeURIComponent(product.name)}%0A` +
+                                `*Saiz/Variasi:* ${encodeURIComponent(product.size)}%0A` +
+                                `*Harga Tunai:* RM ${product.price.toFixed(2)} (Sem) / RM ${product.priceSS.toFixed(2)} (SS)%0A` +
+                                `*Anggaran Ansuran:* RM ${instSem}/bulan (Sem) | RM ${instSS}/bulan (SS)%0A%0A` +
+                                `Boleh terangkan syarat %26 cara permohonan ansuran ini?`;
+
+                window.open(`https://wa.me/60139703969?text=${textMsg}`, '_blank');
+            };
+        }
     } else {
+        // Jika hasInstallment == FALSE: Sembunyikan info & butang ansuran
         installmentEl.classList.add('hidden');
+        if (installmentWaBtn) {
+            installmentWaBtn.classList.add('hidden');
+        }
     }
 
+    // Butang Troli & Beli Penuh tetap kekal untuk semua produk
     document.getElementById('modal-add-cart-btn').onclick = () => {
         addToCart(product.id);
         closeProductModal();
@@ -1680,18 +1704,6 @@ const installmentHtml = product.hasInstallment
         addToCart(product.id);
         closeProductModal();
         toggleCart();
-    };
-
-    // FUNGSI BUTANG ANSURAN WHATSAPP
-    document.getElementById('modal-installment-wa-btn').onclick = () => {
-        const textMsg = `Salam A%26A WORLD, saya berminat nak memohon *Ansuran 5 Bulan* untuk produk berikut:%0A%0A` +
-                        `*Produk:* ${encodeURIComponent(product.name)}%0A` +
-                        `*Saiz/Variasi:* ${encodeURIComponent(product.size)}%0A` +
-                        `*Harga Tunai:* RM ${product.price.toFixed(2)} (Sem) / RM ${product.priceSS.toFixed(2)} (SS)%0A` +
-                        `*Anggaran Ansuran:* RM ${instSem}/bulan (Sem) | RM ${instSS}/bulan (SS)%0A%0A` +
-                        `Boleh terangkan syarat %26 cara permohonan ansuran ini?`;
-
-        window.open(`https://wa.me/60139703969?text=${textMsg}`, '_blank');
     };
 
     document.getElementById('product-detail-modal').classList.remove('hidden');
