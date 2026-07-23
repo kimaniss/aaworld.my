@@ -508,45 +508,53 @@
     </div>
 
 <!-- MODAL DETAIL PRODUK -->
-    <div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
-        <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
-        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full z-10 overflow-hidden transform transition-all flex flex-col my-8 max-h-[90vh]">
-            <div class="relative bg-gray-100 flex items-center justify-center p-2 min-h-[300px] max-h-[450px] group cursor-pointer" onclick="openLightbox(document.getElementById('modal-product-img').src)">
-                <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-full max-h-[430px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-105 cursor-zoom-in">
-                <span class="absolute bottom-4 right-4 bg-black/60 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none backdrop-blur-sm flex items-center gap-1 shadow">
-                    <i class="fa-solid fa-magnifying-glass-plus"></i> Klik untuk Skrin Penuh
-                </span>
-                <button onclick="event.stopPropagation(); closeProductModal();" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all z-20">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+<div id="product-detail-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+    <div onclick="closeProductModal()" class="fixed inset-0 bg-black/70 transition-opacity"></div>
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full z-10 overflow-hidden transform transition-all flex flex-col my-8 max-h-[90vh]">
+        <div class="relative bg-gray-100 flex items-center justify-center p-2 min-h-[300px] max-h-[450px] group cursor-pointer" onclick="openLightbox(document.getElementById('modal-product-img').src)">
+            <img id="modal-product-img" src="" alt="Perkakas" class="w-full h-full max-h-[430px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-105 cursor-zoom-in">
+            <span class="absolute bottom-4 right-4 bg-black/60 text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none backdrop-blur-sm flex items-center gap-1 shadow">
+                <i class="fa-solid fa-magnifying-glass-plus"></i> Klik untuk Skrin Penuh
+            </span>
+            <button onclick="event.stopPropagation(); closeProductModal();" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition-all z-20">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div class="p-6 space-y-4 overflow-y-auto">
+            <div>
+                <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
+                <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Produk</h3>
             </div>
-            <div class="p-6 space-y-4 overflow-y-auto">
+            <div class="space-y-1">
+                <div class="flex items-baseline space-x-2">
+                    <span id="modal-product-price" class="text-xl font-black text-brand-blue">Semenanjung: RM 0.00</span>
+                </div>
+                <div class="text-sm font-bold text-brand-blueDark" id="modal-product-price-ss">Sabah/Sarawak/Labuan: RM 0.00</div>
+                <div class="text-xs font-extrabold text-amber-600 bg-amber-50 p-2 rounded-lg border border-amber-200 inline-block mt-1" id="modal-product-installment">
+                    <i class="fa-solid fa-calculator mr-1"></i> Ansuran Bulanan (5 Bulan): RM 0.00 / bulan
+                </div>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-gray-100 flex-wrap gap-3">
                 <div>
-                    <span id="modal-product-tag" class="bg-brand-lightBlue text-brand-blue text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider"></span>
-                    <h3 id="modal-product-title" class="text-xl font-extrabold text-gray-900 mt-2">Nama Produk</h3>
+                    <span class="text-xs text-gray-400 block font-bold uppercase">Saiz / Variasi:</span>
+                    <span id="modal-product-size" class="inline-block bg-brand-blue/10 text-brand-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-brand-blue/20"></span>
                 </div>
-                <div class="space-y-1">
-                    <div class="flex items-baseline space-x-2">
-                        <span id="modal-product-price" class="text-xl font-black text-brand-blue">Semenanjung: RM 0.00</span>
-                    </div>
-                    <div class="text-sm font-bold text-brand-blueDark" id="modal-product-price-ss">Sabah/Sarawak/Labuan: RM 0.00</div>
-                    <div class="text-xs font-extrabold text-amber-600 bg-amber-50 p-2 rounded-lg border border-amber-200 inline-block mt-1" id="modal-product-installment">
-                        <i class="fa-solid fa-calculator mr-1"></i> Ansuran Bulanan (5 Bulan): RM 0.00 / bulan
-                    </div>
-                </div>
-                <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <div>
-                        <span class="text-xs text-gray-400 block font-bold uppercase">Saiz / Variasi:</span>
-                        <span id="modal-product-size" class="inline-block bg-brand-blue/10 text-brand-blue text-xs font-extrabold px-3 py-1 rounded-lg mt-1 border border-brand-blue/20"></span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button id="modal-add-cart-btn" class="bg-brand-lightBlue hover:bg-blue-100 text-brand-blue font-bold text-xs px-4 py-3 rounded-xl border border-brand-blue transition-all flex items-center gap-1.5"><i class="fa-solid fa-cart-plus"></i> Tambah Troli</button>
-                        <button id="modal-buy-now-btn" class="bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold text-xs px-5 py-3 rounded-xl shadow transition-all">Beli Sekarang</button>
-                    </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button id="modal-add-cart-btn" class="bg-brand-lightBlue hover:bg-blue-100 text-brand-blue font-bold text-xs px-3.5 py-2.5 rounded-xl border border-brand-blue transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-cart-plus"></i> Troli
+                    </button>
+                    <button id="modal-buy-now-btn" class="bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition-all">
+                        Beli Penuh
+                    </button>
+                    <!-- BUTANG BARU: ANSURAN WHATSAPP -->
+                    <button id="modal-installment-wa-btn" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition-all flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Ansuran 5x
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <!-- MODAL LIGHTBOX FULLSCREEN IMAGE VIEWER -->
     <div id="image-lightbox-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-2 sm:p-4">
@@ -591,83 +599,93 @@
         </div>
     </div>
 
-<!-- MODAL CHECKOUT DENGAN INPUT EMAIL -->
-    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
-        <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
-        <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
-            <div class="bg-brand-blue text-white px-5 py-4 flex items-center justify-between">
-                <h3 class="text-base font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
-                <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-5 space-y-4">
-                <div>
-                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Nama Penuh Anda <span class="text-red-500">*</span></label>
-                    <input type="text" id="cust-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: Ahmad bin Ali">
-                </div>
-
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">No. Telefon WhatsApp <span class="text-red-500">*</span></label>
-                        <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 0123456789">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat E-mel <span class="text-red-500">*</span></label>
-                        <input type="email" id="cust-email" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: ahmad@gmail.com">
-                    </div>
-                </div>
-
-<div>
-                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat Rumah / Pejabat (Jalan, No Rumah, etc) <span class="text-red-500">*</span></label>
-                    <textarea id="cust-address" required rows="2" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none" placeholder="cth: No 12, Wakaf Che Yeh"></textarea>
-                </div>
-
-<div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Poskod <span class="text-red-500">*</span></label>
-                        <input type="text" id="cust-postcode" required pattern="\d{5}" maxlength="5" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 15150">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Negeri <span class="text-red-500">*</span></label>
-                        <select id="cust-state" required onchange="handleStateChange()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
-                            <option value="" disabled selected>Pilih Negeri</option>
-                            <option value="Johor">Johor</option>
-                            <option value="Kedah">Kedah</option>
-                            <option value="Kelantan">Kelantan</option>
-                            <option value="Melaka">Melaka</option>
-                            <option value="Negeri Sembilan">Negeri Sembilan</option>
-                            <option value="Pahang">Pahang</option>
-                            <option value="Perak">Perak</option>
-                            <option value="Perlis">Perlis</option>
-                            <option value="Pulau Pinang">Pulau Pinang</option>
-                            <option value="Sabah">Sabah</option>
-                            <option value="Sarawak">Sarawak</option>
-                            <option value="Selangor">Selangor</option>
-                            <option value="Terengganu">Terengganu</option>
-                            <option value="WP Kuala Lumpur">WP Kuala Lumpur</option>
-                            <option value="WP Labuan">WP Labuan</option>
-                            <option value="WP Putrajaya">WP Putrajaya</option>
-                        </select>
-                    </div>
-                </div>
-
-<div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                    <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2">Sahkan Pesanan Anda</h4>
-                    <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1"></div>
-                    <div class="flex justify-between font-black text-sm text-brand-blue pt-2 border-t border-gray-200">
-                        <span>Jumlah Keseluruhan Bayaran:</span>
-                        <span id="checkout-summary-total">RM 0.00</span>
-                    </div>
-                </div>
-                <div class="pt-2 flex space-x-3">
-                    <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl text-xs transition-all">Kembali Ke Troli</button>
-                    <button type="submit" id="submit-btn" class="w-1/2 bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs">
-                        <i class="fa-solid fa-credit-card text-base"></i>
-                        <span id="submit-btn-text">Bayar via ToyyibPay</span>
-                    </button>
-                </div>
-            </form>
+<!-- MODAL CHECKOUT DENGAN INPUT EMAIL & NOTIS ANSURAN -->
+<div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+    <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
+        <div class="bg-brand-blue text-white px-5 py-4 flex items-center justify-between">
+            <h3 class="text-base font-bold"><i class="fa-solid fa-address-card mr-2"></i>Maklumat Penghantaran</h3>
+            <button onclick="closeCheckoutModal()" class="text-white hover:text-gray-200 p-1"><i class="fa-solid fa-xmark text-xl"></i></button>
         </div>
+        <form id="checkout-form" onsubmit="handleCheckoutSubmit(event)" class="p-5 space-y-4">
+            <div>
+                <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Nama Penuh Anda <span class="text-red-500">*</span></label>
+                <input type="text" id="cust-name" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: Ahmad bin Ali">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">No. Telefon WhatsApp <span class="text-red-500">*</span></label>
+                    <input type="tel" id="cust-phone" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 0123456789">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat E-mel <span class="text-red-500">*</span></label>
+                    <input type="email" id="cust-email" required class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: ahmad@gmail.com">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Alamat Rumah / Pejabat (Jalan, No Rumah, etc) <span class="text-red-500">*</span></label>
+                <textarea id="cust-address" required rows="2" class="w-full border border-gray-200 px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue resize-none" placeholder="cth: No 12, Wakaf Che Yeh"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Poskod <span class="text-red-500">*</span></label>
+                    <input type="text" id="cust-postcode" required pattern="\d{5}" maxlength="5" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue" placeholder="cth: 15150">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-black text-gray-600 uppercase mb-1">Negeri <span class="text-red-500">*</span></label>
+                    <select id="cust-state" required onchange="handleStateChange()" class="w-full border border-gray-200 px-3 py-2.5 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                        <option value="" disabled selected>Pilih Negeri</option>
+                        <option value="Johor">Johor</option>
+                        <option value="Kedah">Kedah</option>
+                        <option value="Kelantan">Kelantan</option>
+                        <option value="Melaka">Melaka</option>
+                        <option value="Negeri Sembilan">Negeri Sembilan</option>
+                        <option value="Pahang">Pahang</option>
+                        <option value="Perak">Perak</option>
+                        <option value="Perlis">Perlis</option>
+                        <option value="Pulau Pinang">Pulau Pinang</option>
+                        <option value="Sabah">Sabah</option>
+                        <option value="Sarawak">Sarawak</option>
+                        <option value="Selangor">Selangor</option>
+                        <option value="Terengganu">Terengganu</option>
+                        <option value="WP Kuala Lumpur">WP Kuala Lumpur</option>
+                        <option value="WP Labuan">WP Labuan</option>
+                        <option value="WP Putrajaya">WP Putrajaya</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2">Sahkan Pesanan Anda</h4>
+                <div id="checkout-summary-items" class="text-xs text-gray-600 space-y-1.5 max-h-24 overflow-y-auto mb-2 pr-1"></div>
+                <div class="flex justify-between font-black text-sm text-brand-blue pt-2 border-t border-gray-200">
+                    <span>Jumlah Keseluruhan Bayaran:</span>
+                    <span id="checkout-summary-total">RM 0.00</span>
+                </div>
+            </div>
+
+            <!-- NOTIS MAKLUMAN ANSURAN WHATSAPP -->
+            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900 flex items-start gap-2.5">
+                <i class="fa-solid fa-circle-info text-amber-600 text-base shrink-0 mt-0.5"></i>
+                <div class="leading-relaxed">
+                    <strong>Ingin memohon Ansuran 5 Bulan?</strong> Pembayaran di sini adalah untuk <u>Bayaran Penuh (Full Payment)</u>. Untuk urusan ansuran bulanan, sila mohon terus bersama kami melalui 
+                    <a href="https://wa.me/60139703969?text=Salam%20A%26A%20WORLD,%20saya%20nak%20tanya%20mengenai%20permohonan%20ansuran%205%20bulan%20untuk%20pesanan%20saya." target="_blank" class="text-brand-blue font-extrabold underline hover:text-brand-blueDark">WhatsApp Kedai</a>.
+                </div>
+            </div>
+
+            <div class="pt-2 flex space-x-3">
+                <button type="button" onclick="closeCheckoutModal()" class="w-1/2 border border-gray-200 hover:bg-gray-50 text-gray-600 font-bold py-3 rounded-xl text-xs transition-all">Kembali Ke Troli</button>
+                <button type="submit" id="submit-btn" class="w-1/2 bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold py-3 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 text-xs">
+                    <i class="fa-solid fa-credit-card text-base"></i>
+                    <span id="submit-btn-text">Bayar via ToyyibPay</span>
+                </button>
+            </div>
+        </form>
     </div>
+</div>
 
 <div id="thankyou-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
         <div onclick="closeThankYouModal()" class="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"></div>
@@ -1625,47 +1643,59 @@ const installmentHtml = product.hasInstallment
         }
 
         function openProductModal(product) {
-            document.getElementById('modal-product-img').src = product.img || product.thumbnail;
-            
-            const matchedCat = CATEGORIES.find(c => c.id === product.category);
-            document.getElementById('modal-product-tag').innerText = matchedCat ? matchedCat.name : product.category;
-            
-            document.getElementById('modal-product-title').innerText = product.name;
-            document.getElementById('modal-product-size').innerText = product.size;
-            document.getElementById('modal-product-price').innerText = `Semenanjung: RM ${product.price.toFixed(2)}`;
-            document.getElementById('modal-product-price-ss').innerText = `Sabah/Sarawak/Labuan: RM ${product.priceSS.toFixed(2)}`;
-            
-            const installmentEl = document.getElementById('modal-product-installment');
-if (product.hasInstallment) {
+    document.getElementById('modal-product-img').src = product.img || product.thumbnail;
+    
+    const matchedCat = CATEGORIES.find(c => c.id === product.category);
+    document.getElementById('modal-product-tag').innerText = matchedCat ? matchedCat.name : product.category;
+    
+    document.getElementById('modal-product-title').innerText = product.name;
+    document.getElementById('modal-product-size').innerText = product.size;
+    document.getElementById('modal-product-price').innerText = `Semenanjung: RM ${product.price.toFixed(2)}`;
+    document.getElementById('modal-product-price-ss').innerText = `Sabah/Sarawak/Labuan: RM ${product.priceSS.toFixed(2)}`;
+    
+    const installmentEl = document.getElementById('modal-product-installment');
     const instSem = (product.price / 5).toFixed(2);
     const instSS = (product.priceSS / 5).toFixed(2);
-    
-    installmentEl.innerHTML = `
-        <div class="flex flex-col gap-1">
-            <span><i class="fa-solid fa-calculator mr-1"></i> <b>Ansuran Bulanan (5 Bulan):</b></span>
-            <div class="ml-4 text-xs font-bold text-amber-800">
-                • Semenanjung: <b>RM ${instSem}</b> / bulan<br>
-                • Sabah / Sarawak / Labuan: <b>RM ${instSS}</b> / bulan
+
+    if (product.hasInstallment) {
+        installmentEl.innerHTML = `
+            <div class="flex flex-col gap-1">
+                <span><i class="fa-solid fa-calculator mr-1"></i> <b>Ansuran Bulanan (5 Bulan):</b></span>
+                <div class="ml-4 text-xs font-bold text-amber-800">
+                    • Semenanjung: <b>RM ${instSem}</b> / bulan<br>
+                    • Sabah / Sarawak / Labuan: <b>RM ${instSS}</b> / bulan
+                </div>
             </div>
-        </div>
-    `;
-    installmentEl.classList.remove('hidden');
-} else {
-    installmentEl.classList.add('hidden');
+        `;
+        installmentEl.classList.remove('hidden');
+    } else {
+        installmentEl.classList.add('hidden');
+    }
+
+    document.getElementById('modal-add-cart-btn').onclick = () => {
+        addToCart(product.id);
+        closeProductModal();
+    };
+    document.getElementById('modal-buy-now-btn').onclick = () => {
+        addToCart(product.id);
+        closeProductModal();
+        toggleCart();
+    };
+
+    // FUNGSI BUTANG ANSURAN WHATSAPP
+    document.getElementById('modal-installment-wa-btn').onclick = () => {
+        const textMsg = `Salam A%26A WORLD, saya berminat nak memohon *Ansuran 5 Bulan* untuk produk berikut:%0A%0A` +
+                        `*Produk:* ${encodeURIComponent(product.name)}%0A` +
+                        `*Saiz/Variasi:* ${encodeURIComponent(product.size)}%0A` +
+                        `*Harga Tunai:* RM ${product.price.toFixed(2)} (Sem) / RM ${product.priceSS.toFixed(2)} (SS)%0A` +
+                        `*Anggaran Ansuran:* RM ${instSem}/bulan (Sem) | RM ${instSS}/bulan (SS)%0A%0A` +
+                        `Boleh terangkan syarat %26 cara permohonan ansuran ini?`;
+
+        window.open(`https://wa.me/60139703969?text=${textMsg}`, '_blank');
+    };
+
+    document.getElementById('product-detail-modal').classList.remove('hidden');
 }
-
-            document.getElementById('modal-add-cart-btn').onclick = () => {
-                addToCart(product.id);
-                closeProductModal();
-            };
-            document.getElementById('modal-buy-now-btn').onclick = () => {
-                addToCart(product.id);
-                closeProductModal();
-                toggleCart();
-            };
-
-            document.getElementById('product-detail-modal').classList.remove('hidden');
-        }
 
         function closeProductModal() {
             document.getElementById('product-detail-modal').classList.add('hidden');
