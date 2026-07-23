@@ -546,7 +546,7 @@
                     <button id="modal-buy-now-btn" class="bg-brand-blue hover:bg-brand-blueDark text-white font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition-all">
                         Beli Penuh
                     </button>
-                    <!-- BUTANG BARU: ANSURAN WHATSAPP -->
+                    <!-- BUTANG ANSURAN WHATSAPP (KONTROL DENGAN HASINSTALLMENT) -->
                     <button id="modal-installment-wa-btn" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs px-4 py-2.5 rounded-xl shadow transition-all flex items-center gap-1.5">
                         <i class="fa-brands fa-whatsapp text-sm"></i> Ansuran 5x
                     </button>
@@ -599,7 +599,7 @@
         </div>
     </div>
 
-<!-- MODAL CHECKOUT DENGAN INPUT EMAIL & NOTIS ANSURAN -->
+<!-- MODAL CHECKOUT DENGAN INPUT EMAIL -->
 <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
     <div onclick="closeCheckoutModal()" class="fixed inset-0 bg-black/60 transition-opacity"></div>
     <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full z-10 overflow-hidden transform transition-all flex flex-col my-8">
@@ -664,15 +664,6 @@
                 <div class="flex justify-between font-black text-sm text-brand-blue pt-2 border-t border-gray-200">
                     <span>Jumlah Keseluruhan Bayaran:</span>
                     <span id="checkout-summary-total">RM 0.00</span>
-                </div>
-            </div>
-
-            <!-- NOTIS MAKLUMAN ANSURAN WHATSAPP -->
-            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900 flex items-start gap-2.5">
-                <i class="fa-solid fa-circle-info text-amber-600 text-base shrink-0 mt-0.5"></i>
-                <div class="leading-relaxed">
-                    <strong>Ingin memohon Ansuran 5 Bulan?</strong> Pembayaran di sini adalah untuk <u>Bayaran Penuh (Full Payment)</u>. Untuk urusan ansuran bulanan, sila mohon terus bersama kami melalui 
-                    <a href="https://wa.me/60139703969?text=Salam%20A%26A%20WORLD,%20saya%20nak%20tanya%20mengenai%20permohonan%20ansuran%205%20bulan%20untuk%20pesanan%20saya." target="_blank" class="text-brand-blue font-extrabold underline hover:text-brand-blueDark">WhatsApp Kedai</a>.
                 </div>
             </div>
 
@@ -1659,9 +1650,8 @@ const installmentHtml = product.hasInstallment
     const instSem = (product.price / 5).toFixed(2);
     const instSS = (product.priceSS / 5).toFixed(2);
 
-    // KAWALAN SYARAT: Jika hasInstallment == TRUE
+    // Semakan `hasInstallment` dari Google Sheet
     if (product.hasInstallment) {
-        // 1. Paparkan teks info ansuran
         installmentEl.innerHTML = `
             <div class="flex flex-col gap-1">
                 <span><i class="fa-solid fa-calculator mr-1"></i> <b>Ansuran Bulanan (5 Bulan):</b></span>
@@ -1673,7 +1663,6 @@ const installmentHtml = product.hasInstallment
         `;
         installmentEl.classList.remove('hidden');
 
-        // 2. Paparkan Butang WhatsApp Ansuran
         if (installmentWaBtn) {
             installmentWaBtn.classList.remove('hidden');
             installmentWaBtn.onclick = () => {
@@ -1688,14 +1677,12 @@ const installmentHtml = product.hasInstallment
             };
         }
     } else {
-        // Jika hasInstallment == FALSE: Sembunyikan info & butang ansuran
         installmentEl.classList.add('hidden');
         if (installmentWaBtn) {
             installmentWaBtn.classList.add('hidden');
         }
     }
 
-    // Butang Troli & Beli Penuh tetap kekal untuk semua produk
     document.getElementById('modal-add-cart-btn').onclick = () => {
         addToCart(product.id);
         closeProductModal();
