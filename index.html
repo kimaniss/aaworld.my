@@ -139,20 +139,20 @@
                 </div>
 
 <!-- BANNER MOD POSTER IMEJ PENUH (SLIDER / CAROUSEL) -->
-                <div id="campaign-image-banner" class="hidden rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white relative group">
-                    <div id="slider-track" class="flex transition-transform duration-500 ease-out w-full"></div>
+<div id="campaign-image-banner" class="hidden rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white relative group h-auto">
+    <div id="slider-track" class="flex transition-transform duration-500 ease-out w-full items-start"></div>
 
-<!-- BUTANG NAVIGASI SLIDER -->
-                    <button id="slider-prev-btn" onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 z-10">
-                        <i class="fa-solid fa-chevron-left text-sm"></i>
-                    </button>
-                    <button id="slider-next-btn" onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 z-10">
-                        <i class="fa-solid fa-chevron-right text-sm"></i>
-                    </button>
+    <!-- BUTANG NAVIGASI SLIDER -->
+    <button id="slider-prev-btn" onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 z-10">
+        <i class="fa-solid fa-chevron-left text-sm"></i>
+    </button>
+    <button id="slider-next-btn" onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white w-9 h-9 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 z-10">
+        <i class="fa-solid fa-chevron-right text-sm"></i>
+    </button>
 
-<!-- TITIK INDIKATOR (DOTS) -->
-                    <div id="slider-dots-container" class="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center space-x-1.5 z-10"></div>
-                </div>
+    <!-- TITIK INDIKATOR (DOTS) -->
+    <div id="slider-dots-container" class="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center space-x-1.5 z-10"></div>
+</div>
             </div>
 
 <div id="section-bar" class="flex items-center justify-between mb-4 bg-white p-3 rounded-lg shadow-sm">
@@ -1119,54 +1119,55 @@
         }
 
         function setupHeroImageSlider(rawBannerImgs) {
-            clearInterval(slideInterval);
-            bannerImagesList = rawBannerImgs ? rawBannerImgs.split(',').map(s => s.trim()).filter(s => s !== '') : [];
-            
-            const track = document.getElementById('slider-track');
-            const prevBtn = document.getElementById('slider-prev-btn');
-            const nextBtn = document.getElementById('slider-next-btn');
-            const dotsContainer = document.getElementById('slider-dots-container');
+    clearInterval(slideInterval);
+    bannerImagesList = rawBannerImgs ? rawBannerImgs.split(',').map(s => s.trim()).filter(s => s !== '') : [];
+    
+    const track = document.getElementById('slider-track');
+    const prevBtn = document.getElementById('slider-prev-btn');
+    const nextBtn = document.getElementById('slider-next-btn');
+    const dotsContainer = document.getElementById('slider-dots-container');
 
-            track.innerHTML = '';
-            dotsContainer.innerHTML = '';
-            currentSlideIndex = 0;
+    track.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    currentSlideIndex = 0;
 
-            if (bannerImagesList.length === 0) {
-                document.getElementById('campaign-image-banner').classList.add('hidden');
-                return;
-            }
+    if (bannerImagesList.length === 0) {
+        document.getElementById('campaign-image-banner').classList.add('hidden');
+        return;
+    }
 
-            bannerImagesList.forEach((url, idx) => {
-                const img = document.createElement('img');
-                img.src = url;
-                img.alt = `Poster Kempen ${idx + 1}`;
-                img.className = "w-full h-auto object-cover max-h-[350px] sm:max-h-[450px] shrink-0";
-                track.appendChild(img);
+    bannerImagesList.forEach((url, idx) => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Poster Kempen ${idx + 1}`;
+        // DIKEMAS KINI: Dibuang max-h tegar & dipastikan h-auto rapat dengan kontena
+        img.className = "w-full h-auto object-cover shrink-0 block";
+        track.appendChild(img);
 
-                if(bannerImagesList.length > 1) {
-                    const dot = document.createElement('button');
-                    dot.className = `w-2.5 h-2.5 rounded-full transition-all ${idx === 0 ? 'bg-white w-6' : 'bg-white/50'}`;
-                    dot.onclick = () => goToSlide(idx);
-                    dotsContainer.appendChild(dot);
-                }
-            });
-
-            if (bannerImagesList.length > 1) {
-                prevBtn.classList.remove('hidden');
-                nextBtn.classList.remove('hidden');
-                dotsContainer.classList.remove('hidden');
-
-                slideInterval = setInterval(() => {
-                    nextSlide();
-                }, 4000);
-            } else {
-                prevBtn.classList.add('hidden');
-                nextBtn.classList.add('hidden');
-                dotsContainer.classList.add('hidden');
-            }
-
-            updateSlidePosition();
+        if(bannerImagesList.length > 1) {
+            const dot = document.createElement('button');
+            dot.className = `w-2.5 h-2.5 rounded-full transition-all ${idx === 0 ? 'bg-white w-6' : 'bg-white/50'}`;
+            dot.onclick = () => goToSlide(idx);
+            dotsContainer.appendChild(dot);
         }
+    });
+
+    if (bannerImagesList.length > 1) {
+        prevBtn.classList.remove('hidden');
+        nextBtn.classList.remove('hidden');
+        dotsContainer.classList.remove('hidden');
+
+        slideInterval = setInterval(() => {
+            nextSlide();
+        }, 4000);
+    } else {
+        prevBtn.classList.add('hidden');
+        nextBtn.classList.add('hidden');
+        dotsContainer.classList.add('hidden');
+    }
+
+    updateSlidePosition();
+}
 
         function updateSlidePosition() {
             const track = document.getElementById('slider-track');
