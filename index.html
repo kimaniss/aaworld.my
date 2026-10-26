@@ -1057,7 +1057,8 @@
                             document.getElementById('promo-title').innerText = resData.campaign.title || 'Koleksi Periuk Gred Premium';
                             document.getElementById('promo-desc').innerText = resData.campaign.desc || '';
                             
-                            targetEndDateStr = resData.campaign.end_date || '17-07-2026';
+                            // Ambil tarikh dari respon pelayan
+                            targetEndDateStr = String(resData.campaign.end_date || '2026-10-30').trim();
                             
                             const color1 = resData.campaign.bg_color1 || '#1e3768';
                             const color2 = resData.campaign.bg_color2 || '#355ca4';
@@ -1072,11 +1073,20 @@
 
                             setBannerImagesToInputs(resData.campaign.banner_img || '');
 
-                            if(targetEndDateStr.includes('-')) {
+                            // Memasukkan format tarikh YYYY-MM-DD ke dalam input box admin
+                            if (targetEndDateStr.includes('-')) {
                                 const parts = targetEndDateStr.split('-');
-                                if(parts.length === 3) {
-                                    document.getElementById('campaign-input-enddate').value = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                                if (parts.length === 3) {
+                                    if (parts[0].length === 4) {
+                                        // Format: YYYY-MM-DD
+                                        document.getElementById('campaign-input-enddate').value = targetEndDateStr;
+                                    } else {
+                                        // Format: DD-MM-YYYY -> ditukar ke YYYY-MM-DD
+                                        document.getElementById('campaign-input-enddate').value = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+                                    }
                                 }
+                            } else {
+                                document.getElementById('campaign-input-enddate').value = targetEndDateStr;
                             }
 
                             toggleCampaignFormFields();
@@ -1103,6 +1113,7 @@
 
                                 if (campaignShowTimer) {
                                     timerBoxEl.classList.remove('hidden');
+                                    startFlashSaleTimer(); // Mulakan timer dengan tarikh yang sah
                                 } else {
                                     timerBoxEl.classList.add('hidden');
                                 }
@@ -1289,63 +1300,58 @@
         }
 
         function handleCampaignCrudSubmit(e) {
-            e.preventDefault();
-            const btn = document.getElementById('campaign-submit-btn');
-            const btnText = document.getElementById('campaign-submit-text');
+    e.preventDefault();
+    const btn = document.getElementById('campaign-submit-btn');
+    const btnText = document.getElementById('campaign-submit-text');
 
-            btn.disabled = true;
-            btn.classList.add('opacity-50', 'cursor-not-allowed');
-            btnText.innerText = "Menyimpan...";
+    btn.disabled = true;
+    btn.classList.add('opacity-50', 'cursor-not-allowed');
+    btnText.innerText = "Menyimpan...";
 
-            const inputDateVal = document.getElementById('campaign-input-enddate').value; 
-            let formattedUIDate = "17-07-2026";
-            
-            if(inputDateVal.includes('-')) {
-                const parts = inputDateVal.split('-');
-                formattedUIDate = `${parts[2]}-${parts[1]}-${parts[0]}`; 
-            }
+    const inputDateVal = document.getElementById('campaign-input-enddate').value; 
+    let formattedUIDate = inputDateVal || "2026-10-30";
 
-            const payload = {
-                action: "saveCampaign",
-                mode: document.getElementById('campaign-input-mode').value,
-                show_timer: document.getElementById('campaign-input-showtimer').checked,
-                tag: document.getElementById('campaign-input-tag').value,
-                title: document.getElementById('campaign-input-title').value,
-                desc: document.getElementById('campaign-input-desc').value,
-                end_date: formattedUIDate,
-                banner_img: getBannerImagesFromInputs(),
-                bg_color1: document.getElementById('campaign-input-color1').value,
-                bg_color2: document.getElementById('campaign-input-color2').value
-            };
+    const payload = {
+        action: "saveCampaign",
+        mode: document.getElementById('campaign-input-mode').value,
+        show_timer: document.getElementById('campaign-input-showtimer').checked,
+        tag: document.getElementById('campaign-input-tag').value,
+        title: document.getElementById('campaign-input-title').value,
+        desc: document.getElementById('campaign-input-desc').value,
+        end_date: formattedUIDate, // Simpan terus format standard YYYY-MM-DD
+        banner_img: getBannerImagesFromInputs(),
+        bg_color1: document.getElementById('campaign-input-color1').value,
+        bg_color2: document.getElementById('campaign-input-color2').value
+    };
 
-            fetch(API_URL, {
-                method: "POST",
-                headers: { "Content-Type": "text/plain" },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.text())
-            .then(text => {
-                btn.disabled = false;
-                btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                btnText.innerText = "Kemas Kini Tetapan Kempen";
+    fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.text())
+    .then(text => {
+        btn.disabled = false;
+        btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        btnText.innerText = "Kemas Kini Tetapan Kempen";
 
-                let resData;
-                try { resData = JSON.parse(text); } catch (e) { alert("Gagal mengemaskini kempen."); return; }
+        let resData;
+        try { resData = JSON.parse(text); } catch (e) { alert("Gagal mengemaskini kempen."); return; }
 
-                if (resData.status === 'success') {
-                    showSuccessToast("Tetapan banner kempen berjaya dikemaskini!");
-                    fetchProductsFromSheet();
-                } else {
-                    alert(resData.message);
-                }
-            })
-            .catch(err => {
-                btn.disabled = false;
-                btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                btnText.innerText = "Kemas Kini Tetapan Kempen";
-                alert("Gagal menghubungi Server.");
-            });
+        if (resData.status === 'success') {
+            showSuccessToast("Tetapan banner kempen berjaya dikemaskini!");
+            fetchProductsFromSheet();
+        } else {
+            alert(resData.message);
         }
+    })
+    .catch(err => {
+        btn.disabled = false;
+        btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        btnText.innerText = "Kemas Kini Tetapan Kempen";
+        alert("Gagal menghubungi Server.");
+    });
+}
 
         function handleCategoryCrudSubmit(e) {
             e.preventDefault();
@@ -2552,38 +2558,64 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function startFlashSaleTimer() {
-            setInterval(() => {
-                if (!targetEndDateStr || !targetEndDateStr.includes('-')) return;
-                
-                const parts = targetEndDateStr.split('-');
-                if (parts.length !== 3) return;
+        let flashSaleInterval = null;
 
-                const targetDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]), 0, 0, 0);
-                const now = new Date();
-                
-                let diffSeconds = Math.floor((targetDate.getTime() - now.getTime()) / 1000);
+function startFlashSaleTimer() {
+    if (flashSaleInterval) clearInterval(flashSaleInterval);
 
-                if (diffSeconds <= 0) {
-                    diffSeconds = 0;
+    flashSaleInterval = setInterval(() => {
+        if (!targetEndDateStr) return;
+
+        let targetDate = null;
+        let dateClean = String(targetEndDateStr).trim();
+
+        // 1. Jika format DD-MM-YYYY
+        if (dateClean.includes('-')) {
+            const parts = dateClean.split('-');
+            if (parts.length === 3) {
+                if (parts[0].length === 4) {
+                    // Format YYYY-MM-DD
+                    targetDate = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]), 23, 59, 59);
+                } else {
+                    // Format DD-MM-YYYY
+                    targetDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]), 23, 59, 59);
                 }
-
-                const days = Math.floor(diffSeconds / 86400);
-                const hrs = Math.floor((diffSeconds % 86400) / 3600);
-                const mins = Math.floor((diffSeconds % 3600) / 60);
-                const secs = diffSeconds % 60;
-                
-                const dEl = document.getElementById('days');
-                const hEl = document.getElementById('hours');
-                const mEl = document.getElementById('minutes');
-                const sEl = document.getElementById('seconds');
-                
-                if(dEl) dEl.innerText = String(days).padStart(2, '0');
-                if(hEl) hEl.innerText = String(hrs).padStart(2, '0');
-                if(mEl) mEl.innerText = String(mins).padStart(2, '0');
-                if(sEl) sEl.innerText = String(secs).padStart(2, '0');
-            }, 1000);
+            }
+        } 
+        
+        // 2. Fallback jika format standard ISO Date atau string lain
+        if (!targetDate || isNaN(targetDate.getTime())) {
+            targetDate = new Date(dateClean);
+            if (!isNaN(targetDate.getTime())) {
+                targetDate.setHours(23, 59, 59, 999);
+            }
         }
+
+        if (!targetDate || isNaN(targetDate.getTime())) return;
+
+        const now = new Date();
+        let diffSeconds = Math.floor((targetDate.getTime() - now.getTime()) / 1000);
+
+        if (diffSeconds <= 0) {
+            diffSeconds = 0;
+        }
+
+        const days = Math.floor(diffSeconds / 86400);
+        const hrs = Math.floor((diffSeconds % 86400) / 3600);
+        const mins = Math.floor((diffSeconds % 3600) / 60);
+        const secs = diffSeconds % 60;
+
+        const dEl = document.getElementById('days');
+        const hEl = document.getElementById('hours');
+        const mEl = document.getElementById('minutes');
+        const sEl = document.getElementById('seconds');
+
+        if(dEl) dEl.innerText = String(days).padStart(2, '0');
+        if(hEl) hEl.innerText = String(hrs).padStart(2, '0');
+        if(mEl) mEl.innerText = String(mins).padStart(2, '0');
+        if(sEl) sEl.innerText = String(secs).padStart(2, '0');
+    }, 1000);
+}
     </script>
 </body>
 </html>
