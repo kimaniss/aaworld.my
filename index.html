@@ -2566,26 +2566,34 @@ function startFlashSaleTimer() {
     flashSaleInterval = setInterval(() => {
         if (!targetEndDateStr) return;
 
+        let rawStr = String(targetEndDateStr).trim();
         let targetDate = null;
-        let dateClean = String(targetEndDateStr).trim();
 
-        // 1. Jika format DD-MM-YYYY
-        if (dateClean.includes('-')) {
-            const parts = dateClean.split('-');
-            if (parts.length === 3) {
-                if (parts[0].length === 4) {
-                    // Format YYYY-MM-DD
-                    targetDate = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]), 23, 59, 59);
-                } else {
-                    // Format DD-MM-YYYY
-                    targetDate = new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]), 23, 59, 59);
+        // Pisahkan mengikut tanda '-' atau '/'
+        const separator = rawStr.includes('-') ? '-' : (rawStr.includes('/') ? '/' : null);
+
+        if (separator) {
+            const parts = rawStr.split(separator).map(p => Number(p));
+            if (parts.length === 3 && !parts.some(isNaN)) {
+                if (parts[0] > 1000) {
+                    // Format bermula dengan Tahun: YYYY-MM-DD
+                    const year = parts[0];
+                    const month = parts[1] - 1; // 0-indexed (0 = Jan, 9 = Okt)
+                    const day = parts[2];
+                    targetDate = new Date(year, month, day, 23, 59, 59);
+                } else if (parts[2] > 1000) {
+                    // Format berakhir dengan Tahun: DD-MM-YYYY
+                    const day = parts[0];
+                    const month = parts[1] - 1;
+                    const year = parts[2];
+                    targetDate = new Date(year, month, day, 23, 59, 59);
                 }
             }
-        } 
-        
-        // 2. Fallback jika format standard ISO Date atau string lain
+        }
+
+        // Fallback jika parsing di atas tidak sah
         if (!targetDate || isNaN(targetDate.getTime())) {
-            targetDate = new Date(dateClean);
+            targetDate = new Date(rawStr);
             if (!isNaN(targetDate.getTime())) {
                 targetDate.setHours(23, 59, 59, 999);
             }
@@ -2596,7 +2604,9 @@ function startFlashSaleTimer() {
         const now = new Date();
         let diffSeconds = Math.floor((targetDate.getTime() - now.getTime()) / 1000);
 
+        // JIKA TARIKH SUDAH LEPAS (Contohnya Julai 2026):
         if (diffSeconds <= 0) {
+            // Paparkan 00 sekiranya tamat
             diffSeconds = 0;
         }
 
